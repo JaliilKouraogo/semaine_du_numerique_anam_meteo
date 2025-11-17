@@ -29,7 +29,7 @@
 - Python ≥ 3.10 (virtualenv recommandé)
 - Node.js ≥ 18 (pour le dashboard)
 - Dépendances système : `tesseract-ocr`, `libgl1`, `libglib2.0-0`, `poppler-utils`
-- (Optionnel) Ollama + modèle `qwen3-vl:8b` si vous utilisez `extract_temps_qwen.py`
+- (Optionnel) Ollama + modèle `qwen3-vl:8b` pour utilisez `extract_temps_qwen.py`
 
 ### Installation backend
 
