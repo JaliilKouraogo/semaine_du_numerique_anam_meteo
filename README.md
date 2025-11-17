@@ -18,7 +18,7 @@
 | `merge_all_merged.py`| Agrège tous les `*_merged.json` en `data/all_merged.json` (copie également sous `2024_temps_merged/all_merged.json`). |
 | `evaluate_forecasts.py` | Calcule MAE/RMSE et accuracy macro-F1 puis écrit `data/evaluation_metrics.json`.                                     |
 | FastAPI (`app/`)     | API REST + base SQLite (`data/meteo.db`) : import des bulletins, CRUD stations, export de `all_merged.json`, statistiques, déclenchement du pipeline (`/scraping/start`). |
-| Frontend React (`frontend/frontend`) | Dashboard (Cartes + KPIs), Files (aperçu des bulletins), Stations (Tmin/Tmax), Évaluation, Logs, Paramètres.  |
+| Frontend React (`frontend/frontend`) | Dashboard (Cartes + KPIs), Files (aperçu des bulletins), Stations (Tmin/Tmax + % diff), Évaluation, Logs, Paramètres. Export CSV/JSON disponible depuis les écrans concernés. |
 
 ---
 
