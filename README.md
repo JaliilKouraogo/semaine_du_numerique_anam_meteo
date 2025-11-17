@@ -273,8 +273,6 @@ npm run build
 
 ---
 
-Bon traitement des données météo ! 🌍🌤️
-
 ---
 
 ## MIT License
