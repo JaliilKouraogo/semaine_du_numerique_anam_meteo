@@ -26,11 +26,6 @@ const Header = ({ onMenuClick }) => {
           </div>
         </div>
         
-        <div className="flex items-center">
-          <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-            <span className="text-gray-600 font-medium">A</span>
-          </div>
-        </div>
       </div>
     </header>
   );

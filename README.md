@@ -6,6 +6,8 @@
 
 ## 1. Architecture générale
 
+![Scraping](assets/scrapping.png)
+
 | Bloc                  | Description                                                                                                      |
 |----------------------|------------------------------------------------------------------------------------------------------------------|
 | `meteo_scraper.py`   | Explore les pages `https://meteoburkina.bf/produits/bulletin-quotidien/`, détecte les liens PDF valides, télécharge dans `bulletins_pdf/`. |
@@ -89,6 +91,8 @@ python pdf_to_images_recursive.py
 
 ### Étape 3 – Découpe des cartes
 
+![Coordonnées](assets/coordonner.png)
+
 ```bash
 python crop_maps_recursive.py
 ```
@@ -97,6 +101,8 @@ python crop_maps_recursive.py
 - Résultat sous `2024_maps/<MOIS>/..._map{1,2}.png`.
 
 ### Étape 4 – Extraction des températures/icônes
+
+![Extraction Qwen](assets/qwen3_data_extract.png)
 
 Deux options :
 
@@ -166,6 +172,10 @@ python evaluate_forecasts.py        # lit data/all_merged.json, écrit data/eval
 ---
 
 ## 5. Dashboard React
+
+![Dashboard principal](assets/dashboard.png)
+![Dashboard détaillé](assets/dashboard2.png)
+![Dashboard stations](assets/dashboad3.png)
 
 ### Pages principales
 
@@ -262,4 +272,3 @@ npm run build
 ---
 
 Bon traitement des données météo ! 🌍🌤️
-
