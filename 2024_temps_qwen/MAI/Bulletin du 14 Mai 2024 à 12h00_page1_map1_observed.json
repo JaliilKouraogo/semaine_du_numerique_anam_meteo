@@ -1,0 +1,107 @@
+{
+  "date_bulletin": "Bulletin du 14 Mai 2024 à 12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin du 14 Mai 2024 à 12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "GAOUA",
+      "tmin": 25,
+      "tmax": 32
+    },
+    {
+      "nom": "BANFORA",
+      "tmin": null,
+      "tmax": null
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 26,
+      "tmax": 35
+    },
+    {
+      "nom": "PO",
+      "tmin": 26,
+      "tmax": 31
+    },
+    {
+      "nom": "LEO",
+      "tmin": null,
+      "tmax": null
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 27,
+      "tmax": 35
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 28,
+      "tmax": 36
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 27,
+      "tmax": 34
+    },
+    {
+      "nom": "TENKODOGO",
+      "tmin": null,
+      "tmax": null
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 26,
+      "tmax": 32
+    },
+    {
+      "nom": "DIAPAGA",
+      "tmin": null,
+      "tmax": null
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 27,
+      "tmax": 33
+    },
+    {
+      "nom": "DORI",
+      "tmin": null,
+      "tmax": null
+    },
+    {
+      "nom": "DJIBO",
+      "tmin": null,
+      "tmax": null
+    },
+    {
+      "nom": "GOROM GOROM",
+      "tmin": null,
+      "tmax": null
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 28,
+      "tmax": 35
+    },
+    {
+      "nom": "KOUDOUGOU",
+      "tmin": null,
+      "tmax": null
+    },
+    {
+      "nom": "KAYA",
+      "tmin": null,
+      "tmax": null
+    },
+    {
+      "nom": "TOUGAN",
+      "tmin": null,
+      "tmax": null
+    },
+    {
+      "nom": "MANGA",
+      "tmin": null,
+      "tmax": null
+    }
+  ]
+}

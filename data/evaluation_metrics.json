@@ -1,0 +1,13 @@
+{
+  "file": "2024_temps_merged/all_merged.json",
+  "total_bulletins": 17,
+  "pairs_tmin": 72,
+  "pairs_tmax": 72,
+  "pairs_icons": 41,
+  "Tmin_MAE": 1.2083333333333333,
+  "Tmin_RMSE": 1.6372402253657083,
+  "Tmax_MAE": 1.5,
+  "Tmax_RMSE": 2.0949675149960894,
+  "Icon_accuracy": 0.7560975609756098,
+  "Icon_macro_F1": 0.6635365853658537
+}

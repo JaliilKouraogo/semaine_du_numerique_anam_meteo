@@ -1,0 +1,15 @@
+node_modules/
+frontend/node_modules/
+api/db/*.db
+api/db/*.db-journal
+.env
+.DS_Store
+*.log
+dist/
+build/
+.idea/
+.vscode/
+uploads/
+*.pdf
+!docs/sample.pdf
+

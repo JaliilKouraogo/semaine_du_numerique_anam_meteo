@@ -1,0 +1,127 @@
+{
+  "date_bulletin": "Bulletin du 01 aout 2024 à 12h00_page1_map2",
+  "map_type": "forecast",
+  "source_image": "Bulletin du 01 aout 2024 à 12h00_page1_map2.png",
+  "stations": [
+    {
+      "nom": "GAOUA",
+      "tmin": 24,
+      "tmax": 30,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BANFORA",
+      "tmin": 23,
+      "tmax": 29,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 23,
+      "tmax": 29,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "PO",
+      "tmin": 23,
+      "tmax": 31,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "LEO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": null
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 24,
+      "tmax": 30,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": null
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 25,
+      "tmax": 31,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "TENKODOGO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": null
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 24,
+      "tmax": 31,
+      "weather_icon": "nuageux"
+    },
+    {
+      "nom": "DIAPAGA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": null
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 25,
+      "tmax": 32,
+      "weather_icon": "nuageux"
+    },
+    {
+      "nom": "DORI",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": null
+    },
+    {
+      "nom": "DJIBO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": null
+    },
+    {
+      "nom": "GOROM GOROM",
+      "tmin": 25,
+      "tmax": 32,
+      "weather_icon": "nuageux"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 25,
+      "tmax": 31,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "KOUDOUGOU",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": null
+    },
+    {
+      "nom": "KAYA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": null
+    },
+    {
+      "nom": "TOUGAN",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": null
+    },
+    {
+      "nom": "MANGA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": null
+    }
+  ]
+}
