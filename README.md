@@ -94,11 +94,10 @@ python pdf_to_images_recursive.py
 ```
 
 - Convertit tous les PDF trouvés dans `2024/` vers `2024_fullpage/<MOIS>/...png`.
-- DPI configurable dans le script (`dpi=200` par défaut).
 
 ### Étape 3 – Découpe des cartes & géoréférencement
 
-`annotate_cities.py` (déjà exécuté une fois) fournit `cities_positions.json` / `cities_rel.json`, référence pour toutes les villes.
+`annotate_cities.py` permet de cliquer chaque ville sur la carte de référence (`base_map_cities.png`) pour produire `cities_positions.json` et `cities_rel.json`. Ces fichiers servent de référence aux étapes suivantes.
 
 ![Annotate cities](assets/coordonner.png)
 

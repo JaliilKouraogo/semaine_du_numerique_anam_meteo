@@ -20,6 +20,12 @@ const buildTimeseries = (reports = []) =>
       tmax_obs: report.Tmax_obs,
       temps_obs: report.temps_obs,
       temps_prev: report.temps_prev,
+      diff_percent:
+        report.Tmax_prev != null && report.Tmax_obs != null
+          ? Math.abs(report.Tmax_obs - report.Tmax_prev) /
+              (Math.abs(report.Tmax_prev) || 1) *
+              100
+          : null,
     }))
     .sort((a, b) => new Date(a.date) - new Date(b.date));
 
@@ -284,6 +290,9 @@ const StationDetail = () => {
                     Tmax
                   </th>
                   <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">
+                    % Diff
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">
                     Icônes
                   </th>
                 </tr>
@@ -297,12 +306,15 @@ const StationDetail = () => {
                     <td className="px-4 py-3 text-sm text-gray-600">
                       {t.tmin_prev ?? '—'}°C / {t.tmin_obs ?? '—'}°C
                     </td>
-                    <td className="px-4 py-3 text-sm text-gray-600">
-                      {t.tmax_prev ?? '—'}°C / {t.tmax_obs ?? '—'}°C
-                    </td>
-                    <td className="px-4 py-3 text-sm text-gray-600">
-                      {t.temps_prev || '—'} → {t.temps_obs || '—'}
-                    </td>
+                  <td className="px-4 py-3 text-sm text-gray-600">
+                    {t.tmax_prev ?? '—'}°C / {t.tmax_obs ?? '—'}°C
+                  </td>
+                  <td className="px-4 py-3 text-sm text-gray-900">
+                    {t.diff_percent != null ? `${t.diff_percent.toFixed(1)}%` : '—'}
+                  </td>
+                  <td className="px-4 py-3 text-sm text-gray-600">
+                    {t.temps_prev || '—'} → {t.temps_obs || '—'}
+                  </td>
                   </tr>
                 ))}
               </tbody>
