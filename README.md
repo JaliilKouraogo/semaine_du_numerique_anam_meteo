@@ -67,6 +67,13 @@ REACT_APP_API_URL=http://localhost:8000 npm start
 
 Les pages se rafraîchissent automatiquement en interrogeant l’API FastAPI.
 
+### Variante Docker complète
+
+```bash
+docker build -f Dockerfile.full -t meteo-bfa-full .
+docker run -it --rm -p 8000:8000 -p 3000:3000 meteo-bfa-full
+```
+
 ---
 
 ## 3. Pipeline détaillé
@@ -91,7 +98,7 @@ python pdf_to_images_recursive.py
 
 ### Étape 3 – Découpe des cartes & géoréférencement
 
-- Avant de lancer les extractions, utilisez `annotate_cities.py` pour cliquer chaque ville sur la carte de référence (`base_map_cities.png`). Le script produit `cities_positions.json`, base des coordonnées relatives.
+`annotate_cities.py` (déjà exécuté une fois) fournit `cities_positions.json` / `cities_rel.json`, référence pour toutes les villes.
 
 ![Annotate cities](assets/coordonner.png)
 
@@ -102,19 +109,11 @@ python crop_maps_recursive.py
 - Utilise les coordonnées relatives (`MAP1_X0`, etc.) pour extraire automatiquement `map1` (observé) et `map2` (prévision).
 - Résultat sous `2024_maps/<MOIS>/..._map{1,2}.png`.
 
-### Étape 4 – Extraction des températures/icônes
+### Étape 4 – Extraction des températures + icônes
 
 ![Extraction Qwen](assets/qwen3_data_extract.png)
 
-Deux options :
-
-1. **OCR Tesseract (`extract_temps_relative.py`)**
-   - Crops autour des coordonnées (`cities_rel.json`) et utilise pytesseract.
-   - Produit `2024_temps_json_rel/<MOIS>/..._observed.json`.
-
-2. **LLM (`extract_temps_qwen.py`)**
-   - Envoie les crops à Qwen3-VL (Ollama) pour lire Tmin/Tmax + icônes.
-   - Écrit `2024_temps_qwen/<MOIS>/..._map1_observed.json` & `..._map2_forecast.json`.
+`extract_temps_qwen.py` / `extract_icon_qwen.py` exploitent Qwen3-VL (Ollama) pour lire simultanément Tmin/Tmax et l’icône météo à partir des cartes croppées. Les fichiers générés se retrouvent dans `2024_temps_qwen/<MOIS>/..._map{1,2}.json`.
 
 ### Étape 5 – Fusion
 
