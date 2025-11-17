@@ -13,7 +13,7 @@
 | `meteo_scraper.py`   | Explore les pages `https://meteoburkina.bf/produits/bulletin-quotidien/`, détecte les liens PDF valides, télécharge dans `bulletins_pdf/`. |
 | `pdf_to_images_recursive.py` | Convertit l’intégralité des PDF (`2024/<MOIS>/...pdf`) en PNG haute résolution (`2024_fullpage/`).                             |
 | `crop_maps_recursive.py`     | Découpe automatiquement les cartes observées/prévues dans chaque page et range le résultat dans `2024_maps/<MOIS>/`.             |
-| `extract_temps_qwen.py` / `extract_temps_relative.py` | Lisent les cartes (OCR classique ou Qwen3-VL via Ollama) pour extraire Tmin/Tmax/icônes sur toutes les villes référencées dans `cities_rel.json`. |
+| `extract_temps_qwen.py`      | Lisent les cartes (via Qwen3-VL + Ollama) pour extraire Tmin/Tmax/icônes sur toutes les villes référencées dans `cities_rel.json`. |
 | `merge_maps.py`      | Fusionne `*_map1_observed.json` et `*_map2_forecast.json` en un fichier unique `*_merged.json` en ajoutant lat/lon. |
 | `merge_all_merged.py`| Agrège tous les `*_merged.json` en `data/all_merged.json` (copie également sous `2024_temps_merged/all_merged.json`). |
 | `evaluate_forecasts.py` | Calcule MAE/RMSE et accuracy macro-F1 puis écrit `data/evaluation_metrics.json`.                                     |
@@ -89,9 +89,11 @@ python pdf_to_images_recursive.py
 - Convertit tous les PDF trouvés dans `2024/` vers `2024_fullpage/<MOIS>/...png`.
 - DPI configurable dans le script (`dpi=200` par défaut).
 
-### Étape 3 – Découpe des cartes
+### Étape 3 – Découpe des cartes & géoréférencement
 
-![Coordonnées](assets/coordonner.png)
+- Avant de lancer les extractions, utilisez `annotate_cities.py` pour cliquer chaque ville sur la carte de référence (`base_map_cities.png`). Le script produit `cities_positions.json`, base des coordonnées relatives.
+
+![Annotate cities](assets/coordonner.png)
 
 ```bash
 python crop_maps_recursive.py
