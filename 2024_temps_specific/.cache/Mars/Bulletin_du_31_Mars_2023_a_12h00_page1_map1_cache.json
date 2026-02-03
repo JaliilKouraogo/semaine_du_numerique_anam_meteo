@@ -1,0 +1,69 @@
+{
+  "date_bulletin": "Bulletin_du_31_Mars_2023_a_12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin_du_31_Mars_2023_a_12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "BOROMO",
+      "tmin": 23,
+      "tmax": 37,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 25,
+      "tmax": 41,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "PO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 22,
+      "tmax": 41,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 25,
+      "tmax": 40,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 24,
+      "tmax": 39,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    }
+  ],
+  "_complete": true,
+  "_processed_at": "2026-02-03T00:31:02.200573"
+}

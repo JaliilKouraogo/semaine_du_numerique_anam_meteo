@@ -1,0 +1,13 @@
+node_modules/
+frontend/node_modules/
+frontend/build/
+.git/
+.env
+*.log
+.DS_Store
+uploads/
+api/db/*.db
+api/db/*.db-journal
+.vscode/
+.idea/
+

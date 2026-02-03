@@ -1,0 +1,129 @@
+{
+  "date_bulletin": "Bulletin du 08 aout 2024 à 12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin du 08 aout 2024 à 12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "BANFORA",
+      "tmin": 22,
+      "tmax": 31,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 24,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 22,
+      "tmax": 31,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "PO",
+      "tmin": 22,
+      "tmax": 31,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "LEO",
+      "tmin": 22,
+      "tmax": 3,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 23,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 22,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "TENKODOGO",
+      "tmin": 22,
+      "tmax": 26,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "DIAPAGA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "DORI",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "DJIBO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "GOROM GOROM",
+      "tmin": 25,
+      "tmax": 39,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "KOUDOUGOU",
+      "tmin": 23,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 22,
+      "tmax": 30,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "KAYA",
+      "tmin": 22,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "TOUGAN",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "MANGA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    }
+  ],
+  "_complete": true,
+  "_processed_at": "2026-02-02T13:42:36.170927"
+}

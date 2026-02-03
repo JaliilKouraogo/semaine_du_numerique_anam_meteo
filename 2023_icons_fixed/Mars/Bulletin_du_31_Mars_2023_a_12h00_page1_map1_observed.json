@@ -1,0 +1,77 @@
+{
+  "date_bulletin": "Bulletin_du_31_Mars_2023_a_12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin_du_31_Mars_2023_a_12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "BOROMO",
+      "tmin": 23,
+      "tmax": 37,
+      "weather_icon": "Pluies orageuses isolees",
+      "match_score": 0.461
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 25,
+      "tmax": 41,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.347
+    },
+    {
+      "nom": "PO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Pluies faibles",
+      "match_score": 0.545
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.281
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 22,
+      "tmax": 41,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.369
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.327
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 25,
+      "tmax": 40,
+      "weather_icon": "Poussiere en suspension",
+      "match_score": 0.266
+    },
+    {
+      "nom": "DORI",
+      "tmin": 24,
+      "tmax": 39,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.357
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Pluies orageuses isolees",
+      "match_score": 0.301
+    }
+  ],
+  "_icons_template_matched": "2026-02-03T12:16:42.269043"
+}

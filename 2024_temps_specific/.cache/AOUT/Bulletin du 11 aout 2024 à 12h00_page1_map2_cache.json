@@ -1,0 +1,69 @@
+{
+  "date_bulletin": "Bulletin du 11 aout 2024 à 12h00_page1_map2",
+  "map_type": "forecast",
+  "source_image": "Bulletin du 11 aout 2024 à 12h00_page1_map2.png",
+  "stations": [
+    {
+      "nom": "BOROMO",
+      "tmin": 22,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "PO",
+      "tmin": 23,
+      "tmax": 31,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 22,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 22,
+      "tmax": 32,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 24,
+      "tmax": 33,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 23,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 23,
+      "tmax": 30,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 24,
+      "tmax": 29,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 24,
+      "tmax": 29,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 23,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    }
+  ],
+  "_complete": true,
+  "_processed_at": "2026-02-02T15:30:31.346632"
+}

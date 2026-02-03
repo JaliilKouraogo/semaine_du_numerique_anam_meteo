@@ -1,0 +1,87 @@
+{
+  "date_bulletin": "Bulletin_du_02_Juillet_2023_a_12h00_page1_map2",
+  "map_type": "forecast",
+  "source_image": "Bulletin_du_02_Juillet_2023_a_12h00_page1_map2.png",
+  "stations": [
+    {
+      "nom": "BOROMO",
+      "tmin": 24,
+      "tmax": 36,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.466,
+      "method": "template"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 23,
+      "tmax": 32,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.535,
+      "method": "template"
+    },
+    {
+      "nom": "PO",
+      "tmin": 24,
+      "tmax": 33,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.471,
+      "method": "template"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 25,
+      "tmax": 32,
+      "weather_icon": "Ciel couvert avec poussière",
+      "match_score": 0.454,
+      "method": "template"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 23,
+      "tmax": 31,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.468,
+      "method": "template"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 26,
+      "tmax": 37,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.473,
+      "method": "template"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 25,
+      "tmax": 37,
+      "weather_icon": "Pluie orageuse avec poussière",
+      "match_score": 0.418,
+      "method": "template_low"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 25,
+      "tmax": 37,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.411,
+      "method": "template_low"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 27,
+      "tmax": 38,
+      "weather_icon": "Ciel dégagé avec poussière",
+      "match_score": 0.43,
+      "method": "template_low"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 26,
+      "tmax": 35,
+      "weather_icon": "partiellement_nuageux"
+    }
+  ],
+  "_last_fix_attempt": "2026-02-03T07:22:46.869458",
+  "_icons_hybrid_extracted": "2026-02-03T14:54:21.341901"
+}

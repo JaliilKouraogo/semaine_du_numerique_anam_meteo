@@ -1,0 +1,67 @@
+{
+  "date_bulletin": "Bulletin du 02 aout 2024 à 12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin du 02 aout 2024 à 12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 23,
+      "tmax": 31,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "PO",
+      "tmin": 23,
+      "tmax": 31,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 24,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 25,
+      "tmax": 31,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 23,
+      "tmax": 31,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 26,
+      "tmax": 32,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 24,
+      "tmax": 35,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 26,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "DORI",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    }
+  ]
+}

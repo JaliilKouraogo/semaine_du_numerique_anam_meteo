@@ -1,0 +1,67 @@
+{
+  "date_bulletin": "Bulletin du 11 aout 2024 à 12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin du 11 aout 2024 à 12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 26,
+      "tmax": 31,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 25,
+      "tmax": 34,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "PO",
+      "tmin": 23,
+      "tmax": 31,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 24,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 24,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 26,
+      "tmax": 31,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 24,
+      "tmax": 29,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 24,
+      "tmax": 29,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 25,
+      "tmax": 39,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 25,
+      "tmax": 32,
+      "weather_icon": "partiellement_nuageux"
+    }
+  ]
+}

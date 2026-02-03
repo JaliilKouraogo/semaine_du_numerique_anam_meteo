@@ -1,0 +1,90 @@
+{
+  "date_bulletin": "Bulletin_du_01_Juillet_2023_a_12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin_du_01_Juillet_2023_a_12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "PO",
+      "tmin": 21,
+      "tmax": 33,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.484,
+      "method": "template"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 23,
+      "tmax": 30,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.394,
+      "method": "template_low"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 24,
+      "tmax": 30,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.375,
+      "method": "template_low"
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 21,
+      "tmax": 34,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.469,
+      "method": "template"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 23,
+      "tmax": 33,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.475,
+      "method": "template"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 21,
+      "tmax": 35,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.473,
+      "method": "template"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 22,
+      "tmax": 36,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.41,
+      "method": "template_low"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 22,
+      "tmax": 36,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.488,
+      "method": "template"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 22,
+      "tmax": 38,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.418,
+      "method": "template_low"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 22,
+      "tmax": 35,
+      "weather_icon": "Poussière en suspension",
+      "match_score": 0.408,
+      "method": "template_low"
+    }
+  ],
+  "_last_fix_attempt": "2026-02-03T07:19:12.505003",
+  "_icons_qwen_extracted": "2026-02-03T12:34:58.349744",
+  "_icons_hybrid_extracted": "2026-02-03T14:42:05.714269"
+}

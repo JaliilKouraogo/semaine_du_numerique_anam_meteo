@@ -1,0 +1,75 @@
+{
+  "zone_size_default": 40,
+  "cities": {
+    "DORI": {
+      "x_rel": 0.7128,
+      "y_rel": 0.1709,
+      "x_abs": 613,
+      "y_abs": 128,
+      "zone_size": 40
+    },
+    "OUAHIGOUYA": {
+      "x_rel": 0.5221,
+      "y_rel": 0.2256,
+      "x_abs": 449,
+      "y_abs": 169,
+      "zone_size": 40
+    },
+    "OUAGADOUGOU": {
+      "x_rel": 0.593,
+      "y_rel": 0.3578,
+      "x_abs": 510,
+      "y_abs": 268,
+      "zone_size": 40
+    },
+    "BOGANDE": {
+      "x_rel": 0.7186,
+      "y_rel": 0.2924,
+      "x_abs": 618,
+      "y_abs": 219,
+      "zone_size": 40
+    },
+    "DEDOUGOU": {
+      "x_rel": 0.4116,
+      "y_rel": 0.3471,
+      "x_abs": 354,
+      "y_abs": 260,
+      "zone_size": 40
+    },
+    "FADA NGOURMA": {
+      "x_rel": 0.7651,
+      "y_rel": 0.3885,
+      "x_abs": 658,
+      "y_abs": 291,
+      "zone_size": 40
+    },
+    "BOBO DIOULASSO": {
+      "x_rel": 0.3419,
+      "y_rel": 0.4753,
+      "x_abs": 294,
+      "y_abs": 356,
+      "zone_size": 40
+    },
+    "BOROMO": {
+      "x_rel": 0.4837,
+      "y_rel": 0.4112,
+      "x_abs": 416,
+      "y_abs": 308,
+      "zone_size": 40
+    },
+    "PO": {
+      "x_rel": 0.6256,
+      "y_rel": 0.4753,
+      "x_abs": 538,
+      "y_abs": 356,
+      "zone_size": 40
+    },
+    "GAOUA": {
+      "x_rel": 0.4372,
+      "y_rel": 0.5701,
+      "x_abs": 376,
+      "y_abs": 427,
+      "zone_size": 40
+    }
+  }
+}

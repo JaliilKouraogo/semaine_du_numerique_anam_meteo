@@ -1,0 +1,97 @@
+{
+  "date_bulletin": "Bulletin_du_02_Mars_2023_a_12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin_du_02_Mars_2023_a_12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "GAOUA",
+      "tmin": 22,
+      "tmax": 39,
+      "weather_icon": "Ciel nuageux avec poussière",
+      "match_score": 0.463,
+      "method": "template",
+      "icon_code": "DU"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 24,
+      "tmax": 38,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.5,
+      "method": "template",
+      "icon_code": "NSW"
+    },
+    {
+      "nom": "PO",
+      "tmin": 25,
+      "tmax": 41,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.383,
+      "method": "template_low",
+      "icon_code": "TSRA"
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 23,
+      "tmax": 40,
+      "weather_icon": "Pluies orageuses isolées",
+      "match_score": 0.373,
+      "method": "template_low",
+      "icon_code": "TSRA"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 22,
+      "tmax": 39,
+      "weather_icon": "Pluie orageuse",
+      "match_score": 0.449,
+      "method": "template_low",
+      "icon_code": "TSRA"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 24,
+      "tmax": 40,
+      "weather_icon": "Poussière en suspension",
+      "method": "qwen",
+      "icon_code": "DU"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 25,
+      "tmax": 39,
+      "weather_icon": "Ciel couvert avec poussière",
+      "match_score": 0.462,
+      "method": "template",
+      "icon_code": "DU"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 25,
+      "tmax": 39,
+      "weather_icon": "Pluie orageuse",
+      "match_score": 0.43,
+      "method": "template_low",
+      "icon_code": "TSRA"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 21,
+      "tmax": 38,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.374,
+      "method": "template_low",
+      "icon_code": "NSW"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 23,
+      "tmax": 39,
+      "weather_icon": "Ciel couvert avec poussière",
+      "match_score": 0.455,
+      "method": "template",
+      "icon_code": "DU"
+    }
+  ],
+  "_icons_hybrid_extracted": "2026-02-03T15:32:57.804436"
+}

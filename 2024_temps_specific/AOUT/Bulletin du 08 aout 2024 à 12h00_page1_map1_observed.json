@@ -1,0 +1,67 @@
+{
+  "date_bulletin": "Bulletin du 08 aout 2024 à 12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin du 08 aout 2024 à 12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "BOROMO",
+      "tmin": 23,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 24,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "PO",
+      "tmin": 22,
+      "tmax": 31,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 22,
+      "tmax": 31,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 22,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 22,
+      "tmax": 26,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 22,
+      "tmax": 26,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DORI",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 22,
+      "tmax": 30,
+      "weather_icon": "pluie"
+    }
+  ]
+}

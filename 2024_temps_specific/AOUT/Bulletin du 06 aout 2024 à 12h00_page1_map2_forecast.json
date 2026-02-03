@@ -1,0 +1,67 @@
+{
+  "date_bulletin": "Bulletin du 06 aout 2024 à 12h00_page1_map2",
+  "map_type": "forecast",
+  "source_image": "Bulletin du 06 aout 2024 à 12h00_page1_map2.png",
+  "stations": [
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 25,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 25,
+      "tmax": 35,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "PO",
+      "tmin": 24,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 25,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 25,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 26,
+      "tmax": 34,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 25,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "date_bulletin": "Bulletin_du_24_Juillet_2023_a_12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin_du_24_Juillet_2023_a_12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "BOROMO",
+      "tmin": 24,
+      "tmax": 32,
+      "weather_icon": "Pluies orageuses isolees",
+      "match_score": 0.352
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 24,
+      "tmax": 31,
+      "weather_icon": "Pluies orageuses isolees",
+      "match_score": 0.351
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 22,
+      "tmax": 31,
+      "weather_icon": "Pluies orageuses isolees",
+      "match_score": 0.353
+    },
+    {
+      "nom": "PO",
+      "tmin": 22,
+      "tmax": 32,
+      "weather_icon": "Orages isoles",
+      "match_score": 0.414
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 24,
+      "tmax": 31,
+      "weather_icon": "Pluie orageuse",
+      "match_score": 0.348
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 24,
+      "tmax": 33,
+      "weather_icon": "Pluies orageuses isolees",
+      "match_score": 0.324
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 22,
+      "tmax": 33,
+      "weather_icon": "Pluies orageuses isolees",
+      "match_score": 0.325
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 22,
+      "tmax": 33,
+      "weather_icon": "Pluies orageuses isolees",
+      "match_score": 0.346
+    },
+    {
+      "nom": "DORI",
+      "tmin": 22,
+      "tmax": 35,
+      "weather_icon": "Pluie orageuse",
+      "match_score": 0.331
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 22,
+      "tmax": 29,
+      "weather_icon": "Ciel degage",
+      "match_score": 0.281
+    }
+  ],
+  "_last_fix_attempt": "2026-02-03T07:59:52.363797",
+  "_icons_template_matched": "2026-02-03T12:16:35.224254"
+}

@@ -1,0 +1,69 @@
+{
+  "date_bulletin": "Bulletin_du_02_Juillet_2023_a_12h00_page1_map2",
+  "map_type": "forecast",
+  "source_image": "Bulletin_du_02_Juillet_2023_a_12h00_page1_map2.png",
+  "stations": [
+    {
+      "nom": "BOROMO",
+      "tmin": 24,
+      "tmax": 36,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 23,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "PO",
+      "tmin": 24,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 25,
+      "tmax": 32,
+      "weather_icon": "Orages avec pluies"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 23,
+      "tmax": 31,
+      "weather_icon": "Orages avec pluies"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 26,
+      "tmax": 37,
+      "weather_icon": "Orages avec pluies"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 25,
+      "tmax": 37,
+      "weather_icon": "Orages avec pluies"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 25,
+      "tmax": 37,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 27,
+      "tmax": 38,
+      "weather_icon": "Orages avec pluies"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 26,
+      "tmax": 35,
+      "weather_icon": "partiellement_nuageux"
+    }
+  ],
+  "_last_fix_attempt": "2026-02-03T07:22:46.869458",
+  "_icons_fixed": "2026-02-03T11:20:57.073708"
+}

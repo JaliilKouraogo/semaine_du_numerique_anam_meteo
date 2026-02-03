@@ -1,0 +1,122 @@
+{
+  "date_bulletin": "Bulletin du 01 Fevrier 2024 à 12h00_page1_map1",
+  "stations": [
+    {
+      "nom": "BOGANDE",
+      "latitude": 12.9667,
+      "longitude": -0.1333,
+      "Tmin_obs": 20,
+      "Tmax_obs": 33,
+      "temps_obs": "ensoleillé",
+      "Tmin_prev": null,
+      "Tmax_prev": null,
+      "temps_prev": "",
+      "interpretation_moore": "",
+      "interpretation_dioula": ""
+    },
+    {
+      "nom": "DEDOUGOU",
+      "latitude": 12.4667,
+      "longitude": -3.4667,
+      "Tmin_obs": 20,
+      "Tmax_obs": 35,
+      "temps_obs": "ensoleillé",
+      "Tmin_prev": null,
+      "Tmax_prev": null,
+      "temps_prev": "",
+      "interpretation_moore": "",
+      "interpretation_dioula": ""
+    },
+    {
+      "nom": "DORI",
+      "latitude": 14.0333,
+      "longitude": -0.0333,
+      "Tmin_obs": 25,
+      "Tmax_obs": 39,
+      "temps_obs": "ensoleillé",
+      "Tmin_prev": null,
+      "Tmax_prev": null,
+      "temps_prev": "",
+      "interpretation_moore": "",
+      "interpretation_dioula": ""
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "latitude": 12.05,
+      "longitude": 0.3667,
+      "Tmin_obs": 21,
+      "Tmax_obs": 34,
+      "temps_obs": "ensoleillé",
+      "Tmin_prev": null,
+      "Tmax_prev": null,
+      "temps_prev": "",
+      "interpretation_moore": "",
+      "interpretation_dioula": ""
+    },
+    {
+      "nom": "GAOUA",
+      "latitude": 10.3333,
+      "longitude": -3.1833,
+      "Tmin_obs": 22,
+      "Tmax_obs": 34,
+      "temps_obs": "orage",
+      "Tmin_prev": null,
+      "Tmax_prev": null,
+      "temps_prev": "",
+      "interpretation_moore": "",
+      "interpretation_dioula": ""
+    },
+    {
+      "nom": "GOROM GOROM",
+      "latitude": 14.4333,
+      "longitude": -0.2333,
+      "Tmin_obs": null,
+      "Tmax_obs": null,
+      "temps_obs": "",
+      "Tmin_prev": 8,
+      "Tmax_prev": 33,
+      "temps_prev": "pluie",
+      "interpretation_moore": "",
+      "interpretation_dioula": ""
+    },
+    {
+      "nom": "MANGA",
+      "latitude": 11.6667,
+      "longitude": -1.0833,
+      "Tmin_obs": 21,
+      "Tmax_obs": 34,
+      "temps_obs": "ensoleillé",
+      "Tmin_prev": null,
+      "Tmax_prev": null,
+      "temps_prev": "",
+      "interpretation_moore": "",
+      "interpretation_dioula": ""
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "latitude": 13.5667,
+      "longitude": -2.4167,
+      "Tmin_obs": 20,
+      "Tmax_obs": 33,
+      "temps_obs": "ensoleillé",
+      "Tmin_prev": null,
+      "Tmax_prev": null,
+      "temps_prev": "",
+      "interpretation_moore": "",
+      "interpretation_dioula": ""
+    },
+    {
+      "nom": "PO",
+      "latitude": 11.1667,
+      "longitude": -1.15,
+      "Tmin_obs": 21,
+      "Tmax_obs": 34,
+      "temps_obs": "pluie",
+      "Tmin_prev": null,
+      "Tmax_prev": null,
+      "temps_prev": "",
+      "interpretation_moore": "",
+      "interpretation_dioula": ""
+    }
+  ]
+}

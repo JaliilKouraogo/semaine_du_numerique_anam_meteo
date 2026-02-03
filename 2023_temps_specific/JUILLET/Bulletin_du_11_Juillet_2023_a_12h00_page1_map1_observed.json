@@ -1,0 +1,67 @@
+{
+  "date_bulletin": "Bulletin_du_11_Juillet_2023_a_12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin_du_11_Juillet_2023_a_12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 22,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 24,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "PO",
+      "tmin": 23,
+      "tmax": 31,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 23,
+      "tmax": 34,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 22,
+      "tmax": 33,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 24,
+      "tmax": 30,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 25,
+      "tmax": 33,
+      "weather_icon": "nuageux"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 25,
+      "tmax": 30,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 25,
+      "tmax": 30,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 23,
+      "tmax": 32,
+      "weather_icon": "pluie"
+    }
+  ]
+}

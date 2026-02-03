@@ -1,0 +1,69 @@
+{
+  "date_bulletin": "Bulletin_du_15_Mars_2023_a_12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin_du_15_Mars_2023_a_12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "PO",
+      "tmin": 25,
+      "tmax": 39,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 23,
+      "tmax": 41,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 25,
+      "tmax": 42,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 22,
+      "tmax": 41,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 21,
+      "tmax": 41,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 22,
+      "tmax": 40,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 23,
+      "tmax": 41,
+      "weather_icon": "ensoleille"
+    }
+  ],
+  "_complete": true,
+  "_processed_at": "2026-02-02T23:28:01.005424"
+}

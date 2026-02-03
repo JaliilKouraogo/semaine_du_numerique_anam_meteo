@@ -1,0 +1,77 @@
+{
+  "date_bulletin": "Bulletin_du_08_Mars_2023_a_12h00_page1_map2",
+  "map_type": "forecast",
+  "source_image": "Bulletin_du_08_Mars_2023_a_12h00_page1_map2.png",
+  "stations": [
+    {
+      "nom": "PO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.433
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.268
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 23,
+      "tmax": 39,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.273
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.432
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Pluies faibles",
+      "match_score": 0.423
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.617
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 25,
+      "tmax": 40,
+      "weather_icon": "Pluies orageuses isolees",
+      "match_score": 0.316
+    },
+    {
+      "nom": "DORI",
+      "tmin": 23,
+      "tmax": 39,
+      "weather_icon": "Pluies orageuses isolees",
+      "match_score": 0.452
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 25,
+      "tmax": 39,
+      "weather_icon": "Ciel couvert",
+      "match_score": 0.342
+    }
+  ],
+  "_icons_template_matched": "2026-02-03T12:16:38.057021"
+}

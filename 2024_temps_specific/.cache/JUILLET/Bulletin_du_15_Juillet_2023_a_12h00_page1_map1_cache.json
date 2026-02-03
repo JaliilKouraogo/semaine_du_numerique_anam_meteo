@@ -1,0 +1,69 @@
+{
+  "date_bulletin": "Bulletin_du_15_Juillet_2023_a_12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin_du_15_Juillet_2023_a_12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 24,
+      "tmax": 32,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 24,
+      "tmax": 33,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 22,
+      "tmax": 35,
+      "weather_icon": "pluie"
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 26,
+      "tmax": 36,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "PO",
+      "tmin": 25,
+      "tmax": 33,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 24,
+      "tmax": 35,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 24,
+      "tmax": 36,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 24,
+      "tmax": 36,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "DORI",
+      "tmin": 25,
+      "tmax": 36,
+      "weather_icon": "orage"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 22,
+      "tmax": 35,
+      "weather_icon": "pluie"
+    }
+  ],
+  "_complete": true,
+  "_processed_at": "2026-02-03T01:13:28.053444"
+}

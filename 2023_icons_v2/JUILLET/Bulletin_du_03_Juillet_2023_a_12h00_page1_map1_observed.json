@@ -1,0 +1,78 @@
+{
+  "date_bulletin": "Bulletin_du_03_Juillet_2023_a_12h00_page1_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin_du_03_Juillet_2023_a_12h00_page1_map1.png",
+  "stations": [
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 26,
+      "tmax": 33,
+      "weather_icon": "Ciel dégagé",
+      "match_score": 0.421
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 24,
+      "tmax": 35,
+      "weather_icon": "Ciel dégagé",
+      "match_score": 0.615
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": 23,
+      "tmax": 34,
+      "weather_icon": "Ciel dégagé",
+      "match_score": 0.498
+    },
+    {
+      "nom": "PO",
+      "tmin": 23,
+      "tmax": 33,
+      "weather_icon": "Ciel dégagé",
+      "match_score": 0.494
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": 22,
+      "tmax": 33,
+      "weather_icon": "Ciel dégagé",
+      "match_score": 0.546
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 25,
+      "tmax": 35,
+      "weather_icon": "Ciel dégagé",
+      "match_score": 0.444
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 25,
+      "tmax": 35,
+      "weather_icon": "Ciel dégagé",
+      "match_score": 0.385
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 26,
+      "tmax": 35,
+      "weather_icon": "Ciel dégagé",
+      "match_score": 0.418
+    },
+    {
+      "nom": "DORI",
+      "tmin": 28,
+      "tmax": 37,
+      "weather_icon": "Temps partiellement nuageux",
+      "match_score": 0.411
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 27,
+      "tmax": 34,
+      "weather_icon": "Ciel dégagé",
+      "match_score": 0.66
+    }
+  ],
+  "_icons_library_extracted": "2026-02-03T14:02:22.261193"
+}
