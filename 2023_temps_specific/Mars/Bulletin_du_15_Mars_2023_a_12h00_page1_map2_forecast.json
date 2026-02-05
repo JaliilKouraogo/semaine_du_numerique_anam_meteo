@@ -7,61 +7,82 @@
       "nom": "BOBO DIOULASSO",
       "tmin": null,
       "tmax": null,
-      "weather_icon": ""
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.582
     },
     {
       "nom": "GAOUA",
       "tmin": 25,
       "tmax": 39,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Orages avec pluies et poussière",
+      "icon_code": "DUTSRA",
+      "match_score": 0.514
     },
     {
       "nom": "DEDOUGOU",
       "tmin": null,
       "tmax": null,
-      "weather_icon": ""
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.619
     },
     {
       "nom": "BOROMO",
       "tmin": null,
       "tmax": null,
-      "weather_icon": ""
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "match_score": 0.564
     },
     {
       "nom": "PO",
       "tmin": null,
       "tmax": null,
-      "weather_icon": ""
+      "weather_icon": "Orages avec pluies et poussière",
+      "icon_code": "DUTSRA",
+      "match_score": 0.627
     },
     {
       "nom": "OUAGADOUGOU",
       "tmin": null,
       "tmax": null,
-      "weather_icon": ""
+      "weather_icon": "Orages avec poussière",
+      "icon_code": "DUTS",
+      "match_score": 0.545
     },
     {
       "nom": "FADA NGOURMA",
       "tmin": 25,
       "tmax": 39,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.546
     },
     {
       "nom": "BOGANDE",
       "tmin": 22,
       "tmax": 42,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.573
     },
     {
       "nom": "DORI",
       "tmin": 22,
       "tmax": 41,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.57
     },
     {
       "nom": "OUAHIGOUYA",
       "tmin": 23,
       "tmax": 41,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.616
     }
-  ]
+  ],
+  "_icons_bycode_extracted": "2026-02-04T11:39:16.918126"
 }

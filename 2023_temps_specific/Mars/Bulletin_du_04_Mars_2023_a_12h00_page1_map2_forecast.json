@@ -7,61 +7,82 @@
       "nom": "PO",
       "tmin": 23,
       "tmax": 40,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.625
     },
     {
       "nom": "GAOUA",
       "tmin": 26,
       "tmax": 40,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "match_score": 0.523
     },
     {
       "nom": "BOBO DIOULASSO",
       "tmin": 25,
       "tmax": 39,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.589
     },
     {
       "nom": "BOROMO",
       "tmin": 24,
       "tmax": 41,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.585
     },
     {
       "nom": "DEDOUGOU",
       "tmin": 24,
       "tmax": 40,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Orages avec pluies et poussière",
+      "icon_code": "DUTSRA",
+      "match_score": 0.548
     },
     {
       "nom": "OUAGADOUGOU",
       "tmin": 23,
       "tmax": 40,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "match_score": 0.521
     },
     {
       "nom": "FADA NGOURMA",
       "tmin": 24,
       "tmax": 41,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Orages avec pluies et poussière",
+      "icon_code": "DUTSRA",
+      "match_score": 0.488
     },
     {
       "nom": "BOGANDE",
       "tmin": 25,
       "tmax": 40,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "match_score": 0.511
     },
     {
       "nom": "DORI",
       "tmin": 22,
       "tmax": 40,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "match_score": 0.628
     },
     {
       "nom": "OUAHIGOUYA",
       "tmin": 24,
       "tmax": 40,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.495
     }
-  ]
+  ],
+  "_icons_bycode_extracted": "2026-02-04T11:39:14.814954"
 }

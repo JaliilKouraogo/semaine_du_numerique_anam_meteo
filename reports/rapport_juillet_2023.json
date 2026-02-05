@@ -1,0 +1,1583 @@
+{
+  "mois": "Juillet 2023",
+  "accuracy": 52.44444444444445,
+  "total_compared": 225,
+  "total_correct": 118,
+  "details": [
+    {
+      "jour": 1,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 1,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 1,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 1,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 1,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 1,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 1,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 1,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 1,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 2,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 2,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 2,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 2,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 2,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "RA",
+      "correct": false
+    },
+    {
+      "jour": 2,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 2,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "RA",
+      "correct": false
+    },
+    {
+      "jour": 2,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 2,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 3,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 3,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 3,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 3,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 3,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 3,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 3,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 3,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 3,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 4,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 4,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "RA",
+      "correct": false
+    },
+    {
+      "jour": 4,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 4,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 4,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "RA",
+      "correct": false
+    },
+    {
+      "jour": 4,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 4,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 4,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 4,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 7,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 7,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 7,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 7,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 7,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 7,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 7,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 7,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 7,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 8,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 8,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 8,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 8,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 8,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 8,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 8,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 8,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 8,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 9,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 9,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 9,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 9,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 9,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 9,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 9,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 9,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "RA",
+      "correct": false
+    },
+    {
+      "jour": 9,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "RA",
+      "correct": false
+    },
+    {
+      "jour": 10,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 10,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 10,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 10,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 10,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 10,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "RA",
+      "correct": false
+    },
+    {
+      "jour": 10,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 10,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 10,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 11,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 11,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 11,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 11,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 11,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 11,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 11,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 11,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 11,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 12,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 12,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 12,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 12,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 12,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 12,
+      "ville": "FADA",
+      "predit": "TSRA",
+      "verite": "NSW",
+      "correct": false
+    },
+    {
+      "jour": 12,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 12,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 12,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 13,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 13,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 13,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 13,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 13,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 13,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 13,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 13,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 13,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 14,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 14,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 14,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 14,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 14,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 14,
+      "ville": "FADA",
+      "predit": "TSRA",
+      "verite": "NSW",
+      "correct": false
+    },
+    {
+      "jour": 14,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 14,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 14,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 15,
+      "ville": "DORI",
+      "predit": "TSRA",
+      "verite": "TSRA",
+      "correct": true
+    },
+    {
+      "jour": 15,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 15,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 15,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 15,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 15,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 15,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 15,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 15,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 16,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 16,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 16,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 16,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 16,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 16,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 16,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 16,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 16,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 17,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 17,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 17,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 17,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 17,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 17,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 17,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 17,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 17,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 18,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 18,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 18,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 18,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 18,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 18,
+      "ville": "FADA",
+      "predit": "TSRA",
+      "verite": "NSW",
+      "correct": false
+    },
+    {
+      "jour": 18,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 18,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 18,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 19,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 19,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 19,
+      "ville": "OUAGADOUGOU",
+      "predit": "TSRA",
+      "verite": "TSRA",
+      "correct": true
+    },
+    {
+      "jour": 19,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 19,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 19,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 19,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 19,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 19,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 20,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 20,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 20,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 20,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 20,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 20,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 20,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 20,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 20,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 21,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 21,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 21,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 21,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 21,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 21,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 21,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 21,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 21,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 22,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 22,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 22,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 22,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 22,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 22,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 22,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 22,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 22,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 24,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 24,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 24,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 24,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 24,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 24,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 24,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 24,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 24,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 25,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 25,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 25,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 25,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 25,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 25,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 25,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 25,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "RA",
+      "correct": false
+    },
+    {
+      "jour": 25,
+      "ville": "GAOUA",
+      "predit": "TSRA",
+      "verite": "TSRA",
+      "correct": true
+    },
+    {
+      "jour": 26,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 26,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 26,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 26,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 26,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 26,
+      "ville": "FADA",
+      "predit": "TSRA",
+      "verite": "NSW",
+      "correct": false
+    },
+    {
+      "jour": 26,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 26,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 26,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 27,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 27,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 27,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 27,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 27,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 27,
+      "ville": "FADA",
+      "predit": "TSRA",
+      "verite": "NSW",
+      "correct": false
+    },
+    {
+      "jour": 27,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 27,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 27,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 30,
+      "ville": "DORI",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 30,
+      "ville": "OUAHIGOUYA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 30,
+      "ville": "OUAGADOUGOU",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 30,
+      "ville": "BOGANDE",
+      "predit": "NSW",
+      "verite": "TS",
+      "correct": false
+    },
+    {
+      "jour": 30,
+      "ville": "DEDOUGOU",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 30,
+      "ville": "FADA",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 30,
+      "ville": "BOROMO",
+      "predit": "NSW",
+      "verite": "TSRA",
+      "correct": false
+    },
+    {
+      "jour": 30,
+      "ville": "PO",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    },
+    {
+      "jour": 30,
+      "ville": "GAOUA",
+      "predit": "NSW",
+      "verite": "NSW",
+      "correct": true
+    }
+  ]
+}

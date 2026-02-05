@@ -7,61 +7,82 @@
       "nom": "PO",
       "tmin": null,
       "tmax": null,
-      "weather_icon": "nuageux"
+      "weather_icon": "Orages avec poussière",
+      "icon_code": "DUTS",
+      "match_score": 0.622
     },
     {
       "nom": "BOROMO",
       "tmin": null,
       "tmax": null,
-      "weather_icon": ""
+      "weather_icon": "Orages avec pluies et poussière",
+      "icon_code": "DUTSRA",
+      "match_score": 0.568
     },
     {
       "nom": "GAOUA",
       "tmin": null,
       "tmax": null,
-      "weather_icon": ""
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.578
     },
     {
       "nom": "BOBO DIOULASSO",
       "tmin": null,
       "tmax": null,
-      "weather_icon": ""
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.622
     },
     {
       "nom": "DEDOUGOU",
       "tmin": null,
       "tmax": null,
-      "weather_icon": ""
+      "weather_icon": "Orages avec poussière",
+      "icon_code": "DUTS",
+      "match_score": 0.535
     },
     {
       "nom": "OUAGADOUGOU",
       "tmin": 25,
       "tmax": 34,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Orages avec pluies et poussière",
+      "icon_code": "DUTSRA",
+      "match_score": 0.617
     },
     {
       "nom": "BOGANDE",
       "tmin": 26,
       "tmax": 38,
-      "weather_icon": "pluie"
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.58
     },
     {
       "nom": "DORI",
       "tmin": 25,
       "tmax": 39,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Orages avec poussière",
+      "icon_code": "DUTS",
+      "match_score": 0.536
     },
     {
       "nom": "FADA NGOURMA",
       "tmin": 25,
       "tmax": 39,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "match_score": 0.575
     },
     {
       "nom": "OUAHIGOUYA",
       "tmin": 26,
       "tmax": 38,
-      "weather_icon": "nuageux"
+      "weather_icon": "Orages avec pluies et poussière",
+      "icon_code": "DUTSRA",
+      "match_score": 0.577
     }
-  ]
+  ],
+  "_icons_bycode_extracted": "2026-02-04T11:39:18.245861"
 }

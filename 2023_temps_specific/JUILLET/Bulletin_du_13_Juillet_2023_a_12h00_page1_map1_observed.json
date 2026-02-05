@@ -7,61 +7,92 @@
       "nom": "GAOUA",
       "tmin": 22,
       "tmax": 31,
-      "weather_icon": "pluie"
+      "weather_icon": "Orages, pluies et poussière",
+      "icon_code": "DUTSRA",
+      "extraction_method": "qwen_perfect_v2",
+      "extraction_date": "2026-02-05T00:32:37.102450"
     },
     {
       "nom": "BOROMO",
       "tmin": 24,
       "tmax": 33,
-      "weather_icon": "pluie"
+      "weather_icon": "Ciel dégagé / Temps calme",
+      "icon_code": "NSW",
+      "extraction_method": "qwen_perfect_v2",
+      "extraction_date": "2026-02-05T00:35:11.912614"
     },
     {
       "nom": "BOBO DIOULASSO",
       "tmin": 22,
       "tmax": 32,
-      "weather_icon": "pluie"
+      "weather_icon": "Ciel dégagé / Temps calme",
+      "icon_code": "NSW",
+      "extraction_method": "qwen_perfect_v2",
+      "extraction_date": "2026-02-05T00:37:28.434696"
     },
     {
       "nom": "DEDOUGOU",
       "tmin": 25,
       "tmax": 35,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Ciel dégagé / Temps calme",
+      "icon_code": "NSW",
+      "extraction_method": "qwen_perfect_v2",
+      "extraction_date": "2026-02-05T00:39:57.639206"
     },
     {
       "nom": "PO",
       "tmin": 23,
       "tmax": 28,
-      "weather_icon": "pluie"
+      "weather_icon": "Orages, pluies et poussière",
+      "icon_code": "DUTSRA",
+      "extraction_method": "qwen_perfect_v2",
+      "extraction_date": "2026-02-05T00:40:24.293898"
     },
     {
       "nom": "OUAGADOUGOU",
       "tmin": 24,
       "tmax": 33,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Ciel dégagé / Temps calme",
+      "icon_code": "NSW",
+      "extraction_method": "qwen_perfect_v2",
+      "extraction_date": "2026-02-05T03:29:02.480774"
     },
     {
       "nom": "FADA NGOURMA",
       "tmin": 24,
       "tmax": 34,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "extraction_method": "qwen_perfect_v2",
+      "extraction_date": "2026-02-05T03:29:57.658014"
     },
     {
       "nom": "BOGANDE",
       "tmin": 27,
       "tmax": 34,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Ciel dégagé / Temps calme",
+      "icon_code": "NSW",
+      "extraction_method": "qwen_perfect_v2",
+      "extraction_date": "2026-02-05T06:55:41.166093"
     },
     {
       "nom": "DORI",
       "tmin": 27,
       "tmax": 35,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "extraction_method": "qwen_perfect_v2",
+      "extraction_date": "2026-02-05T07:49:22.515599"
     },
     {
       "nom": "OUAHIGOUYA",
       "tmin": 26,
       "tmax": 35,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Ciel dégagé / Temps calme",
+      "icon_code": "NSW",
+      "extraction_method": "qwen_perfect_v2",
+      "extraction_date": "2026-02-05T07:52:14.940023"
     }
-  ]
+  ],
+  "_icons_extracted_perfect": true
 }

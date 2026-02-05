@@ -1,0 +1,69 @@
+{
+  "date_bulletin": "Bulletin du 02 Mars 2023 à 12h00_map1",
+  "map_type": "observed",
+  "source_image": "Bulletin du 02 Mars 2023 à 12h00_map1.png",
+  "stations": [
+    {
+      "nom": "GAOUA",
+      "tmin": 22,
+      "tmax": 39,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "PO",
+      "tmin": 25,
+      "tmax": 41,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 23,
+      "tmax": 40,
+      "weather_icon": "partiellement_nuageux"
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 22,
+      "tmax": 39,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 25,
+      "tmax": 40,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": ""
+    },
+    {
+      "nom": "DORI",
+      "tmin": 21,
+      "tmax": 38,
+      "weather_icon": "ensoleille"
+    },
+    {
+      "nom": "OUAHIGOUYA",
+      "tmin": 23,
+      "tmax": 39,
+      "weather_icon": "ensoleille"
+    }
+  ],
+  "_complete": true,
+  "_processed_at": "2026-02-04T22:08:50.430772"
+}

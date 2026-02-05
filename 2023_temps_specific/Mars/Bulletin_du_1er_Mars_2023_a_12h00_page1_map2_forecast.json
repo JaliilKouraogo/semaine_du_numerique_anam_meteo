@@ -7,61 +7,82 @@
       "nom": "BOBO DIOULASSO",
       "tmin": 24,
       "tmax": 38,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Orages avec poussière",
+      "icon_code": "DUTS",
+      "match_score": 0.559
     },
     {
       "nom": "PO",
       "tmin": 25,
       "tmax": 39,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Orages avec pluies et poussière",
+      "icon_code": "DUTSRA",
+      "match_score": 0.525
     },
     {
       "nom": "GAOUA",
       "tmin": 26,
       "tmax": 38,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Orages avec poussière",
+      "icon_code": "DUTS",
+      "match_score": 0.616
     },
     {
       "nom": "BOROMO",
       "tmin": 24,
       "tmax": 38,
-      "weather_icon": "partiellement_nuageux"
+      "weather_icon": "Temps ensoleillé/nuageux",
+      "icon_code": "NSW",
+      "match_score": 0.479
     },
     {
       "nom": "DEDOUGOU",
       "tmin": 24,
       "tmax": 39,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Orages avec poussière",
+      "icon_code": "DUTS",
+      "match_score": 0.564
     },
     {
       "nom": "OUAGADOUGOU",
       "tmin": null,
       "tmax": null,
-      "weather_icon": ""
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.538
     },
     {
       "nom": "FADA NGOURMA",
       "tmin": 25,
       "tmax": 39,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "match_score": 0.528
     },
     {
       "nom": "BOGANDE",
       "tmin": 24,
       "tmax": 38,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Pluies avec poussière",
+      "icon_code": "DURA",
+      "match_score": 0.589
     },
     {
       "nom": "DORI",
       "tmin": 23,
       "tmax": 39,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "match_score": 0.474
     },
     {
       "nom": "OUAHIGOUYA",
       "tmin": 23,
       "tmax": 38,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Poussière en suspension",
+      "icon_code": "DU",
+      "match_score": 0.503
     }
-  ]
+  ],
+  "_icons_bycode_extracted": "2026-02-04T11:39:17.678855"
 }

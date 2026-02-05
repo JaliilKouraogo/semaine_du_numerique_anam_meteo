@@ -1,0 +1,46 @@
+{
+  "total_compared": 1950,
+  "total_correct": 462,
+  "months": {
+    "Janvier": {
+      "accuracy": 7.419354838709677,
+      "correct": 23,
+      "total": 310
+    },
+    "Mars": {
+      "accuracy": 9.333333333333334,
+      "correct": 28,
+      "total": 300
+    },
+    "Mai": {
+      "accuracy": 24.516129032258064,
+      "correct": 76,
+      "total": 310
+    },
+    "Juin": {
+      "accuracy": 29.666666666666668,
+      "correct": 89,
+      "total": 300
+    },
+    "Juillet": {
+      "accuracy": 33.33333333333333,
+      "correct": 90,
+      "total": 270
+    },
+    "Septembre": {
+      "accuracy": 42.0,
+      "correct": 105,
+      "total": 250
+    },
+    "Octobre": {
+      "accuracy": 25.5,
+      "correct": 51,
+      "total": 200
+    },
+    "Novembre": {
+      "accuracy": 0.0,
+      "correct": 0,
+      "total": 10
+    }
+  }
+}

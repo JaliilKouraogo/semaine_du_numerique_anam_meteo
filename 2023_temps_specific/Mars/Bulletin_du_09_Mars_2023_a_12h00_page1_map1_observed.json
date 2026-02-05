@@ -4,64 +4,86 @@
   "source_image": "Bulletin_du_09_Mars_2023_a_12h00_page1_map1.png",
   "stations": [
     {
-      "nom": "PO",
-      "tmin": null,
-      "tmax": null,
-      "weather_icon": "ensoleille"
-    },
-    {
-      "nom": "GAOUA",
-      "tmin": null,
-      "tmax": null,
-      "weather_icon": ""
-    },
-    {
-      "nom": "BOBO DIOULASSO",
-      "tmin": null,
-      "tmax": null,
-      "weather_icon": ""
-    },
-    {
-      "nom": "BOROMO",
-      "tmin": 20,
-      "tmax": 38,
-      "weather_icon": "ensoleille"
-    },
-    {
-      "nom": "DEDOUGOU",
-      "tmin": 21,
-      "tmax": 38,
-      "weather_icon": "ensoleille"
-    },
-    {
-      "nom": "OUAGADOUGOU",
-      "tmin": 26,
-      "tmax": 40,
-      "weather_icon": "ensoleille"
-    },
-    {
-      "nom": "FADA NGOURMA",
-      "tmin": 24,
-      "tmax": 41,
-      "weather_icon": "partiellement_nuageux"
-    },
-    {
-      "nom": "BOGANDE",
-      "tmin": 23,
-      "tmax": 41,
-      "weather_icon": "ensoleille"
-    },
-    {
       "nom": "DORI",
       "tmin": 22,
       "tmax": 40,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Temps ensoleillé/nuageux",
+      "icon_code": "DUTS",
+      "match_score": 0.682
     },
     {
       "nom": "OUAHIGOUYA",
       "tmin": 22,
       "tmax": 37,
-      "weather_icon": "ensoleille"
+      "weather_icon": "Variable",
+      "icon_code": "DUTS",
+      "match_score": 0.467
+    },
+    {
+      "nom": "OUAGADOUGOU",
+      "tmin": 26,
+      "tmax": 40,
+      "weather_icon": "Temps ensoleillé/nuageux",
+      "icon_code": "DUTS",
+      "match_score": 0.544
+    },
+    {
+      "nom": "BOGANDE",
+      "tmin": 23,
+      "tmax": 41,
+      "weather_icon": "Temps ensoleillé/nuageux",
+      "icon_code": "DURA",
+      "match_score": 0.503
+    },
+    {
+      "nom": "DEDOUGOU",
+      "tmin": 21,
+      "tmax": 38,
+      "weather_icon": "Variable",
+      "icon_code": "DUTS",
+      "match_score": 0.538
+    },
+    {
+      "nom": "FADA NGOURMA",
+      "tmin": 24,
+      "tmax": 41,
+      "weather_icon": "Temps ensoleillé/nuageux",
+      "icon_code": "DUTS",
+      "match_score": 0.475
+    },
+    {
+      "nom": "BOBO DIOULASSO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Temps ensoleillé/nuageux",
+      "icon_code": "DU",
+      "match_score": 0.523
+    },
+    {
+      "nom": "BOROMO",
+      "tmin": 20,
+      "tmax": 38,
+      "weather_icon": "Temps ensoleillé/nuageux",
+      "icon_code": "DUTSRA",
+      "match_score": 0.537
+    },
+    {
+      "nom": "PO",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Variable",
+      "icon_code": "DUTSRA",
+      "match_score": 0.46
+    },
+    {
+      "nom": "GAOUA",
+      "tmin": null,
+      "tmax": null,
+      "weather_icon": "Temps ensoleillé/nuageux",
+      "icon_code": "DUTSRA",
+      "match_score": 0.555
     }
-  ]
+  ],
+  "_icons_bycode_extracted": "2026-02-04T11:39:15.654556",
+  "_icons_extracted_fast": "2026-02-04T21:11:31.070552"
 }

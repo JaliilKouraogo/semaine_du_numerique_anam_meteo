@@ -1,0 +1,5152 @@
+{
+    "DEDOUGOU": [
+        {
+            "date_observation_JJ": "02/07/2023",
+            "date_prevision_JJ-1": "01/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 27,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "03/07/2023",
+            "date_prevision_JJ-1": "02/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "04/07/2023",
+            "date_prevision_JJ-1": "03/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "08/07/2023",
+            "date_prevision_JJ-1": "07/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 37,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "09/07/2023",
+            "date_prevision_JJ-1": "08/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "10/07/2023",
+            "date_prevision_JJ-1": "09/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "11/07/2023",
+            "date_prevision_JJ-1": "10/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "12/07/2023",
+            "date_prevision_JJ-1": "11/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "13/07/2023",
+            "date_prevision_JJ-1": "12/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 25,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "14/07/2023",
+            "date_prevision_JJ-1": "13/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "15/07/2023",
+            "date_prevision_JJ-1": "14/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "16/07/2023",
+            "date_prevision_JJ-1": "15/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 28,
+                "observation_JJ": 29,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "17/07/2023",
+            "date_prevision_JJ-1": "16/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 34,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "18/07/2023",
+            "date_prevision_JJ-1": "17/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "19/07/2023",
+            "date_prevision_JJ-1": "18/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 35,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "20/07/2023",
+            "date_prevision_JJ-1": "19/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "21/07/2023",
+            "date_prevision_JJ-1": "20/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "22/07/2023",
+            "date_prevision_JJ-1": "21/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 36,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "23/07/2023",
+            "date_prevision_JJ-1": "22/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 28,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "24/07/2023",
+            "date_prevision_JJ-1": "23/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "25/07/2023",
+            "date_prevision_JJ-1": "24/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "26/07/2023",
+            "date_prevision_JJ-1": "25/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "27/07/2023",
+            "date_prevision_JJ-1": "26/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "28/07/2023",
+            "date_prevision_JJ-1": "27/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 35,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "29/07/2023",
+            "date_prevision_JJ-1": "28/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "30/07/2023",
+            "date_prevision_JJ-1": "29/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "31/07/2023",
+            "date_prevision_JJ-1": "30/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        }
+    ],
+    "GAOUA": [
+        {
+            "date_observation_JJ": "02/07/2023",
+            "date_prevision_JJ-1": "01/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 30,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "03/07/2023",
+            "date_prevision_JJ-1": "02/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "04/07/2023",
+            "date_prevision_JJ-1": "03/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "08/07/2023",
+            "date_prevision_JJ-1": "07/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 21,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "09/07/2023",
+            "date_prevision_JJ-1": "08/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 29,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "10/07/2023",
+            "date_prevision_JJ-1": "09/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "11/07/2023",
+            "date_prevision_JJ-1": "10/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 21,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "12/07/2023",
+            "date_prevision_JJ-1": "11/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 31,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "13/07/2023",
+            "date_prevision_JJ-1": "12/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 22,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "14/07/2023",
+            "date_prevision_JJ-1": "13/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 28,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "15/07/2023",
+            "date_prevision_JJ-1": "14/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "16/07/2023",
+            "date_prevision_JJ-1": "15/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "17/07/2023",
+            "date_prevision_JJ-1": "16/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 31,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "18/07/2023",
+            "date_prevision_JJ-1": "17/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "19/07/2023",
+            "date_prevision_JJ-1": "18/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "20/07/2023",
+            "date_prevision_JJ-1": "19/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "21/07/2023",
+            "date_prevision_JJ-1": "20/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 25,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "22/07/2023",
+            "date_prevision_JJ-1": "21/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "23/07/2023",
+            "date_prevision_JJ-1": "22/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "24/07/2023",
+            "date_prevision_JJ-1": "23/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 28,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "25/07/2023",
+            "date_prevision_JJ-1": "24/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 27,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "26/07/2023",
+            "date_prevision_JJ-1": "25/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "27/07/2023",
+            "date_prevision_JJ-1": "26/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "28/07/2023",
+            "date_prevision_JJ-1": "27/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 34,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "29/07/2023",
+            "date_prevision_JJ-1": "28/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 31,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "30/07/2023",
+            "date_prevision_JJ-1": "29/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "31/07/2023",
+            "date_prevision_JJ-1": "30/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        }
+    ],
+    "PO": [
+        {
+            "date_observation_JJ": "02/07/2023",
+            "date_prevision_JJ-1": "01/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 27,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "03/07/2023",
+            "date_prevision_JJ-1": "02/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "04/07/2023",
+            "date_prevision_JJ-1": "03/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "08/07/2023",
+            "date_prevision_JJ-1": "07/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 21,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "09/07/2023",
+            "date_prevision_JJ-1": "08/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 29,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "10/07/2023",
+            "date_prevision_JJ-1": "09/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "11/07/2023",
+            "date_prevision_JJ-1": "10/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "12/07/2023",
+            "date_prevision_JJ-1": "11/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "13/07/2023",
+            "date_prevision_JJ-1": "12/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 28,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "14/07/2023",
+            "date_prevision_JJ-1": "13/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "15/07/2023",
+            "date_prevision_JJ-1": "14/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "16/07/2023",
+            "date_prevision_JJ-1": "15/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "TSRA",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 22,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 31,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "17/07/2023",
+            "date_prevision_JJ-1": "16/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 21,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "18/07/2023",
+            "date_prevision_JJ-1": "17/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 28,
+                "observation_JJ": 29,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "19/07/2023",
+            "date_prevision_JJ-1": "18/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "20/07/2023",
+            "date_prevision_JJ-1": "19/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "21/07/2023",
+            "date_prevision_JJ-1": "20/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "22/07/2023",
+            "date_prevision_JJ-1": "21/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "23/07/2023",
+            "date_prevision_JJ-1": "22/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "24/07/2023",
+            "date_prevision_JJ-1": "23/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "25/07/2023",
+            "date_prevision_JJ-1": "24/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 29,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "26/07/2023",
+            "date_prevision_JJ-1": "25/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "27/07/2023",
+            "date_prevision_JJ-1": "26/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "28/07/2023",
+            "date_prevision_JJ-1": "27/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 34,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "29/07/2023",
+            "date_prevision_JJ-1": "28/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 28,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "30/07/2023",
+            "date_prevision_JJ-1": "29/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "31/07/2023",
+            "date_prevision_JJ-1": "30/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        }
+    ],
+    "BOROMO": [
+        {
+            "date_observation_JJ": "02/07/2023",
+            "date_prevision_JJ-1": "01/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 29,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "03/07/2023",
+            "date_prevision_JJ-1": "02/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "04/07/2023",
+            "date_prevision_JJ-1": "03/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "08/07/2023",
+            "date_prevision_JJ-1": "07/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 37,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "09/07/2023",
+            "date_prevision_JJ-1": "08/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "10/07/2023",
+            "date_prevision_JJ-1": "09/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 25,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "11/07/2023",
+            "date_prevision_JJ-1": "10/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "12/07/2023",
+            "date_prevision_JJ-1": "11/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "13/07/2023",
+            "date_prevision_JJ-1": "12/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "14/07/2023",
+            "date_prevision_JJ-1": "13/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "15/07/2023",
+            "date_prevision_JJ-1": "14/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "16/07/2023",
+            "date_prevision_JJ-1": "15/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "17/07/2023",
+            "date_prevision_JJ-1": "16/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "18/07/2023",
+            "date_prevision_JJ-1": "17/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "19/07/2023",
+            "date_prevision_JJ-1": "18/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 21,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "20/07/2023",
+            "date_prevision_JJ-1": "19/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "21/07/2023",
+            "date_prevision_JJ-1": "20/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 25,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "22/07/2023",
+            "date_prevision_JJ-1": "21/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 35,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "23/07/2023",
+            "date_prevision_JJ-1": "22/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 21,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 26,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "24/07/2023",
+            "date_prevision_JJ-1": "23/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "25/07/2023",
+            "date_prevision_JJ-1": "24/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 29,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "26/07/2023",
+            "date_prevision_JJ-1": "25/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "27/07/2023",
+            "date_prevision_JJ-1": "26/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "28/07/2023",
+            "date_prevision_JJ-1": "27/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 36,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "29/07/2023",
+            "date_prevision_JJ-1": "28/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "30/07/2023",
+            "date_prevision_JJ-1": "29/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 34,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "31/07/2023",
+            "date_prevision_JJ-1": "30/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 25,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        }
+    ],
+    "BOBO DIOULASSO": [
+        {
+            "date_observation_JJ": "02/07/2023",
+            "date_prevision_JJ-1": "01/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 22,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 30,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "03/07/2023",
+            "date_prevision_JJ-1": "02/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "04/07/2023",
+            "date_prevision_JJ-1": "03/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "08/07/2023",
+            "date_prevision_JJ-1": "07/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 21,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "09/07/2023",
+            "date_prevision_JJ-1": "08/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "10/07/2023",
+            "date_prevision_JJ-1": "09/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "11/07/2023",
+            "date_prevision_JJ-1": "10/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 22,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "12/07/2023",
+            "date_prevision_JJ-1": "11/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 31,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "13/07/2023",
+            "date_prevision_JJ-1": "12/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 22,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "14/07/2023",
+            "date_prevision_JJ-1": "13/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 28,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "15/07/2023",
+            "date_prevision_JJ-1": "14/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "16/07/2023",
+            "date_prevision_JJ-1": "15/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 31,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "17/07/2023",
+            "date_prevision_JJ-1": "16/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "18/07/2023",
+            "date_prevision_JJ-1": "17/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "19/07/2023",
+            "date_prevision_JJ-1": "18/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 21,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "20/07/2023",
+            "date_prevision_JJ-1": "19/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 30,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "21/07/2023",
+            "date_prevision_JJ-1": "20/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "22/07/2023",
+            "date_prevision_JJ-1": "21/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "23/07/2023",
+            "date_prevision_JJ-1": "22/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 21,
+                "observation_JJ": 21,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 29,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "24/07/2023",
+            "date_prevision_JJ-1": "23/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "25/07/2023",
+            "date_prevision_JJ-1": "24/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 29,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "26/07/2023",
+            "date_prevision_JJ-1": "25/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "27/07/2023",
+            "date_prevision_JJ-1": "26/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "28/07/2023",
+            "date_prevision_JJ-1": "27/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "29/07/2023",
+            "date_prevision_JJ-1": "28/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "30/07/2023",
+            "date_prevision_JJ-1": "29/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 22,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 29,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "31/07/2023",
+            "date_prevision_JJ-1": "30/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        }
+    ],
+    "OUAGADOUGOU": [
+        {
+            "date_observation_JJ": "02/07/2023",
+            "date_prevision_JJ-1": "01/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "03/07/2023",
+            "date_prevision_JJ-1": "02/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "04/07/2023",
+            "date_prevision_JJ-1": "03/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "08/07/2023",
+            "date_prevision_JJ-1": "07/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 38,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "09/07/2023",
+            "date_prevision_JJ-1": "08/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "10/07/2023",
+            "date_prevision_JJ-1": "09/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 26,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 35,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "11/07/2023",
+            "date_prevision_JJ-1": "10/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "12/07/2023",
+            "date_prevision_JJ-1": "11/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "13/07/2023",
+            "date_prevision_JJ-1": "12/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "14/07/2023",
+            "date_prevision_JJ-1": "13/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 34,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "15/07/2023",
+            "date_prevision_JJ-1": "14/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "16/07/2023",
+            "date_prevision_JJ-1": "15/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "17/07/2023",
+            "date_prevision_JJ-1": "16/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "18/07/2023",
+            "date_prevision_JJ-1": "17/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 23,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 28,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "19/07/2023",
+            "date_prevision_JJ-1": "18/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 21,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "20/07/2023",
+            "date_prevision_JJ-1": "19/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "21/07/2023",
+            "date_prevision_JJ-1": "20/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "22/07/2023",
+            "date_prevision_JJ-1": "21/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "23/07/2023",
+            "date_prevision_JJ-1": "22/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "24/07/2023",
+            "date_prevision_JJ-1": "23/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "25/07/2023",
+            "date_prevision_JJ-1": "24/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 28,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "26/07/2023",
+            "date_prevision_JJ-1": "25/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "27/07/2023",
+            "date_prevision_JJ-1": "26/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "28/07/2023",
+            "date_prevision_JJ-1": "27/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "29/07/2023",
+            "date_prevision_JJ-1": "28/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "30/07/2023",
+            "date_prevision_JJ-1": "29/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "31/07/2023",
+            "date_prevision_JJ-1": "30/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 35,
+                "correct": true
+            }
+        }
+    ],
+    "FADA NGOURMA": [
+        {
+            "date_observation_JJ": "02/07/2023",
+            "date_prevision_JJ-1": "01/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "03/07/2023",
+            "date_prevision_JJ-1": "02/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 25,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "04/07/2023",
+            "date_prevision_JJ-1": "03/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 35,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "08/07/2023",
+            "date_prevision_JJ-1": "07/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 25,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 38,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "09/07/2023",
+            "date_prevision_JJ-1": "08/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": null,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": null,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "10/07/2023",
+            "date_prevision_JJ-1": "09/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": null,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": null,
+                "observation_JJ": 37,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "11/07/2023",
+            "date_prevision_JJ-1": "10/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "12/07/2023",
+            "date_prevision_JJ-1": "11/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 34,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "13/07/2023",
+            "date_prevision_JJ-1": "12/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "14/07/2023",
+            "date_prevision_JJ-1": "13/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "15/07/2023",
+            "date_prevision_JJ-1": "14/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 38,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "16/07/2023",
+            "date_prevision_JJ-1": "15/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "17/07/2023",
+            "date_prevision_JJ-1": "16/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 21,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "18/07/2023",
+            "date_prevision_JJ-1": "17/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 31,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "19/07/2023",
+            "date_prevision_JJ-1": "18/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "20/07/2023",
+            "date_prevision_JJ-1": "19/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "21/07/2023",
+            "date_prevision_JJ-1": "20/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "22/07/2023",
+            "date_prevision_JJ-1": "21/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "23/07/2023",
+            "date_prevision_JJ-1": "22/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "24/07/2023",
+            "date_prevision_JJ-1": "23/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 22,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "25/07/2023",
+            "date_prevision_JJ-1": "24/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "26/07/2023",
+            "date_prevision_JJ-1": "25/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "27/07/2023",
+            "date_prevision_JJ-1": "26/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "28/07/2023",
+            "date_prevision_JJ-1": "27/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 34,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "29/07/2023",
+            "date_prevision_JJ-1": "28/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "30/07/2023",
+            "date_prevision_JJ-1": "29/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "31/07/2023",
+            "date_prevision_JJ-1": "30/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 25,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        }
+    ],
+    "BOGANDE": [
+        {
+            "date_observation_JJ": "02/07/2023",
+            "date_prevision_JJ-1": "01/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "03/07/2023",
+            "date_prevision_JJ-1": "02/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "04/07/2023",
+            "date_prevision_JJ-1": "03/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "08/07/2023",
+            "date_prevision_JJ-1": "07/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 38,
+                "observation_JJ": 38,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "09/07/2023",
+            "date_prevision_JJ-1": "08/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 39,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "10/07/2023",
+            "date_prevision_JJ-1": "09/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 37,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "11/07/2023",
+            "date_prevision_JJ-1": "10/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 30,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "12/07/2023",
+            "date_prevision_JJ-1": "11/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "13/07/2023",
+            "date_prevision_JJ-1": "12/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "14/07/2023",
+            "date_prevision_JJ-1": "13/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "15/07/2023",
+            "date_prevision_JJ-1": "14/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 36,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "16/07/2023",
+            "date_prevision_JJ-1": "15/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "17/07/2023",
+            "date_prevision_JJ-1": "16/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 21,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "18/07/2023",
+            "date_prevision_JJ-1": "17/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "19/07/2023",
+            "date_prevision_JJ-1": "18/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "20/07/2023",
+            "date_prevision_JJ-1": "19/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "21/07/2023",
+            "date_prevision_JJ-1": "20/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 27,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "22/07/2023",
+            "date_prevision_JJ-1": "21/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "23/07/2023",
+            "date_prevision_JJ-1": "22/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "24/07/2023",
+            "date_prevision_JJ-1": "23/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 22,
+                "observation_JJ": 22,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "25/07/2023",
+            "date_prevision_JJ-1": "24/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 30,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "26/07/2023",
+            "date_prevision_JJ-1": "25/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "27/07/2023",
+            "date_prevision_JJ-1": "26/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 27,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "28/07/2023",
+            "date_prevision_JJ-1": "27/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 34,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "29/07/2023",
+            "date_prevision_JJ-1": "28/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 32,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "30/07/2023",
+            "date_prevision_JJ-1": "29/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "31/07/2023",
+            "date_prevision_JJ-1": "30/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 26,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 34,
+                "correct": true
+            }
+        }
+    ],
+    "DORI": [
+        {
+            "date_observation_JJ": "02/07/2023",
+            "date_prevision_JJ-1": "01/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 34,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "03/07/2023",
+            "date_prevision_JJ-1": "02/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 28,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 38,
+                "observation_JJ": 37,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "04/07/2023",
+            "date_prevision_JJ-1": "03/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 21,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 38,
+                "observation_JJ": 37,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "08/07/2023",
+            "date_prevision_JJ-1": "07/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 40,
+                "observation_JJ": 40,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "09/07/2023",
+            "date_prevision_JJ-1": "08/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 27,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 38,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "10/07/2023",
+            "date_prevision_JJ-1": "09/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "11/07/2023",
+            "date_prevision_JJ-1": "10/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 30,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "12/07/2023",
+            "date_prevision_JJ-1": "11/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 27,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "13/07/2023",
+            "date_prevision_JJ-1": "12/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "14/07/2023",
+            "date_prevision_JJ-1": "13/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "15/07/2023",
+            "date_prevision_JJ-1": "14/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 36,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "16/07/2023",
+            "date_prevision_JJ-1": "15/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 32,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "17/07/2023",
+            "date_prevision_JJ-1": "16/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 36,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "18/07/2023",
+            "date_prevision_JJ-1": "17/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "19/07/2023",
+            "date_prevision_JJ-1": "18/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 38,
+                "observation_JJ": 37,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "20/07/2023",
+            "date_prevision_JJ-1": "19/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "21/07/2023",
+            "date_prevision_JJ-1": "20/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 28,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 37,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "22/07/2023",
+            "date_prevision_JJ-1": "21/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "23/07/2023",
+            "date_prevision_JJ-1": "22/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "24/07/2023",
+            "date_prevision_JJ-1": "23/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "25/07/2023",
+            "date_prevision_JJ-1": "24/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 31,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "26/07/2023",
+            "date_prevision_JJ-1": "25/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "27/07/2023",
+            "date_prevision_JJ-1": "26/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 28,
+                "observation_JJ": 29,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "28/07/2023",
+            "date_prevision_JJ-1": "27/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 25,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "29/07/2023",
+            "date_prevision_JJ-1": "28/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "30/07/2023",
+            "date_prevision_JJ-1": "29/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "31/07/2023",
+            "date_prevision_JJ-1": "30/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 27,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        }
+    ],
+    "OUAHIGOUYA": [
+        {
+            "date_observation_JJ": "02/07/2023",
+            "date_prevision_JJ-1": "01/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 29,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "03/07/2023",
+            "date_prevision_JJ-1": "02/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "04/07/2023",
+            "date_prevision_JJ-1": "03/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 36,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "08/07/2023",
+            "date_prevision_JJ-1": "07/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 37,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "09/07/2023",
+            "date_prevision_JJ-1": "08/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "10/07/2023",
+            "date_prevision_JJ-1": "09/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "TSRA",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 28,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 36,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "11/07/2023",
+            "date_prevision_JJ-1": "10/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 23,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 32,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "12/07/2023",
+            "date_prevision_JJ-1": "11/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "13/07/2023",
+            "date_prevision_JJ-1": "12/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 26,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 35,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "14/07/2023",
+            "date_prevision_JJ-1": "13/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "DUFU",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "15/07/2023",
+            "date_prevision_JJ-1": "14/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "TSRA",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 28,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 35,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "16/07/2023",
+            "date_prevision_JJ-1": "15/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "DUFU",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 31,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "17/07/2023",
+            "date_prevision_JJ-1": "16/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "DUFU",
+                "observation_JJ": "NSW",
+                "correct": false
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 34,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "18/07/2023",
+            "date_prevision_JJ-1": "17/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 31,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "19/07/2023",
+            "date_prevision_JJ-1": "18/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 37,
+                "observation_JJ": 36,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "20/07/2023",
+            "date_prevision_JJ-1": "19/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 34,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "21/07/2023",
+            "date_prevision_JJ-1": "20/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 36,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "22/07/2023",
+            "date_prevision_JJ-1": "21/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 36,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "23/07/2023",
+            "date_prevision_JJ-1": "22/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 27,
+                "observation_JJ": 29,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "24/07/2023",
+            "date_prevision_JJ-1": "23/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 29,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "25/07/2023",
+            "date_prevision_JJ-1": "24/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 23,
+                "observation_JJ": 24,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 29,
+                "observation_JJ": 29,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "26/07/2023",
+            "date_prevision_JJ-1": "25/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 25,
+                "observation_JJ": 26,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "27/07/2023",
+            "date_prevision_JJ-1": "26/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 27,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "28/07/2023",
+            "date_prevision_JJ-1": "27/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 24,
+                "correct": true
+            },
+            "tmax": {
+                "prevision_JJ-1": 36,
+                "observation_JJ": 35,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "29/07/2023",
+            "date_prevision_JJ-1": "28/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 22,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 33,
+                "observation_JJ": 33,
+                "correct": true
+            }
+        },
+        {
+            "date_observation_JJ": "30/07/2023",
+            "date_prevision_JJ-1": "29/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 24,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 30,
+                "observation_JJ": 33,
+                "correct": false
+            }
+        },
+        {
+            "date_observation_JJ": "31/07/2023",
+            "date_prevision_JJ-1": "30/07/2023",
+            "meteo": {
+                "prevision_JJ-1": "NSW",
+                "observation_JJ": "NSW",
+                "correct": true
+            },
+            "tmin": {
+                "prevision_JJ-1": 26,
+                "observation_JJ": 25,
+                "correct": false
+            },
+            "tmax": {
+                "prevision_JJ-1": 35,
+                "observation_JJ": 35,
+                "correct": true
+            }
+        }
+    ]
+}
