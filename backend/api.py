@@ -46,7 +46,7 @@ from backend.api_v1.pipeline import router as pipeline_router, _auto_pipeline_wo
 from backend.api_v1.metrics import router as metrics_router
 from backend.api_v1.data_management import router as data_management_router
 from backend.api_v1.validation import router as validation_router
-from backend.api_v1.station_data import router as station_data_router
+from backend.api_v1.stations import router as stations_router
 
 # Chargement de l'environnement
 if load_dotenv is not None:
@@ -54,8 +54,36 @@ if load_dotenv is not None:
     if env_path.exists():
         load_dotenv(env_path, override=False)
 
+# Tags pour la documentation Swagger
+tags_metadata = [
+    {"name": "auth", "description": "Gestion de l'authentification et des sessions."},
+    {"name": "bulletins", "description": "Consultation et gestion des bulletins météorologiques."},
+    {"name": "pipeline", "description": "Contrôle et suivi du pipeline de traitement automatisé."},
+    {"name": "metrics", "description": "Calcul et visualisation des performances (MAE, RMSE, F1)."},
+    {"name": "stations", "description": "Gestion des stations météorologiques du Burkina Faso."},
+    {"name": "data_management", "description": "Outils d'import, export et maintenance des données."},
+    {"name": "validation", "description": "Validation manuelle ou automatique des extractions."},
+]
+
 # Configuration de l'application
-app = FastAPI(title="ANAM-METEO-EVAL API", description="API for meteorological forecast evaluation system")
+app = FastAPI(
+    title="ANAM-METEO-EVAL API",
+    description="""
+API du système d'évaluation automatique des prévisions météorologiques (ANAM Burkina Faso).
+
+Ce système permet :
+*   **D'automatiser** la collecte (scraping) des bulletins PDF.
+*   **D'extraire** les données via Vision-Language Models (Qwen-VL).
+*   **De comparer** les prévisions avec les observations réelles.
+*   **De traduire** les résultats en langues locales (Mooré, Dioula).
+""",
+    version="1.0.0",
+    openapi_tags=tags_metadata,
+    contact={
+        "name": "Équipe ANAM-METEO-EVAL",
+        "url": "https://github.com/Dayende-ib/ANAM-METEO-EVAL-FINAL",
+    },
+)
 
 # Logging
 def configure_logging() -> None:
@@ -100,7 +128,7 @@ async def trace_id_middleware(request: Request, call_next):
     return response
 
 # CORS
-default_origins = ["http://localhost:5173", "http://127.0.0.1:5173"]
+default_origins = ["http://localhost", "http://127.0.0.1", "http://localhost:5173", "http://127.0.0.1:5173"]
 cors_origins = os.getenv("CORS_ALLOWED_ORIGINS")
 if cors_origins:
     origins = [origin.strip() for origin in cors_origins.split(",") if origin.strip()]
@@ -109,7 +137,7 @@ else:
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins or ["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -126,14 +154,16 @@ app.add_exception_handler(Exception, unhandled_error_handler)
 async def startup_event():
     """Initialiser la configuration et la base de données au démarrage."""
     core.config = Config()
-    core.db_manager = DatabaseManager(core.config.db_path)
+    # Utilisation de DATABASE_URL pour PostgreSQL
+    db_url = os.getenv("DATABASE_URL")
+    core.db_manager = DatabaseManager(db_url)
     core.db_manager.initialize_database()
-    core.db_manager.seed_auth_users_from_env(
-        os.getenv("AUTH_USERS"),
-        os.getenv("AUTH_USERNAME"),
-        os.getenv("AUTH_PASSWORD"),
-        os.getenv("AUTH_ADMIN_EMAILS"),
-    )
+    # core.db_manager.seed_auth_users_from_env(
+    #     os.getenv("AUTH_USERS"),
+    #     os.getenv("AUTH_USERNAME"),
+    #     os.getenv("AUTH_PASSWORD"),
+    #     os.getenv("AUTH_ADMIN_EMAILS"),
+    # )
     core.result_file = core.config.output_directory / "resultats_interpretes.json"
     
     # Note : Le modèle NLLB sera chargé à la demande (lazy loading) pour économiser la RAM au démarrage
@@ -181,9 +211,9 @@ async def health():
     checks = {"config": core.config is not None, "database": False}
     if core.db_manager is not None:
         try:
-            conn = core.db_manager.get_connection()
-            conn.execute("SELECT 1")
-            checks["database"] = True
+            with core.db_manager.get_connection().cursor() as cursor:
+                cursor.execute("SELECT 1")
+                checks["database"] = True
         except Exception:
             pass
     status = "ok" if all(checks.values()) else "degraded"
@@ -198,7 +228,7 @@ api_v1_router.include_router(pipeline_router)
 api_v1_router.include_router(metrics_router)
 api_v1_router.include_router(data_management_router)
 api_v1_router.include_router(validation_router)
-api_v1_router.include_router(station_data_router)
+api_v1_router.include_router(stations_router)
 
 app.include_router(api_v1_router)
 

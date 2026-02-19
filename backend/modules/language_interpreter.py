@@ -2,13 +2,18 @@
 # -*- coding: utf-8 -*-
 
 import json
+import requests
 import logging
 import os
+import re
 import threading
 import time
+import unicodedata
+from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
 from pathlib import Path
 from typing import Optional
+from backend.utils.date_utils import extract_date_from_filename, extraire_date_heure_nom_fichier
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +37,11 @@ except ImportError:
     AutoTokenizer = None
     logger.warning("Transformers not available.")
 
-from huggingface_hub import snapshot_download
+try:
+    from huggingface_hub import snapshot_download
+except ImportError:
+    snapshot_download = None
+    logger.warning("huggingface_hub not installed. Local model downloading disabled.")
 
 from backend.utils.database import DatabaseManager
 
@@ -98,25 +107,7 @@ import re
 import unicodedata
 import fitz  # PyMuPDF
 
-def extraire_date_heure_nom_fichier(nom_fichier):
-    """Extrait la date et l'heure du nom du fichier de manière robuste (espaces ou underscores)"""
-    nom_propre = nom_fichier.replace('_', ' ')
-    match = re.search(r'(\d{1,2})\s+([a-zA-Zéû]+)\s+(\d{4})', nom_propre, re.IGNORECASE)
-    heure_match = re.search(r'(\d{1,2})h(\d{2})', nom_propre, re.IGNORECASE)
-    if match:
-        jour, mois, annee = match.groups()
-        jour = jour.zfill(2)
-        mois_dict = {
-            'janvier': '01', 'fevrier': '02', 'février': '02', 'mars': '03', 'avril': '04',
-            'mai': '05', 'juin': '06', 'juillet': '07', 'aout': '08', 'août': '08',
-            'septembre': '09', 'octobre': '10', 'novembre': '11', 'decembre': '12', 'décembre': '12'
-        }
-        mois_num = mois_dict.get(mois.lower(), '01')
-        date = f"{annee}-{mois_num}-{jour}"
-        heure = heure_match.group(1).zfill(2) if heure_match else "12"
-        minute = heure_match.group(2) if heure_match else "00"
-        return date, f"{heure}:{minute}"
-    return None, None
+# Utilise extraire_date_heure_nom_fichier importé
 
 class LanguageInterpreter:
     """Extraire le texte des bulletins (PDF) et traduire via NLLB."""
@@ -415,93 +406,320 @@ class LanguageInterpreter:
             logger.error("Erreur extraction PDF %s: %s", pdf_path, e)
             return "", ""
 
-    def generate_interpretations(self, integrated_data):
-        """Traduit les textes extraits du PDF en utilisant le batching pour la performance."""
-        interpreted_data = []
+    def generate_interpretations(self, integrated_data, progress_callback=None):
+        """
+        Génération des interprétations :
+        1. AZEN (Agent BF) génère le texte français à partir des données des stations.
+        2. L'API Moore traduit le texte d'AZEN.
+        """
+        all_bulletin_entries = []
+        texts_to_translate_moore = set()
+        texts_to_translate_dioula = set()
         
-        # 1. Collecter tous les textes uniques à traduire
-        texts_to_translate = set()
-        bulletin_info = []
-        
-        for pdf_data in integrated_data:
-            pdf_path = pdf_data.get("pdf_path")
-            obs_fr, prev_fr = self._extraire_texte_pdf(pdf_path)
-            if obs_fr: texts_to_translate.add(obs_fr)
-            if prev_fr: texts_to_translate.add(prev_fr)
+        # 1. GENERATION DU TEXTE FRANCAIS (QWEN)
+        total_items = len(integrated_data)
+        for i, entry in enumerate(integrated_data, 1):
+            pdf_path = entry.get("pdf_path")
+            maps = entry.get("data", [])
             
-            nom_fichier = Path(pdf_path).name
+            if progress_callback:
+                pct = (i - 1) / total_items * 100 * 0.5 # Qwen is the first 50%
+                self._log_event("interpretation_progress", pct=pct, pdf=Path(pdf_path).name if pdf_path else "??")
+                progress_callback(pct, f"Interprétation Qwen {i}/{total_items}: {Path(pdf_path).name if pdf_path else '??'}")
+
+            # On garde l'OCR comme fallback au cas où AZEN échoue
+            obs_fr_ocr, prev_fr_ocr = self._extraire_texte_pdf(pdf_path)
+            
+            nom_fichier = Path(pdf_path).name if pdf_path else "bulletin.pdf"
             date_file, heure_file = extraire_date_heure_nom_fichier(nom_fichier)
+            ref_date_str = entry.get("date") or date_file
             
-            bulletin_info.append({
-                "pdf_data": pdf_data,
-                "obs_fr": obs_fr,
-                "prev_fr": prev_fr,
-                "date": pdf_data.get("date") or date_file,
-                "heure": pdf_data.get("heure") or heure_file
-            })
+            try:
+                ref_date = datetime.strptime(ref_date_str, "%Y-%m-%d")
+            except:
+                ref_date = datetime.now()
 
-        # 2. Traduire en batch (uniquement les textes non-vides et non-cachés)
-        unique_texts = list(texts_to_translate)
-        translations = {}
+            # On itère sur les maps (Règle ANAM: Map 0 = Obs J, Map 1 = Prev J+1)
+            for idx, map_entry in enumerate(maps):
+                if idx == 0:
+                    map_date = ref_date.strftime("%Y-%m-%d")
+                    map_type = "observation"
+                    fr_text_base = obs_fr_ocr
+                elif idx == 1:
+                    map_date = (ref_date + timedelta(days=1)).strftime("%Y-%m-%d")
+                    map_type = "forecast"
+                    fr_text_base = prev_fr_ocr
+                else:
+                    map_date = (ref_date + timedelta(days=idx)).strftime("%Y-%m-%d")
+                    map_type = "forecast"
+                    fr_text_base = prev_fr_ocr
+
+                # --- GÉNÉRATION AZEN (Agent Météo BF) --- 
+                # On utilise les données des stations de la map actuelle
+                stations = map_entry.get("temperatures", [])
+                fr_text = self._generate_qwen_french_interpretation(stations, map_type, map_date)
+                
+                # Fallback sur l'OCR si Qwen échoue
+                if not fr_text:
+                    fr_text = fr_text_base or ""
+                
+                if fr_text:
+                    texts_to_translate_moore.add(fr_text)
+                    texts_to_translate_dioula.add(fr_text)
+
+                bulletin_entry = {
+                    "pdf_path": str(pdf_path) if pdf_path else None,
+                    "date": map_date,
+                    "heure": entry.get("heure") or heure_file,
+                    "type": map_type,
+                    "interpretation_francais": fr_text,
+                    "interpretation_moore": "", 
+                    "interpretation_dioula": "",
+                    "data": [
+                        {
+                            "type": map_type,
+                            "image_path": map_entry.get("image_path"),
+                            "temperatures": stations
+                        }
+                    ],
+                    "stations": stations
+                }
+                all_bulletin_entries.append(bulletin_entry)
+
+        # 2. TRADUCTION BATCH / CACHÉE
+        moore_translations = {}
+        dioula_translations = {}
         
-        for lang in self.target_languages:
-            # On ne traduit que ce qui n'est pas déjà dans le cache global
-            to_translate_now = [t for t in unique_texts if not self.translation_cache.get(lang, t)]
+        # On remplit d'abord depuis le cache pour optimiser
+        for txt in list(texts_to_translate_moore):
+            res_m = self.translation_cache.get("moore", txt)
+            if res_m: moore_translations[txt] = res_m
             
-            if to_translate_now:
-                logger.info(f"Traduction batch NLLB ({lang}) : {len(to_translate_now)} textes.")
-                batch_results = self._translate_batch_local(to_translate_now, lang)
-                for src, res in zip(to_translate_now, batch_results):
-                    if res:
-                        self.translation_cache.store(lang, src, res, "local_nllb_batch")
-            
-            # Récupérer tout du cache (nouvellement rempli ou ancien)
-            for txt in unique_texts:
-                translations.setdefault(txt, {})[lang] = self.translation_cache.get(lang, txt) or ""
+            res_d = self.translation_cache.get("dioula", txt)
+            if res_d: dioula_translations[txt] = res_d
 
-        # 3. Re-structurer les données pour chaque bulletin/station
-        for info in bulletin_info:
-            pdf_data = info["pdf_data"]
-            obs_fr = info["obs_fr"]
-            prev_fr = info["prev_fr"]
+        # Traduction Moore via API spécifiée si pas en cache
+        to_translate_moore = [t for t in texts_to_translate_moore if t not in moore_translations]
+        if to_translate_moore:
+            def _on_moore_progress(pct, msg):
+                if progress_callback:
+                    # Moore translation is roughly the next 25% of the total interpretation time (after Qwen 50%)
+                    overall_pct = 50 + (pct * 0.25)
+                    progress_callback(overall_pct, f"Traduction Moore: {msg}")
             
-            trans_obs = translations.get(obs_fr, {})
-            trans_prev = translations.get(prev_fr, {})
+            batch_results_moore = self._translate_batch_local(to_translate_moore, "moore", progress_callback=_on_moore_progress)
+            for src, res in zip(to_translate_moore, batch_results_moore):
+                if res:
+                    moore_translations[src] = res
+                    self.translation_cache.store("moore", src, res, "moore_api_cloud")
 
-            interpreted_pdf = {
-                "pdf_path": pdf_data.get("pdf_path"), 
-                "date": info["date"],
-                "heure": info["heure"],
-                "type": "forecast" if ("forecast" in str(pdf_data.get("pdf_path")).lower() or pdf_data.get("type") == "forecast") else "observation",
-                "stations": []
-            }
+        # Traduction Dioula via NLLB (fallback batch)
+        to_translate_dioula = [t for t in texts_to_translate_dioula if t not in dioula_translations]
+        if to_translate_dioula:
+            def _on_dioula_progress(pct, msg):
+                if progress_callback:
+                    # Dioula translation is roughly the last 25% of the total interpretation time (after Qwen 50% and Moore 25%)
+                    overall_pct = 75 + (pct * 0.25)
+                    progress_callback(overall_pct, f"Traduction Dioula: {msg}")
+
+            batch_results_dioula = self._translate_batch_local(to_translate_dioula, "dioula", progress_callback=_on_dioula_progress)
+            for src, res in zip(to_translate_dioula, batch_results_dioula):
+                if res:
+                    dioula_translations[src] = res
+                    self.translation_cache.store("dioula", src, res, "local_nllb_batch")
+        
+        if progress_callback:
+            progress_callback(100, "Interprétation terminée.")
+
+        # 3. Finalisation des bulletins
+        for b in all_bulletin_entries:
+            fr = b["interpretation_francais"]
+            if fr:
+                b.setdefault("interpretation_moore", moore_translations.get(fr, ""))
+                b.setdefault("interpretation_dioula", dioula_translations.get(fr, "") or "")
             
-            is_forecast = interpreted_pdf["type"] == "forecast"
-            if is_forecast:
-                interpreted_pdf["interpretation_francais"] = prev_fr
-                interpreted_pdf["interpretation_moore"] = trans_prev.get("moore", "")
-                interpreted_pdf["interpretation_dioula"] = trans_prev.get("dioula", "")
+        return all_bulletin_entries
+
+    def _generate_qwen_french_interpretation(self, stations, map_type, date):
+        """
+        Génère une petite interprétation en français basée sur les données des stations via Qwen.
+        """
+        if not stations:
+            return None
+            
+        # 1. Préparer les données pour le prompt
+        station_summary = []
+        for s in stations:
+            # Vérifier les différentes clés possibles selon l'étape du pipeline
+            name = s.get("station") or s.get("name") or "Inconnue"
+            tmin = s.get("tmin")
+            tmax = s.get("tmax")
+            weather = s.get("weather") or s.get("weather_condition") or "Non spécifiée"
+            summary = f"- {name}: {tmin}°C/{tmax}°C, {weather}"
+            station_summary.append(summary)
+            
+        data_text = "\n".join(station_summary)
+        
+        # 2. Construire le prompt
+        type_str = "observation" if map_type == "observation" else "prévision"
+        prompt = f"""Tu es Qwen, un agent expert de la météo nationale du Burkina Faso (ANAM).
+Ton rôle est de transformer les données brutes des stations en un court texte informatif pour les citoyens.
+
+Données de {type_str} pour le {date} :
+{data_text}
+
+Rédige une interprétation courte (2 à 4 phrases maximum) claire et professionnelle en français burkinabè. 
+Commence par une synthèse de la température sur le pays (fraicheur ou chaleur) et termine par le temps qu'il fera ou qu'il a fait.
+Sois direct, ne commence pas par une présentation.
+"""
+
+        # 3. Appeler Ollama
+        ollama_base = os.getenv("OLLAMA_URL", "http://host.docker.internal:11434").rstrip('/')
+        ollama_url = f"{ollama_base}/api/generate"
+        model = os.getenv("INTERPRETATION_MODEL", "qwen2:7b")
+        
+        payload = {
+            "model": model,
+            "prompt": prompt,
+            "stream": False,
+            "options": {"temperature": 0.4, "num_predict": 250}
+        }
+        
+        try:
+            response = requests.post(ollama_url, json=payload, timeout=60)
+            if response.status_code == 404:
+                # Fallback : essayer des noms de modèles plus courants si le spécifié n'existe pas
+                for alt_model in ["qwen2", "qwen", "llama3", "mistral"]:
+                    logger.info(f"Tentative de fallback Qwen avec le modèle : {alt_model}")
+                    payload["model"] = alt_model
+                    try:
+                        alt_resp = requests.post(ollama_url, json=payload, timeout=60)
+                        if alt_resp.status_code == 200:
+                            result = alt_resp.json().get("response", "").strip()
+                            if result:
+                                logger.info(f"✅ Qwen ({alt_model}) a généré une interprétation")
+                                return result
+                    except: continue
+                logger.warning(f"⚠️ Aucun modèle Qwen/Ollama trouvé (404)")
+            elif response.status_code == 200:
+                result = response.json().get("response", "").strip()
+                if result:
+                    logger.info(f"✅ Qwen a généré une interprétation")
+                    return result
             else:
-                interpreted_pdf["interpretation_francais"] = obs_fr
-                interpreted_pdf["interpretation_moore"] = trans_obs.get("moore", "")
-                interpreted_pdf["interpretation_dioula"] = trans_obs.get("dioula", "")
+                logger.warning(f"⚠️ Qwen (Ollama) erreur: {response.status_code}")
+        except Exception as exc:
+            logger.warning(f"⚠️ Qwen indisponible: {exc}")
             
-            for station in pdf_data.get("stations", []) or []:
-                st_data = station.copy()
-                # On ne met plus les interprétations au niveau station selon la demande utilisateur
-                st_data["interpretation_francais"] = None
-                st_data["interpretation_moore"] = None
-                st_data["interpretation_dioula"] = None
-                interpreted_pdf["stations"].append(st_data)
-            
-            interpreted_data.append(interpreted_pdf)
-            
-        return interpreted_data
+        return None
 
-    def _translate_batch_local(self, texts, language):
-        """Traduction optimisée par lots pour NLLB."""
+    def _translate_moore_api(self, text):
+        """Traduit du français vers le mooré via l'API spécifiée par l'utilisateur."""
+        if not text:
+            return None
+            
+        url = os.getenv("MOORE_TRANSLATOR_API_URL", "https://fr-mos-translator-314397473739.europe-west1.run.app/api/translate")
+        
+        # Sécurité : Si le texte est très long, on le découpe par phrases
+        # car l'API Cloud peut avoir des limites de buffer provoquant des Erreurs 500.
+        sentences = re.split(r'(?<=[.!?])\s+', text.strip())
+        translated_parts = []
+        
+        logger.info(f"☁️ Appel Moore API Cloud ({len(sentences)} phrases)")
+        
+        for sentence in sentences:
+            if not sentence.strip(): continue
+            payload = {
+                "text": sentence.strip(),
+                "source_lang": "french",
+                "target_lang": "moore"
+            }
+            try:
+                response = requests.post(url, json=payload, timeout=25)
+                if response.status_code == 200:
+                    data = response.json()
+                    res = data.get("translation")
+                    if res:
+                        translated_parts.append(res.strip())
+                else:
+                    logger.warning(f"Moore API sentence error {response.status_code}")
+                    return None # On abandonne si une phrase échoue pour basculer sur le fallback
+            except Exception as exc:
+                logger.warning(f"Moore API timeout/fail: {exc}")
+                return None
+                
+        return " ".join(translated_parts) if translated_parts else None
+
+    def _translate_qwen(self, text, language):
+        """Traduction via Qwen (Ollama) en dernier recours avec fallbacks adaptés à l'utilisateur."""
+        if not text:
+            return None
+            
+        ollama_base = os.getenv("OLLAMA_URL", "http://host.docker.internal:11434").rstrip('/')
+        ollama_url = f"{ollama_base}/api/generate"
+        # Utilisation du modèle présent chez l'utilisateur par défaut
+        model = os.getenv("INTERPRETATION_MODEL", "qwen2.5:7b")
+        
+        target_lang_name = "Mooré (langue du Burkina Faso)" if language == "moore" else "Dioula (langue du Burkina Faso)"
+        logger.info(f"🤖 Tentative de traduction {language} via Qwen (Ollama: {ollama_base})")
+        
+        prompt = f"""Tu es un traducteur expert polyglotte.
+Traduits le texte météo suivant du Français vers le {target_lang_name}.
+Assure-toi que la traduction est fluide et professionnelle.
+Ne fournis QUE la traduction, sans commentaire, sans introduction, sans guillemets.
+
+Texte à traduire :
+{text}
+"""
+        
+        # Liste des modèles détectés sur le système de l'utilisateur
+        fallbacks = ["qwen2.5:7b", "qwen2.5", "qwen2", "mistral:7b", "llama3.1:8b", "llama3.2-vision:11b"]
+        
+        for current_model in [model] + fallbacks:
+            payload = {
+                "model": current_model,
+                "prompt": prompt,
+                "stream": False,
+                "options": {"temperature": 0.2, "num_predict": 500}
+            }
+            try:
+                response = requests.post(ollama_url, json=payload, timeout=90)
+                if response.status_code == 200:
+                    result = response.json().get("response", "").strip()
+                    if result:
+                        logger.info(f"✅ Traduction {language} réussie avec {current_model}")
+                        return result
+                elif response.status_code == 404:
+                    logger.info(f"   └─ Modèle {current_model} non trouvé (404), changement...")
+                    continue
+                else:
+                    logger.warning(f"⚠️ Erreur Ollama {current_model} ({response.status_code})")
+            except Exception as e:
+                logger.debug(f"      Fail {current_model}: {e}")
+                continue
+                
+        logger.warning(f"❌ Impossible de traduire avec les modèles Ollama disponibles.")
+        return None
+
+    def _translate_batch_local(self, texts, language, progress_callback=None):
+        """Traduction optimisée par lots pour NLLB (avec fallback API pour le mooré)."""
         if not texts:
-            return [None] * len(texts)
+            return []
+
+        if language == "moore":
+            results = []
+            total = len(texts)
+            for i, t in enumerate(texts, 1):
+                if progress_callback:
+                    progress_callback((i-1)/total*100, f"Traduction Moore API {i}/{total}")
+                res = self._translate_moore_api(t)
+                results.append(res)
+            
+            # If Moore API calls were successful, return them
+            if any(r is not None for r in results):
+                return results
+            # Otherwise, fallback to NLLB
+            logger.info("Fallback vers NLLB local pour le mooré car l'API a échoué.")
 
         if not self.translation_model or not self.translation_tokenizer:
             self._init_translation_local()
@@ -568,13 +786,49 @@ class LanguageInterpreter:
     def _generate_french_bulletin(self, station_data):
         """Récupère ou génère le texte français global du bulletin."""
         pdf_path = station_data.get("pdf_path")
-        if not pdf_path or not Path(pdf_path).exists():
+        if not pdf_path:
             return None
-
-        obs_fr, prev_fr = self._extraire_texte_pdf(pdf_path)
-        is_forecast = "forecast" in str(pdf_path).lower() or station_data.get("type") == "forecast"
+            
+        path_obj = Path(pdf_path)
+        if not path_obj.exists():
+            # Fallback : chercher dans data/pdfs relative au dossier de travail (/app)
+            # ou avec le préfixe backend si on est à la racine
+            possible_fallbacks = [
+                Path("/app/data/pdfs") / path_obj.name,
+                Path("data/pdfs") / path_obj.name,
+                Path("backend/data/pdfs") / path_obj.name
+            ]
+            for fb in possible_fallbacks:
+                if fb.exists():
+                    path_obj = fb
+                    break
+            
+            if not path_obj.exists():
+                logger.warning(f"Fichier PDF non trouvé: {pdf_path}")
         
-        return prev_fr if is_forecast else obs_fr
+        # 1. Tenter l'extraction OCR classique
+        obs_fr, prev_fr = "", ""
+        if path_obj.exists():
+            obs_fr, prev_fr = self._extraire_texte_pdf(str(path_obj))
+        
+        is_forecast = "forecast" in str(path_obj).lower() or station_data.get("type") == "forecast"
+        fr_text = prev_fr if is_forecast else obs_fr
+
+        # 2. Fallback Qwen si l'OCR est vide (scanned PDF ou pas de texte)
+        if not fr_text:
+             # On essaie de régénérer via Qwen si on a les stations dans station_data
+             stations = station_data.get("stations", [])
+             map_type = "forecast" if is_forecast else "observation"
+             map_date = station_data.get("date")
+             if not stations and "name" in station_data:
+                 # On a au moins la station cible
+                 stations = [station_data]
+                 
+             if stations:
+                 logger.info(f"🔄 Fallback Qwen pour le texte français car l'OCR est vide pour {path_obj.name}")
+                 fr_text = self._generate_qwen_french_interpretation(stations, map_type, map_date)
+        
+        return fr_text
 
     def _generate_with_timeout(self, station_data, timeout_seconds):
         if timeout_seconds is None:
@@ -603,6 +857,19 @@ class LanguageInterpreter:
                     language=language,
                 )
                 return cached
+
+        # Priorité API pour le Mooré
+        if language == "moore":
+            translated = self._translate_moore_api(text)
+            if translated:
+                self.translation_cache.store(language, text, translated, "moore_api_cloud")
+                _log_json(
+                    logging.INFO,
+                    "translation_success",
+                    provider="moore_api_cloud",
+                    language=language,
+                )
+                return translated
 
         target_label = self.translation_target_labels.get(language)
         if self.translation_client and target_label and self.translation_source_label:
@@ -639,6 +906,18 @@ class LanguageInterpreter:
                 logging.INFO,
                 "translation_success",
                 provider="local_nllb",
+                language=language,
+            )
+            return translated
+
+        # --- FALLBACK ULTIME : Qwen (Ollama) ---
+        translated = self._translate_qwen(text, language)
+        if translated:
+            self.translation_cache.store(language, text, translated, "qwen_ollama")
+            _log_json(
+                logging.INFO,
+                "translation_success",
+                provider="qwen_ollama",
                 language=language,
             )
             return translated

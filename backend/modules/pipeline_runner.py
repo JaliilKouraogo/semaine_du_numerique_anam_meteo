@@ -22,6 +22,7 @@ from backend.modules.pdf_extractor import PDFExtractor
 from backend.modules.pdf_scrap import MeteoBurkinaScraper
 from backend.modules.temperature_extractor import TemperatureExtractor
 from backend.modules.workflow_temperature_extractor import WorkflowTemperatureExtractor
+from backend.modules.ai_vlm_extractor import AIVLMExtractor
 from backend.utils.config import Config
 from backend.utils.database import DatabaseManager
 
@@ -108,6 +109,40 @@ def _process_selected_pdfs(pdf_extractor: PDFExtractor, pdf_paths: List[Path]):
     return [item for item in processed if item]
 
 
+def _process_selected_pdfs_with_progress(pdf_extractor: PDFExtractor, pdf_paths: List[Path], progress_callback=None):
+    workers = int(os.getenv("PDF_PROCESS_WORKERS", "2"))
+    total = len(pdf_paths)
+    if workers <= 1 or total <= 1:
+        results = []
+        for i, pdf_path in enumerate(pdf_paths, 1):
+            if progress_callback:
+                progress_callback((i-1)/total*100, f"Conversion PDF {i}/{total}")
+            try:
+                processed = pdf_extractor.process_single_pdf(pdf_path)
+                if processed:
+                    results.append(processed)
+            except Exception:
+                continue
+        return results
+
+    def _process(pdf_path):
+        try:
+            return pdf_extractor.process_single_pdf(pdf_path)
+        except Exception:
+            return None
+
+    results = []
+    with ThreadPoolExecutor(max_workers=min(workers, total)) as executor:
+        futures = {executor.submit(_process, p): p for p in pdf_paths}
+        for i, future in enumerate(futures, 1):
+            res = future.result()
+            if res:
+                results.append(res)
+            if progress_callback:
+                progress_callback(i/total*100, f"Conversion PDF {i}/{total}")
+    return results
+
+
 class PipelineRunner:
     """Wraps the sequential execution of the 7 modules with persistence."""
 
@@ -143,7 +178,7 @@ class PipelineRunner:
 
     @classmethod
     def build_steps_template(cls):
-        return [{"key": key, "label": label, "status": "pending"} for key, label in cls.STEP_DEFINITIONS]
+        return [{"key": key, "label": label, "status": "pending", "progress": 0} for key, label in cls.STEP_DEFINITIONS]
 
     def run(self):
         self._log_event("pipeline_start")
@@ -262,6 +297,9 @@ class PipelineRunner:
         else:
             self._mark_step_running("scraping", "Téléchargement des bulletins en cours.")
             scraper = MeteoBurkinaScraper(output_dir=str(self.config.pdf_directory))
+            def _on_scraping_progress(pct, msg):
+                self._mark_step_progress("scraping", pct, msg)
+
             try:
                 summary = scraper.scrape_all(
                     self.options.get("use_pagination", True),
@@ -271,6 +309,7 @@ class PipelineRunner:
                     self.options.get("max_pages"),
                     self.options.get("max_bulletins"),
                     self.options.get("delay", 1.0),
+                    progress_callback=_on_scraping_progress,
                 )
                 self.metadata["scraped_bulletins"] = summary.get("success", 0)
                 self._mark_step_success(
@@ -296,7 +335,10 @@ class PipelineRunner:
             self.config.pdf_directory,
             self.config.output_directory
         )
-        pdf_files = _process_selected_pdfs(pdf_extractor, pending_pdfs)
+        def _on_conversion_progress(pct, msg):
+            self._mark_step_progress("ocr", pct * 0.2, msg)
+
+        pdf_files = _process_selected_pdfs_with_progress(pdf_extractor, pending_pdfs, progress_callback=_on_conversion_progress)
         if not pdf_files:
             mock_pdf = {
                 "pdf_path": self.config.pdf_directory / "mock.pdf",
@@ -313,13 +355,27 @@ class PipelineRunner:
             self._mark_step_skipped("ocr", "Aucun bulletin a traiter (deja en base).")
             return [], []
         
-        # Utilisation de l'extracteur local (ROI) uniquement
-        temp_extractor = WorkflowTemperatureExtractor(roi_config_path=self.config.roi_config_path)
-        try:
-            temperature_data = temp_extractor.extract_temperatures_from_workflow(pdf_files)
-        except Exception as exc:
-            self._mark_step_failed("ocr", f"Extraction des températures impossible: {exc}")
-            raise
+        if os.getenv("AI_METHOD") == "QWEN":
+            self._append_note("Utilisation de la méthode IA (Qwen-VL) pour l'extraction.")
+            ai_extractor = AIVLMExtractor()
+            def _on_ia_progress(pct, msg):
+                self._mark_step_progress("ocr", 20 + (pct * 0.8), msg)
+            try:
+                temperature_data = ai_extractor.extract_temperatures(pdf_files, progress_callback=_on_ia_progress)
+            except Exception as exc:
+                self._mark_step_failed("ocr", f"Extraction IA impossible: {exc}")
+                raise
+        else:
+            # Utilisation de l'extracteur local (ROI) classique
+            temp_extractor = WorkflowTemperatureExtractor(roi_config_path=self.config.roi_config_path)
+            def _on_roi_progress(pct, msg):
+                self._mark_step_progress("ocr", 20 + (pct * 0.8), msg)
+            try:
+                temperature_data = temp_extractor.extract_temperatures_from_workflow(pdf_files, progress_callback=_on_roi_progress)
+            except Exception as exc:
+                self._mark_step_failed("ocr", f"Extraction des températures impossible: {exc}")
+                raise
+        
         self._mark_step_success(
             "ocr",
             meta={"pdf_count": len(pdf_files), "detections": sum(len(entry.get("data", [])) for entry in temperature_data)},
@@ -335,9 +391,11 @@ class PipelineRunner:
         icon_classifier = IconClassifier(
             roi_config_path=self.config.roi_config_path,
         )
-        # Force local classification only
+        def _on_classification_progress(pct, msg):
+            self._mark_step_progress("classification", pct, msg)
+            
         try:
-            icon_data = icon_classifier.classify_icons(pdf_files)
+            icon_data = icon_classifier.classify_icons(pdf_files, progress_callback=_on_classification_progress)
         except Exception as exc:
             self._mark_step_failed("classification", f"Classification impossible: {exc}")
             raise
@@ -377,8 +435,11 @@ class PipelineRunner:
             self._mark_step_skipped("interpretation", "Aucune donnee a interpreter (deja en base).")
             return []
         interpreter = LanguageInterpreter.get_shared(db_manager=self.db_manager)
+        def _on_interpretation_progress(pct, msg):
+            self._mark_step_progress("interpretation", pct, msg)
+            
         try:
-            interpreted_data = interpreter.generate_interpretations(integrated_data)
+            interpreted_data = interpreter.generate_interpretations(integrated_data, progress_callback=_on_interpretation_progress)
         except Exception as exc:
             self._mark_step_skipped("interpretation", f"Interprétation indisponible: {exc}")
             self._append_note(f"Interprétation sautée: {exc}")
@@ -402,6 +463,14 @@ class PipelineRunner:
         self._log_event("step_running", step=key, message=message)
         self._persist_state()
 
+    def _mark_step_progress(self, key, progress, message=None):
+        step = self._get_step(key)
+        step["status"] = "running"
+        step["progress"] = round(float(progress), 1)
+        if message:
+            step["message"] = message
+        self._persist_state()
+
     def _mark_step_success(self, key, message=None, meta=None):
         step = self._get_step(key)
         if not step.get("started_at"):
@@ -422,6 +491,7 @@ class PipelineRunner:
         step["finished_at"] = self._now()
         step["status"] = "error"
         step["message"] = message
+        step["progress"] = 0 # Optional: keep last progress or reset
         self._log_event("step_failed", step=key, message=message)
         self._persist_state()
 

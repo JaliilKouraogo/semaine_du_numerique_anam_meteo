@@ -2,6 +2,7 @@ import json
 import logging
 import re
 import time
+import os
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -10,6 +11,8 @@ from fastapi import HTTPException
 
 from backend.api_errors import ErrorCode
 import backend.api_v1.core as core
+from backend.api_v1.core import _ensure_services_ready, _ensure_db_ready, ErrorCode
+from backend.utils.date_utils import extract_date_from_filename
 
 logger = logging.getLogger("anam.api")
 
@@ -65,7 +68,11 @@ def _load_result_file():
 
 def _sanitize_filename(original: str) -> str:
     base = Path(original).stem or "bulletin"
-    safe = re.sub(r"[^\w-]+", "_", base).strip("_") or "bulletin"
+    # Normalisation pour enlever les accents (ex: à -> a)
+    import unicodedata
+    normalized = unicodedata.normalize('NFKD', base).encode('ascii', 'ignore').decode('ascii')
+    # On ne garde que l'alpha-numérique de base
+    safe = re.sub(r"[^a-zA-Z0-9_-]+", "_", normalized).strip("_") or "bulletin"
     timestamp = int(time.time())
     return f"{safe}_{timestamp}.pdf"
 
@@ -84,6 +91,7 @@ def _serialize_temperature_payload(results: List[dict]) -> List[dict]:
                     "name": t.get("name"),
                     "tmin": t.get("tmin"),
                     "tmax": t.get("tmax"),
+                    "weather_condition": t.get("weather_condition"),
                     "tmin_raw": t.get("tmin_raw"),
                     "tmax_raw": t.get("tmax_raw"),
                     "bbox": t.get("relative_bbox") or t.get("bbox"),
@@ -113,14 +121,21 @@ def _serialize_temperature_payload(results: List[dict]) -> List[dict]:
     return serialized
 
 def _serialize_pipeline_run(run: Dict[str, Any], include_steps: bool):
+    def _to_str(v):
+        if v is None:
+            return None
+        if hasattr(v, "isoformat"):
+            return v.isoformat()
+        return str(v)
+
     payload = {
         "id": run.get("id"),
         "status": run.get("status"),
-        "started_at": run.get("started_at"),
-        "finished_at": run.get("finished_at"),
+        "started_at": _to_str(run.get("started_at")),
+        "finished_at": _to_str(run.get("finished_at")),
         "metadata": run.get("metadata"),
         "error_message": run.get("error_message"),
-        "last_update": run.get("last_update"),
+        "last_update": _to_str(run.get("last_update")),
     }
     if include_steps:
         payload["steps"] = run.get("steps", [])

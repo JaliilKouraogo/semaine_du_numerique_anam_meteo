@@ -27,12 +27,14 @@ class WorkflowTemperatureExtractor(TemperatureExtractor):
         super().__init__(roi_config_path=roi_config_path)
         logger.info("Extracteur de températures initialisé avec configuration ROI locale")
 
-    def extract_temperatures_from_workflow(self, pdf_results):
+    def extract_temperatures_from_workflow(self, pdf_results, progress_callback=None):
         """
         Extrait les températures en utilisant les ROI, avec un fallback intelligent 
         par proximité géographique si le ROI échoue.
         """
         all_temperatures = []
+        total_maps = sum(len(pdf.get("maps", [])) for pdf in pdf_results)
+        processed_maps = 0
 
         for pdf_result in pdf_results:
             pdf_temps_data = {
@@ -45,6 +47,10 @@ class WorkflowTemperatureExtractor(TemperatureExtractor):
                 map_type = map_data.get("type")
                 map_image_path = map_data.get("image_path") or pdf_result.get("image_path")
                 
+                if progress_callback:
+                    pct = (processed_maps / total_maps) * 100
+                    progress_callback(pct, f"Traitement {pdf_result['pdf_path'].name} - {map_type}")
+
                 # 1. Extraction directe via ROI
                 temps = self._extract_temperatures_from_rois(map_image_path)
                 
@@ -70,8 +76,13 @@ class WorkflowTemperatureExtractor(TemperatureExtractor):
                     "type": map_type,
                     "temperatures": temps,
                 })
+                processed_maps += 1
 
             all_temperatures.append(pdf_temps_data)
+        
+        if progress_callback:
+            progress_callback(100, "Extraction ROI terminée.")
+            
         return all_temperatures
 
     def _get_missing_stations(self, current_temps):

@@ -20,12 +20,19 @@ class Config:
         # Project directories
         self.project_root = Path(__file__).resolve().parent.parent
         self._load_env_file()
-        self.pdf_directory = self.project_root / "data" / "pdfs"
-        self.output_directory = self.project_root / "data" / "output"
-        self.temp_directory = self.project_root / "data" / "temp"
+        
+        # En Docker, on préfère utiliser /app/data qui est le volume monté
+        if os.path.exists("/app/data"):
+            data_root = Path("/app/data")
+        else:
+            data_root = self.project_root / "data"
+
+        self.pdf_directory = data_root / "pdfs"
+        self.output_directory = data_root / "output"
+        self.temp_directory = data_root / "temp"
         
         # Database configuration
-        self.db_path = self.project_root / "data" / "meteo.db"
+        self.db_path = data_root / "meteo.db"
         
         # API endpoints
         self.llm_api_endpoint = os.getenv("LLM_API_ENDPOINT", "http://localhost:8000/api/translate")

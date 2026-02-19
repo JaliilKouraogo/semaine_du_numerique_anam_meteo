@@ -9,7 +9,7 @@ import os
 import re
 import unicodedata
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import pandas as pd
@@ -89,8 +89,11 @@ class DataIntegrator:
     def _extract_bulletin_date(self, pdf_path: Path):
         """Tente de deduire la date du bulletin depuis le nom du fichier."""
         stem = pdf_path.stem
+        # Normalisation pour gérer les accents (NFC/NFD) de manière cohérente
+        stem = unicodedata.normalize("NFC", stem)
 
-        match = re.search(r"(\d{1,2})[_\- ]+([^\W\d_]+)[_\- ]+(\d{4})", stem)
+        # Regex plus souple pour capturer le jour, le mois et l'année
+        match = re.search(r"(\d{1,2})[a-zA-Z\u00C0-\u00FF\s_\-]+?([a-zA-Z\u00C0-\u00FF]+)[_\- ]+(\d{4})", stem)
         if not match:
             return None
 
@@ -170,12 +173,21 @@ class DataIntegrator:
                 icon_pdf_data.get("data", []),
             )
 
-            for map_type, temps, icons in aligned_maps:
+            for idx, (map_type, temps, icons) in enumerate(aligned_maps):
                 normalized_type = map_type if map_type in {"observation", "forecast"} else "observation"
                 stations_data = self.combine_page_data(temps, icons)
 
+                # FORCE DATE FILENAME : On respecte strictement la date du nom de fichier.
+                # Si le nom n'est pas parsable, on utilise la date globale extraite précédemment (date_str).
+                try:
+                    actual_date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+                except (ValueError, TypeError):
+                    actual_date_obj = datetime.today()
+                
+                actual_date_str = actual_date_obj.strftime("%Y-%m-%d")
+
                 bulletin_id = self.db_manager.insert_bulletin(
-                    date_str,
+                    actual_date_str,
                     normalized_type,
                     str(pdf_path),
                     pdf_path.stem,
@@ -209,7 +221,7 @@ class DataIntegrator:
                         station_name,
                         measurement,
                         normalized_type,
-                        date_str,
+                        actual_date_str,
                     )
 
                     # Persistance de la mesure pour exploitation future.
@@ -221,13 +233,14 @@ class DataIntegrator:
                         weather_condition=measurement["weather_condition"],
                         tmin_raw=measurement["tmin_raw"],
                         tmax_raw=measurement["tmax_raw"],
+                        quality_score=measurement.get("quality_score")
                     )
 
                     for issue in issues:
                         self.db_manager.insert_data_issue(
                             bulletin_id=bulletin_id,
                             station_id=station_id,
-                            bulletin_date=date_str,
+                            bulletin_date=actual_date_str,
                             map_type=normalized_type,
                             code=issue.get("code"),
                             message=issue.get("message"),

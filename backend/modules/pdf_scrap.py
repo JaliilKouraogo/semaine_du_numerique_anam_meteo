@@ -28,11 +28,11 @@ logger = logging.getLogger(__name__)
 class ScrapeConfig:
     retries: int = 3
     backoff: float = 0.5
-    connect_timeout: float = 10.0
-    read_timeout: float = 30.0
+    connect_timeout: float = 20.0
+    read_timeout: float = 60.0
     max_size_mb: int = 50
     user_agent: str = "ANAM-METEO-EVAL/1.0"
-    verify_ssl: bool = True
+    verify_ssl: bool = False
 
 
 class ManifestStore:
@@ -194,8 +194,10 @@ class MeteoBurkinaScraper:
                     continue
         return max(page_numbers) if page_numbers else 1
 
-    def get_bulletin_list(self, use_pagination=True, max_pages=None, year=None, month=None, day=None):
+    def get_bulletin_list(self, use_pagination=True, max_pages=None, year=None, month=None, day=None, progress_callback=None):
         """Retourne la liste des bulletins (avec pagination et filtres eventuels)."""
+        if progress_callback:
+            progress_callback(0, "Récupération de la liste des bulletins...")
         print(f"Recuperation de la liste des bulletins depuis {self.bulletins_url}")
 
         bulletins = []
@@ -203,6 +205,8 @@ class MeteoBurkinaScraper:
         total_pages = None
 
         while True:
+            if progress_callback:
+                progress_callback(0, f"Lecture de la page {page_number}...")
             soup = self._fetch_page(page_number)
             if soup is None:
                 break
@@ -462,8 +466,11 @@ class MeteoBurkinaScraper:
         max_pages=None,
         max_bulletins=None,
         delay=2,
+        progress_callback=None,
     ):
         """Orchestre la recuperation des bulletins puis leur telechargement."""
+        if progress_callback:
+            progress_callback(0, "Démarrage du scraping...")
         print("=" * 70)
         print("SCRAPER BULLETINS METEO - BURKINA FASO")
         print("=" * 70)
@@ -474,6 +481,7 @@ class MeteoBurkinaScraper:
             year=year,
             month=month,
             day=day,
+            progress_callback=progress_callback
         )
         if not bulletins:
             print("Aucun bulletin trouve. Verifiez la connexion ou le site.")
@@ -500,6 +508,10 @@ class MeteoBurkinaScraper:
         errors = []
 
         for index, bulletin in enumerate(bulletins, 1):
+            progress = (index - 1) / len(bulletins) * 100
+            if progress_callback:
+                progress_callback(progress, f"Traitement bulletin {index}/{len(bulletins)}: {bulletin['title']}")
+            
             print(f"\n[{index}/{len(bulletins)}] {bulletin['title']}")
             print(f"  URL: {bulletin['url']}")
 
@@ -553,6 +565,9 @@ class MeteoBurkinaScraper:
 
             if index < len(bulletins):
                 time.sleep(delay)
+
+        if progress_callback:
+            progress_callback(100, f"Scraping terminé. {success_count} réussis, {skipped_count} ignorés.")
 
         print("\n" + "=" * 70)
         print("BILAN")

@@ -27,9 +27,12 @@ class BulletinData(BaseModel):
 
 
 class BulletinSummary(BaseModel):
+    id: Optional[int] = None
     date: str = Field(..., example="2025-10-15")
     type: str = Field(..., example="observation")
-    pages: int = Field(..., example=1)
+    title: Optional[str] = None
+    processed_at: Optional[str] = None
+    stations_count: Optional[int] = Field(1, example=1)
 
 
 class BulletinsPage(BaseModel):
@@ -54,7 +57,7 @@ class BulletinsPage(BaseModel):
 
 class EvaluationMetrics(BaseModel):
     date: str
-    forecast_reference_date: str
+    forecast_reference_date: Optional[str] = None
     mae_tmin: Optional[float]
     mae_tmax: Optional[float]
     rmse_tmin: Optional[float]
@@ -67,6 +70,9 @@ class EvaluationMetrics(BaseModel):
     f1_score_weather: Optional[float]
     confusion_matrix: Optional[dict]
     sample_size: Optional[int]
+    observation_file_path: Optional[str] = None
+    forecast_file_path: Optional[str] = None
+    calculated_at: Optional[str] = None
 
 
 class MetricsListResponse(BaseModel):

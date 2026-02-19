@@ -97,97 +97,146 @@ class ForecastEvaluator:
 
     def evaluate_forecasts(self, force_recalculate: bool = False):
         """Calcule les metriques pour tous les bulletins exploitables."""
+        import re
+        import unicodedata
+        from pathlib import Path
         # Nettoyage des anciennes metriques invalides (meme jour)
         self.db_manager.cleanup_invalid_metrics()
         
-        observation_dates = self.db_manager.list_bulletin_dates("observation")
-        forecast_dates = set(self.db_manager.list_bulletin_dates("forecast"))
-        if not observation_dates:
-            logger.warning("Aucune observation disponible pour evaluation.")
+        # 1. Récupérer tous les bulletins avec leurs dates et types
+        conn = self.db_manager.get_connection()
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT id, type, date, file_path FROM bulletins")
+            all_bulletins = cursor.fetchall()
+        
+        if not all_bulletins:
+            logger.warning("Aucun bulletin trouve dans la base pour evaluation.")
             return {}
 
-        evaluations = []
-        for observation_date in observation_dates:
-            try:
-                obs_dt = datetime.strptime(observation_date, "%Y-%m-%d")
-            except ValueError:
-                logger.error("Format de date invalide pour %s", observation_date)
-                continue
+        # 2. Indexer par Date Cible
+        # Prev(Jour J) -> Vise Jour J+1 (Date Cible)
+        # Obs(Jour J)  -> Vise Jour J   (Date Cible)
+        forecasts_by_target = {} # Key: Target Date (YYYY-MM-DD), Value: List of (BulletinID, RefDate)
+        observations_by_target = {} # Key: Target Date, Value: BulletinID
+        
+        pdf_date_regex = re.compile(r"(\d{1,2})[a-zA-Z\u00C0-\u00FF\s_\-]+?([a-zA-Z\u00C0-\u00FF]+)[_\- ]+(\d{4})", re.IGNORECASE)
+        month_map = {
+            "janvier": 1, "fevrier": 2, "février": 2, "mars": 3, "avril": 4, "mai": 5, "juin": 6,
+            "juillet": 7, "aout": 8, "août": 8, "septembre": 9, "octobre": 10, "novembre": 11, "decembre": 12, "décembre": 12
+        }
 
-            forecast_reference_date = (obs_dt - timedelta(days=1)).strftime("%Y-%m-%d")
-            candidates = []
-            if forecast_reference_date in forecast_dates:
-                candidates.append(forecast_reference_date)
+        def normalize_month(m):
+            t = unicodedata.normalize("NFKD", m.lower())
+            return "".join(ch for ch in t if not unicodedata.combining(ch))
 
-            if not candidates:
-                logger.info(
-                    "Pas de prevision disponible pour l'observation %s.",
-                    observation_date,
-                )
-                continue
-
-            for forecast_date in candidates:
-                if not force_recalculate and self.db_manager.has_evaluation(
-                    observation_date, forecast_date
-                ):
-                    continue
-
-                pairs = self.db_manager.get_observation_forecast_pairs(
-                    observation_date, forecast_date
-                )
-                if not pairs:
-                    logger.warning(
-                        "Aucune donnee observation/prevision pour %s (ref %s).",
-                        observation_date,
-                        forecast_date,
-                    )
-                    continue
-
-                tmin_obs, tmax_obs, tmin_fore, tmax_fore = [], [], [], []
-                weather_obs, weather_fore = [], []
-
-                for _, tmin_o, tmax_o, w_o, tmin_f, tmax_f, w_f in pairs:
-                    tmin_obs.append(tmin_o)
-                    tmax_obs.append(tmax_o)
-                    weather_obs.append(w_o)
-                    tmin_fore.append(tmin_f)
-                    tmax_fore.append(tmax_f)
-                    weather_fore.append(w_f)
-
-                temp_metrics = self.calculate_temperature_metrics(
-                    tmin_obs, tmax_obs, tmin_fore, tmax_fore
-                )
-                weather_metrics = self.calculate_weather_metrics(weather_obs, weather_fore)
-
-                all_metrics = {**temp_metrics, **weather_metrics}
-                all_metrics["observation_date"] = observation_date
-                all_metrics["forecast_reference_date"] = forecast_date
-
+        for b_id, b_type, b_date, b_path in all_bulletins:
+            # Essayer d'extraire la date du nom de fichier pour plus de précision (fiel)
+            file_date = None
+            if b_path:
+                match = pdf_date_regex.search(Path(b_path).stem)
+                if match:
+                    try:
+                        day = int(match.group(1))
+                        month_str = normalize_month(match.group(2))
+                        year = int(match.group(3))
+                        month = month_map.get(month_str)
+                        if month:
+                            file_date = datetime(year, month, day)
+                    except (ValueError, TypeError):
+                        pass
+            
+            # Fallback sur la date en base si le fichier ne matche pas
+            if file_date is None:
                 try:
-                    self.db_manager.save_evaluation_metrics(
-                        observation_date,
-                        forecast_date,
-                        all_metrics,
-                    )
-                except Exception as exc:  # pragma: no cover - defensive logging
-                    logger.error("Echec de la sauvegarde des metriques: %s", exc)
+                    if isinstance(b_date, datetime):
+                        file_date = b_date
+                    else:
+                        file_date = datetime.strptime(b_date, "%Y-%m-%d")
+                except (ValueError, TypeError):
                     continue
+            
+            if not file_date:
+                continue
+                
+            ref_date_str = file_date.strftime("%Y-%m-%d")
+            
+            if b_type == 'forecast':
+                target_date = (file_date + timedelta(days=1)).strftime("%Y-%m-%d")
+                # On stocke l'ID et la date de référence (le jour où la prévision a été faite)
+                forecasts_by_target[target_date] = (b_id, ref_date_str)
+            elif b_type == 'observation':
+                target_date = ref_date_str
+                observations_by_target[target_date] = b_id
 
-                logger.info(
-                    "Evaluation realisee pour %s (prev ref %s) avec %d stations.",
-                    observation_date,
-                    forecast_date,
-                    len(pairs),
+        # 3. Identifier les couples à évaluer
+        # On cherche l'intersection des dates cibles disponibles en observation et prévision
+        target_dates = sorted(set(observations_by_target.keys()) & set(forecasts_by_target.keys()))
+        
+        evaluations = []
+        for target_date in target_dates:
+            obs_bid = observations_by_target[target_date]
+            fore_bid, fore_ref_date = forecasts_by_target[target_date]
+            
+            # Vérifier si l'évaluation existe déjà
+            existing_metric = None
+            if not force_recalculate:
+                existing_metric = self.db_manager.get_evaluation_metrics_by_date(target_date)
+                # Si l'évaluation existe et a des données (sample_size > 0), on passe
+                if existing_metric and existing_metric.get('sample_size', 0) > 0:
+                    continue
+            
+            # Calculer les métriques
+            pairs = self._get_pairs_by_bulletin_ids(obs_bid, fore_bid)
+
+            if not pairs:
+                # On ne logue que si on a vraiment rien trouvé
+                logger.debug("Aucune station commune pour Obs(%s) et Prev(%s)", target_date, fore_ref_date)
+                continue
+
+            tmin_obs, tmax_obs, tmin_fore, tmax_fore = [], [], [], []
+            weather_obs, weather_fore = [], []
+
+            for _, tmin_o, tmax_o, w_o, tmin_f, tmax_f, w_f in pairs:
+                tmin_obs.append(tmin_o)
+                tmax_obs.append(tmax_o)
+                weather_obs.append(w_o)
+                tmin_fore.append(tmin_f)
+                tmax_fore.append(tmax_f)
+                weather_fore.append(w_f)
+
+            temp_metrics = self.calculate_temperature_metrics(
+                tmin_obs, tmax_obs, tmin_fore, tmax_fore
+            )
+            weather_metrics = self.calculate_weather_metrics(weather_obs, weather_fore)
+
+            all_metrics = {**temp_metrics, **weather_metrics}
+            all_metrics["observation_date"] = target_date
+            all_metrics["forecast_reference_date"] = fore_ref_date
+
+            try:
+                self.db_manager.save_evaluation_metrics(
+                    target_date,
+                    fore_ref_date,
+                    all_metrics
                 )
                 evaluations.append(all_metrics)
+                logger.info("Evaluation reussie : %s (prev %s) -> %d stations", 
+                            target_date, fore_ref_date, len(pairs))
+            except Exception as exc:
+                logger.error("Erreur lors de la sauvegarde pour %s: %s", target_date, exc)
+                continue
 
+        # 4. Finalisation
+        self.db_manager.cleanup_duplicate_metrics()
+        
         if not evaluations:
-            logger.warning("Aucune evaluation calculee.")
-            return {}
+            logger.info("Recalcul termine. Aucune nouvelle evaluation necessaire.")
+            return {"evaluated": 0, "message": "Déjà à jour."}
 
         return {
+            "status": "success",
             "evaluated": len(evaluations),
-            "last": evaluations[-1],
+            "dates": [e["observation_date"] for e in evaluations],
             "details": evaluations,
         }
 
@@ -199,8 +248,8 @@ class ForecastEvaluator:
         # Récupérer tous les mois ayant des observations
         cursor.execute(
             """
-            SELECT DISTINCT strftime('%Y', date) as year,
-                            strftime('%m', date) as month
+            SELECT DISTINCT EXTRACT(YEAR FROM CAST(date AS DATE))::text as year,
+                            TO_CHAR(CAST(date AS DATE), 'MM') as month
             FROM bulletins
             WHERE type = 'observation'
             ORDER BY year DESC, month DESC
@@ -230,8 +279,8 @@ class ForecastEvaluator:
                 JOIN bulletins fb ON f.bulletin_id = fb.id
                 WHERE ob.type = 'observation'
                   AND fb.type = 'forecast'
-                  AND strftime('%Y-%m', ob.date) = ?
-                  AND fb.date = date(ob.date, '-1 day')  -- Prévision J-1
+                  AND TO_CHAR(CAST(ob.date AS DATE), 'YYYY-MM') = %s
+                  AND fb.date = (CAST(ob.date AS DATE) - INTERVAL '1 day')::text
                 """,
                 (f"{year_str}-{month_str}",)
             )
@@ -272,7 +321,7 @@ class ForecastEvaluator:
             # Combiner les métriques
             all_metrics = {**temp_metrics, **weather_metrics}
             all_metrics["sample_size"] = len(rows)
-            all_metrics["days_evaluated"] = len(set(row[0] for row in cursor.execute(
+            cursor.execute(
                 """
                 SELECT DISTINCT ob.date
                 FROM weather_data o
@@ -281,11 +330,12 @@ class ForecastEvaluator:
                 JOIN bulletins fb ON f.bulletin_id = fb.id
                 WHERE ob.type = 'observation'
                   AND fb.type = 'forecast'
-                  AND strftime('%Y-%m', ob.date) = ?
-                  AND fb.date = date(ob.date, '-1 day')
+                  AND TO_CHAR(CAST(ob.date AS DATE), 'YYYY-MM') = %s
+                  AND fb.date = (CAST(ob.date AS DATE) - INTERVAL '1 day')::text
                 """,
                 (f"{year_str}-{month_str}",)
-            )))
+            )
+            all_metrics["days_evaluated"] = len(set(r[0] for r in cursor.fetchall()))
             
             # Sauvegarder
             self.db_manager.save_monthly_metrics(year, month, all_metrics)
@@ -305,8 +355,8 @@ class ForecastEvaluator:
         # Récupérer tous les mois distincts avec des métriques
         cursor.execute(
             """
-            SELECT DISTINCT strftime('%Y', bulletin_date) as year,
-                            strftime('%m', bulletin_date) as month
+            SELECT DISTINCT EXTRACT(YEAR FROM CAST(bulletin_date AS DATE))::text as year,
+                            TO_CHAR(CAST(bulletin_date AS DATE), 'MM') as month
             FROM evaluation_metrics
             ORDER BY year DESC, month DESC
             """
@@ -335,8 +385,8 @@ class ForecastEvaluator:
                     SUM(sample_size) as total_sample_size,
                     COUNT(*) as days_count
                 FROM evaluation_metrics
-                WHERE strftime('%Y', bulletin_date) = ? 
-                  AND strftime('%m', bulletin_date) = ?
+                WHERE EXTRACT(YEAR FROM CAST(bulletin_date AS DATE))::text = %s 
+                  AND TO_CHAR(CAST(bulletin_date AS DATE), 'MM') = %s
                 """,
                 (year_str, month_str),
             )
@@ -382,12 +432,12 @@ class ForecastEvaluator:
             # Récupérer tous les mois ayant des observations pour cette station
             cursor.execute(
                 """
-                SELECT DISTINCT strftime('%Y', ob.date) as year,
-                                strftime('%m', ob.date) as month
+                SELECT DISTINCT EXTRACT(YEAR FROM CAST(ob.date AS DATE))::text as year,
+                                TO_CHAR(CAST(ob.date AS DATE), 'MM') as month
                 FROM weather_data wd
                 JOIN bulletins ob ON wd.bulletin_id = ob.id
                 WHERE ob.type = 'observation'
-                  AND wd.station_id = ?
+                  AND wd.station_id = %s
                 ORDER BY year DESC, month DESC
                 """,
                 (station_id,)
@@ -416,9 +466,9 @@ class ForecastEvaluator:
                     JOIN bulletins fb ON f.bulletin_id = fb.id
                     WHERE ob.type = 'observation'
                       AND fb.type = 'forecast'
-                      AND o.station_id = ?
-                      AND strftime('%Y-%m', ob.date) = ?
-                      AND fb.date = date(ob.date, '-1 day')  -- Prévision J-1
+                      AND o.station_id = %s
+                      AND TO_CHAR(CAST(ob.date AS DATE), 'YYYY-MM') = %s
+                      AND fb.date = (CAST(ob.date AS DATE) - INTERVAL '1 day')::text
                     """,
                     (station_id, f"{year_str}-{month_str}"),
                 )
@@ -458,7 +508,7 @@ class ForecastEvaluator:
                 # Combiner les métriques
                 all_metrics = {**temp_metrics, **weather_metrics}
                 all_metrics["sample_size"] = len(rows)
-                all_metrics["days_evaluated"] = len(set(row[0] for row in cursor.execute(
+                cursor.execute(
                     """
                     SELECT DISTINCT ob.date
                     FROM weather_data o
@@ -467,12 +517,13 @@ class ForecastEvaluator:
                     JOIN bulletins fb ON f.bulletin_id = fb.id
                     WHERE ob.type = 'observation'
                       AND fb.type = 'forecast'
-                      AND o.station_id = ?
-                      AND strftime('%Y-%m', ob.date) = ?
-                      AND fb.date = date(ob.date, '-1 day')
+                      AND o.station_id = %s
+                      AND TO_CHAR(CAST(ob.date AS DATE), 'YYYY-MM') = %s
+                      AND fb.date = (CAST(ob.date AS DATE) - INTERVAL '1 day')::text
                     """,
                     (station_id, f"{year_str}-{month_str}"),
-                )))
+                )
+                all_metrics["days_evaluated"] = len(set(r[0] for r in cursor.fetchall()))
                 
                 # Sauvegarder
                 self.db_manager.save_station_monthly_metrics(station_id, year, month, all_metrics)
@@ -487,3 +538,20 @@ class ForecastEvaluator:
             "status": "done",
             "stations_processed": calculated_count,
         }
+
+    def _get_pairs_by_bulletin_ids(self, obs_bid, fore_bid):
+        """Récupère les paires de données météo pour deux bulletins donnés en joignant sur l'ID de station."""
+        conn = self.db_manager.get_connection()
+        with conn.cursor() as cursor:
+            query = '''
+                SELECT 
+                    s.name,
+                    o.tmin as obs_tmin, o.tmax as obs_tmax, o.weather_condition as obs_weather,
+                    f.tmin as fore_tmin, f.tmax as fore_tmax, f.weather_condition as fore_weather
+                FROM weather_data o
+                JOIN stations s ON o.station_id = s.id
+                JOIN weather_data f ON o.station_id = f.station_id
+                WHERE o.bulletin_id = %s AND f.bulletin_id = %s
+            '''
+            cursor.execute(query, (obs_bid, fore_bid))
+            return cursor.fetchall()

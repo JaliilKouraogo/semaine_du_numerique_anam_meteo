@@ -1,0 +1,276 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: #F0F4F8;
+  --canvas-strong: #E2E8F0;
+  --surface: #FFFFFF;
+  --surface-strong: #F8FAFC;
+  --ink: #0F172A;
+  --muted: #64748B;
+  --accent: #0A9AFF;
+  --accent-strong: #0862B8;
+  --accent-warm: #F59E0B;
+  --accent-cool: #3B82F6;
+  --border: #CBD5E1;
+  --primary-glow: rgba(10, 154, 255, 0.15);
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(--ink);
+  background-color: var(--canvas);
+}
+
+.dark {
+  --canvas: #070D1A;
+  --canvas-strong: #0E1726;
+  --surface: #0C1628;
+  --surface-strong: #132035;
+  --ink: #E2E8F0;
+  --muted: #94A3B8;
+  --accent: #38BDF8;
+  --accent-strong: #0EA5E9;
+  --accent-warm: #FBBF24;
+  --accent-cool: #60A5FA;
+  --border: #1E3050;
+  --primary-glow: rgba(56, 189, 248, 0.12);
+  color: var(--ink);
+  background-color: var(--canvas);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-image:
+    radial-gradient(circle at 12% 10%, rgba(10, 154, 255, 0.08), transparent 52%),
+    radial-gradient(circle at 88% 0%, rgba(59, 130, 246, 0.06), transparent 42%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0));
+  background-attachment: fixed;
+}
+
+.dark body {
+  background-image:
+    radial-gradient(circle at 10% 15%, rgba(10, 154, 255, 0.12), transparent 55%),
+    radial-gradient(circle at 85% 10%, rgba(59, 130, 246, 0.1), transparent 45%),
+    linear-gradient(120deg, rgba(7, 13, 26, 0.95), rgba(7, 13, 26, 0.7));
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
+.surface-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 45px -40px rgba(10, 30, 60, 0.5), 0 12px 28px -24px rgba(10, 30, 60, 0.3);
+}
+
+.dark .surface-panel {
+  box-shadow: 0 18px 40px -32px rgba(0, 0, 0, 0.8), 0 12px 24px -20px rgba(0, 0, 0, 0.6);
+}
+
+.surface-panel.soft {
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+.text-ink {
+  color: var(--ink);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.bg-canvas {
+  background-color: var(--canvas);
+}
+
+.bg-canvas-strong {
+  background-color: var(--canvas-strong);
+}
+
+.bg-surface {
+  background-color: var(--surface);
+}
+
+.font-mono {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0% {
+    box-shadow: 0 0 0 0 rgba(10, 154, 255, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(10, 154, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(10, 154, 255, 0);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.6s ease both;
+}
+
+.pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out both;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Transition helpers */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus visible for accessibility */
+.focus-visible-ring:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Print & PDF Export Styles */
+@media print {
+  body {
+    overflow: visible !important;
+    background: white !important;
+    color: black !important;
+  }
+  
+  .print\:hidden {
+    display: none !important;
+  }
+  
+  .break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .break-page {
+    page-break-before: always;
+  }
+
+  .breakout-page {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+  }
+
+  /* Force background colors in print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Reset grid for print to ensure full width */
+  .grid {
+    display: block !important;
+  }
+
+  .grid > * {
+    margin-bottom: 1.5rem !important;
+  }
+}

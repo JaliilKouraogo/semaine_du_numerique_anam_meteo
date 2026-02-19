@@ -1,7 +1,7 @@
 import json
 import logging
-import sqlite3
-from datetime import datetime, timedelta
+
+
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException, Query
@@ -28,47 +28,54 @@ async def get_evaluation_metrics(date: str):
     cached = _cache_get(cache_key)
     if cached is not None:
         return cached
-    conn = core.db_manager.get_connection()  # type: ignore[union-attr]
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        SELECT bulletin_date, forecast_reference_date, mae_tmin, mae_tmax, rmse_tmin, rmse_tmax,
-               bias_tmin, bias_tmax, accuracy_weather, precision_weather, recall_weather,
-               f1_score_weather, weather_confusion, sample_size
-        FROM evaluation_metrics
-        WHERE bulletin_date = ?
-        ORDER BY calculated_at DESC
-        LIMIT 1
-        """,
-        (date,),
-    )
-    row = cursor.fetchone()
+    
+    assert core.db_manager is not None
+    row = core.db_manager.get_evaluation_metrics_by_date(date)
+    
     if not row:
-        raise HTTPException(
-            status_code=404,
-            detail={
-                "code": ErrorCode.METRICS_NOT_FOUND.value,
-                "message": f"No metrics for {date}.",
-            },
-        )
+        return {
+            "date": date,
+            "forecast_reference_date": None,
+            "mae_tmin": None,
+            "mae_tmax": None,
+            "rmse_tmin": None,
+            "rmse_tmax": None,
+            "bias_tmin": None,
+            "bias_tmax": None,
+            "accuracy_weather": 0,
+            "precision_weather": 0,
+            "recall_weather": 0,
+            "f1_score_weather": 0,
+            "confusion_matrix": {},
+            "sample_size": 0,
+        }
 
-    confusion = json.loads(row["weather_confusion"]) if row["weather_confusion"] else None
+    # confusion is expected to be a string in some DB versions, check if it needs parsing
+    confusion = row.get("weather_confusion")
+    if isinstance(confusion, str):
+        confusion = json.loads(confusion)
+
     payload = {
-        "date": row["bulletin_date"],
-        "forecast_reference_date": row["forecast_reference_date"],
-        "mae_tmin": row["mae_tmin"],
-        "mae_tmax": row["mae_tmax"],
-        "rmse_tmin": row["rmse_tmin"],
-        "rmse_tmax": row["rmse_tmax"],
-        "bias_tmin": row["bias_tmin"],
-        "bias_tmax": row["bias_tmax"],
-        "accuracy_weather": row["accuracy_weather"],
-        "precision_weather": row["precision_weather"],
-        "recall_weather": row["recall_weather"],
-        "f1_score_weather": row["f1_score_weather"],
+        "id": row.get("id"),
+        "date": row.get("bulletin_date"),
+        "forecast_reference_date": row.get("forecast_reference_date"),
+        "mae_tmin": row.get("mae_tmin"),
+        "mae_tmax": row.get("mae_tmax"),
+        "rmse_tmin": row.get("rmse_tmin"),
+        "rmse_tmax": row.get("rmse_tmax"),
+        "bias_tmin": row.get("bias_tmin"),
+        "bias_tmax": row.get("bias_tmax"),
+        "accuracy_weather": row.get("accuracy_weather"),
+        "precision_weather": row.get("precision_weather"),
+        "recall_weather": row.get("recall_weather"),
+        "f1_score_weather": row.get("f1_score_weather"),
         "confusion_matrix": confusion,
-        "sample_size": row["sample_size"],
+        "sample_size": row.get("sample_size"),
+        "observation_file_path": row.get("observation_file_path"),
+        "forecast_file_path": row.get("forecast_file_path"),
+        "observation_title": row.get("observation_title"),
+        "forecast_title": row.get("forecast_title"),
+        "calculated_at": row.get("calculated_at").isoformat() if hasattr(row.get("calculated_at"), 'isoformat') else row.get("calculated_at"),
     }
     _cache_set(cache_key, payload)
     return payload
@@ -78,45 +85,47 @@ async def get_evaluation_metrics(date: str):
 async def list_evaluation_metrics(limit: int = Query(50, ge=1, le=500)):
     """List evaluation metrics stored in the database."""
     _ensure_db_ready()
+    assert core.db_manager is not None
+    
+    # Force cleanup of duplicates before listing
+    core.db_manager.cleanup_duplicate_metrics()
+    
     cache_key = f"metrics:list:{limit}"
     cached = _cache_get(cache_key)
     if cached is not None:
         return cached
-    conn = core.db_manager.get_connection()  # type: ignore[union-attr]
-    conn.row_factory = sqlite3.Row
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        SELECT bulletin_date, forecast_reference_date, mae_tmin, mae_tmax, rmse_tmin, rmse_tmax,
-               bias_tmin, bias_tmax, accuracy_weather, precision_weather, recall_weather,
-               f1_score_weather, weather_confusion, sample_size, calculated_at
-        FROM evaluation_metrics
-        ORDER BY calculated_at DESC
-        LIMIT ?
-        """,
-        (limit,),
-    )
-    rows = cursor.fetchall()
+    
+    assert core.db_manager is not None
+    rows = core.db_manager.list_evaluation_metrics(limit)
+    
     items = []
     for row in rows:
-        confusion = json.loads(row["weather_confusion"]) if row["weather_confusion"] else None
+        confusion = row.get("weather_confusion")
+        if isinstance(confusion, str):
+            confusion = json.loads(confusion)
+            
         items.append(
             {
-                "date": row["bulletin_date"],
-                "forecast_reference_date": row["forecast_reference_date"],
-                "mae_tmin": row["mae_tmin"],
-                "mae_tmax": row["mae_tmax"],
-                "rmse_tmin": row["rmse_tmin"],
-                "rmse_tmax": row["rmse_tmax"],
-                "bias_tmin": row["bias_tmin"],
-                "bias_tmax": row["bias_tmax"],
-                "accuracy_weather": row["accuracy_weather"],
-                "precision_weather": row["precision_weather"],
-                "recall_weather": row["recall_weather"],
-                "f1_score_weather": row["f1_score_weather"],
+                "id": row.get("id"),
+                "date": row.get("bulletin_date"),
+                "forecast_reference_date": row.get("forecast_reference_date"),
+                "mae_tmin": row.get("mae_tmin"),
+                "mae_tmax": row.get("mae_tmax"),
+                "rmse_tmin": row.get("rmse_tmin"),
+                "rmse_tmax": row.get("rmse_tmax"),
+                "bias_tmin": row.get("bias_tmin"),
+                "bias_tmax": row.get("bias_tmax"),
+                "accuracy_weather": row.get("accuracy_weather"),
+                "precision_weather": row.get("precision_weather"),
+                "recall_weather": row.get("recall_weather"),
+                "f1_score_weather": row.get("f1_score_weather"),
                 "confusion_matrix": confusion,
-                "sample_size": row["sample_size"],
-                "calculated_at": row["calculated_at"],
+                "sample_size": row.get("sample_size"),
+                "observation_file_path": row.get("observation_file_path"),
+                "forecast_file_path": row.get("forecast_file_path"),
+                "observation_title": row.get("observation_title"),
+                "forecast_title": row.get("forecast_title"),
+                "calculated_at": row.get("calculated_at").isoformat() if hasattr(row.get("calculated_at"), 'isoformat') else row.get("calculated_at"),
             }
         )
     payload = {"items": items, "total": len(items)}
@@ -133,13 +142,15 @@ async def recalculate_metrics(payload: Optional[MetricsRecalculateRequest] = Non
 
     def run_evaluation():
         evaluator = ForecastEvaluator(core.db_manager)
-        # 1. Calculer les métriques quotidiennes (pour compatibilité)
+        # 1. Calculer les métriques quotidiennes
         daily_result = evaluator.evaluate_forecasts(force_recalculate=force)
-        # 2. Calculer DIRECTEMENT les métriques mensuelles à partir des données brutes
+        # 2a. Agréger les métriques mensuelles (legacy method for dashboard fallback)
+        agg_result = evaluator.aggregate_monthly_metrics()
+        # 2b. Calculer les métriques mensuelles (direct method)
         monthly_result = evaluator.calculate_monthly_metrics_direct()
         # 3. Calculer les métriques mensuelles par station
         station_result = evaluator.calculate_station_monthly_metrics()
-        return {"daily": daily_result, "monthly": monthly_result, "station": station_result}
+        return {"daily": daily_result, "monthly_agg": agg_result, "monthly": monthly_result, "station": station_result}
 
     result = await run_in_threadpool(run_evaluation)
     
@@ -176,13 +187,17 @@ async def get_monthly_metrics(year: int, month: int):
     
     metrics = core.db_manager.get_monthly_metrics(year, month)
     if not metrics:
-        raise HTTPException(
-            status_code=404,
-            detail={
-                "code": ErrorCode.METRICS_NOT_FOUND.value,
-                "message": f"Aucune métrique mensuelle pour {year}-{month:02d}.",
-            },
-        )
+        return {
+            "year": year,
+            "month": month,
+            "mae_tmin": None,
+            "mae_tmax": None,
+            "rmse_tmin": None,
+            "rmse_tmax": None,
+            "accuracy_weather": 0,
+            "sample_size": 0,
+            "message": "Données mensuelles non disponibles."
+        }
     
     _cache_set(cache_key, metrics)
     return metrics
@@ -191,36 +206,20 @@ async def get_monthly_metrics(year: int, month: int):
 @router.get("/metrics-monthly")
 async def list_monthly_metrics(limit: int = Query(12, ge=1, le=60)):
     """Liste les métriques mensuelles récentes."""
-    logger.info(f"list_monthly_metrics called with limit={limit}")
     _ensure_db_ready()
     assert core.db_manager is not None
     
     cache_key = f"monthly_metrics:list:{limit}"
     cached = _cache_get(cache_key)
     if cached is not None:
-        logger.info(f"Returning cached result for {cache_key}")
         return cached
     
-    logger.info("Calling db_manager.list_monthly_metrics")
     items = core.db_manager.list_monthly_metrics(limit)
-    logger.info(f"list_monthly_metrics: found {len(items)} items with limit={limit}")
     payload = {"items": items, "total": len(items)}
-    
-    if len(items) == 0:
-        logger.warning("No monthly metrics found in database")
-        raise HTTPException(
-            status_code=404,
-            detail={
-                "code": ErrorCode.METRICS_NOT_FOUND.value,
-                "message": "No monthly metrics found in database.",
-            },
-        )
     
     _cache_set(cache_key, payload)
     return payload
 
-
-# Station Monthly Metrics Endpoints
 
 @router.get("/metrics/stations")
 async def list_stations_with_metrics():
@@ -228,16 +227,9 @@ async def list_stations_with_metrics():
     _ensure_db_ready()
     assert core.db_manager is not None
     
-    # Désactiver temporairement le cache pour le debug
-    # cache_key = "stations_with_metrics"
-    # cached = _cache_get(cache_key)
-    # if cached is not None:
-    #     return cached
-    
     stations = core.db_manager.list_all_stations_with_metrics()
     payload = {"stations": stations, "total": len(stations)}
     
-    # _cache_set(cache_key, payload)
     return payload
 
 
@@ -293,82 +285,102 @@ async def list_station_monthly_metrics(station_id: int, limit: int = Query(12, g
     return payload
 
 
-def _compute_contingency_scores(labels, matrix):
-    total = sum(sum(row) for row in matrix)
-    diag = sum(matrix[i][i] if i < len(matrix[i]) else 0 for i in range(len(labels)))
-    pc = (diag / total) * 100 if total > 0 else None
-    rows = []
-    for idx, label in enumerate(labels):
-        oi = sum(matrix[idx]) if idx < len(matrix) else 0
-        pi = sum(row[idx] for row in matrix if idx < len(row))
-        nii = matrix[idx][idx] if idx < len(matrix) and idx < len(matrix[idx]) else 0
-        pod = (nii / oi) if oi > 0 else None
-        rel = (nii / pi) if pi > 0 else None
-        far = (1 - rel) if rel is not None else None
-        rows.append({"code": label, "pod": pod, "far": far})
-    return {"pc": pc, "rows": rows}
 
-
-@router.get("/metrics/contingency")
-async def get_contingency_metrics(
-    year: Optional[int] = Query(None, ge=1900),
-    month: Optional[int] = Query(None, ge=1, le=12),
-    station_id: Optional[int] = Query(None, ge=1),
+@router.get("/metrics/comparison")
+async def get_forecast_comparison(
+    start_date: Optional[str] = Query(None, description="Date de début (YYYY-MM-DD)"),
+    end_date: Optional[str] = Query(None, description="Date de fin (YYYY-MM-DD)"),
+    station_name: Optional[str] = Query(None, description="Filtrer par station")
 ):
-    """Calcule la matrice de contingence depuis la base avec filtres."""
+    """
+    Compare les prévisions J-1 avec les observations J.
+    
+    Retourne les métriques de précision:
+    - Précision des icônes météo
+    - MAE pour Tmin et Tmax
+    - Détails par ville
+    """
     _ensure_db_ready()
     assert core.db_manager is not None
+    
+    from backend.modules.forecast_comparison import ForecastComparisonEngine
+    
+    engine = ForecastComparisonEngine(tolerance_temp=2.0)
+    
+    try:
+        conn = core.db_manager.get_connection()
+        with conn.cursor() as cursor:
+            # Récupérer les paires observation/prévision
+            query = """
+                SELECT 
+                    ob.date as obs_date,
+                    s.name as station_name,
+                    o.tmin as tmin_obs,
+                    o.tmax as tmax_obs,
+                    o.weather_condition as weather_obs,
+                    f.tmin as tmin_prev,
+                    f.tmax as tmax_prev,
+                    f.weather_condition as weather_prev
+                FROM weather_data o
+                JOIN bulletins ob ON o.bulletin_id = ob.id
+                JOIN stations s ON o.station_id = s.id
+                LEFT JOIN weather_data f ON f.station_id = o.station_id
+                LEFT JOIN bulletins fb ON f.bulletin_id = fb.id AND
+                    fb.date = (CAST(ob.date AS DATE) - INTERVAL '1 day')::text AND
+                    fb.type = 'forecast'
+                WHERE ob.type = 'observation'
+            """
+            
+            params = []
+            if start_date:
+                query += " AND ob.date >= %s"
+                params.append(start_date)
+            if end_date:
+                query += " AND ob.date <= %s"
+                params.append(end_date)
+            if station_name:
+                query += " AND s.name ILIKE %s"
+                params.append(f"%{station_name}%")
+            
+            query += " ORDER BY ob.date DESC, s.name"
+            
+            cursor.execute(query, params)
+            rows = cursor.fetchall()
+            
+            comparisons = []
+            for row in rows:
+                obs_date, station, tmin_obs, tmax_obs, weather_obs, tmin_prev, tmax_prev, weather_prev = row
+                
+                if tmin_prev is None and tmax_prev is None and weather_prev is None:
+                    continue  # Pas de prévision J-1
+                
+                comparison = engine.compare_single(
+                    city_name=station,
+                    date_obs=str(obs_date),
+                    date_prev=str(obs_date - __import__('datetime').timedelta(days=1)),
+                    forecast_data={
+                        'tmin_prev': tmin_prev,
+                        'tmax_prev': tmax_prev,
+                        'weather_prev': weather_prev
+                    },
+                    observation_data={
+                        'tmin_obs': tmin_obs,
+                        'tmax_obs': tmax_obs,
+                        'weather_obs': weather_obs
+                    }
+                )
+                comparisons.append(comparison)
+            
+            # Calculer les métriques globales
+            from dataclasses import asdict
+            
+            return {
+                "total_comparisons": len(comparisons),
+                "summary": engine.get_summary(),
+                "comparisons": [asdict(c) for c in comparisons[:100]]  # Limiter à 100
+            }
+            
+    except Exception as e:
+        logger.error(f"Erreur lors de la comparaison forecast: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
-    observation_dates = core.db_manager.list_bulletin_dates("observation")
-    if year is not None:
-        observation_dates = [
-            date for date in observation_dates if date.startswith(f"{year:04d}-")
-        ]
-    if month is not None:
-        if year is not None:
-            observation_dates = [
-                date
-                for date in observation_dates
-                if date.startswith(f"{year:04d}-{month:02d}")
-            ]
-        else:
-            observation_dates = [
-                date
-                for date in observation_dates
-                if len(date) >= 7 and date[5:7] == f"{month:02d}"
-            ]
-
-    weather_obs = []
-    weather_fore = []
-    days_with_pairs = 0
-    evaluator = ForecastEvaluator(core.db_manager)
-
-    for observation_date in observation_dates:
-        try:
-            obs_dt = datetime.strptime(observation_date, "%Y-%m-%d")
-        except ValueError:
-            continue
-        forecast_date = (obs_dt - timedelta(days=1)).strftime("%Y-%m-%d")
-        pairs = core.db_manager.get_observation_forecast_pairs(
-            observation_date, forecast_date, station_id
-        )
-        if pairs:
-            days_with_pairs += 1
-        for row in pairs:
-            weather_obs.append(row[3])
-            weather_fore.append(row[6])
-
-    metrics = evaluator.calculate_weather_metrics(weather_obs, weather_fore)
-    confusion = metrics.get("confusion_matrix") or {"labels": [], "matrix": []}
-    scores = _compute_contingency_scores(confusion.get("labels", []), confusion.get("matrix", []))
-
-    return {
-        "labels": confusion.get("labels", []),
-        "matrix": confusion.get("matrix", []),
-        "pc": scores["pc"],
-        "rows": scores["rows"],
-        "sample_size": metrics.get("sample_size", 0),
-        "days_count": days_with_pairs,
-        "forecast_offset_days": 1,
-        "filters": {"year": year, "month": month, "station_id": station_id},
-    }

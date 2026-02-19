@@ -5,11 +5,17 @@ import re
 import unicodedata
 import uuid
 import zipfile
-from datetime import datetime
+
+import os
+import re
+import time
+from datetime import datetime, timedelta
+
 from pathlib import Path
 from typing import Any, List, Optional, Union
 
-from fastapi import APIRouter, BackgroundTasks, File, HTTPException, Query, UploadFile, Path as ApiPath
+from fastapi import APIRouter, UploadFile, File, BackgroundTasks, HTTPException, Request, Depends, Query, Path as ApiPath, Body
+import threading
 from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import JSONResponse, FileResponse
 from pydantic import BaseModel, Field
@@ -24,14 +30,17 @@ from backend.api_v1.core import _ensure_services_ready, _ensure_db_ready, ErrorC
 from backend.api_v1.utils import (
     _resolve_scrape_output_dir,
     _sanitize_filename,
-    _serialize_temperature_payload
+    _serialize_temperature_payload,
+    extract_date_from_filename
 )
 from backend.modules.pdf_scrap import MeteoBurkinaScraper, ManifestStore, ScrapeConfig
 from backend.modules.pdf_extractor import PDFExtractor
 from backend.modules.temperature_extractor import TemperatureExtractor
-from backend.modules.workflow_temperature_extractor import WorkflowTemperatureExtractor
-from backend.modules.icon_classifier import IconClassifier
-from backend.modules.data_integrator import DataIntegrator
+
+from backend.modules.ai_vlm_extractor import AIVLMExtractor
+from backend.modules.language_interpreter import LanguageInterpreter
+import os
+
 
 logger = logging.getLogger("anam.api")
 router = APIRouter(tags=["data_management"])
@@ -322,6 +331,115 @@ async def get_scrape_manifest(output_dir: Optional[str] = None):
         )
 
 
+def _save_extracted_data_to_db(pdf_entry: dict):
+    """Sauvegarde automatique des résultats d'extraction en base de données."""
+    if not core.db_manager: return
+    
+    pdf_path_str = str(pdf_entry.get("pdf_path", ""))
+    if not pdf_path_str: return
+    pdf_name = Path(pdf_path_str).name
+    
+    # Si c'est un bulletin déjà éclaté par l'interprète (date et type au top-level)
+    is_exploded = "date" in pdf_entry and "type" in pdf_entry and "data" in pdf_entry
+    
+    conn = core.db_manager.get_connection()
+    try:
+        # On prépare une liste de bulletins à sauvegarder (un PDF peut en contenir plusieurs)
+        bulletins_to_process = []
+        
+        if is_exploded:
+            # Cas d'un bulletin déjà traité individuellement
+            bulletins_to_process.append({
+                "date": pdf_entry["date"],
+                "type": pdf_entry["type"],
+                "maps": pdf_entry.get("data", []),
+                "interp_fr": pdf_entry.get("interpretation_francais"),
+                "interp_mo": pdf_entry.get("interpretation_moore"),
+                "interp_di": pdf_entry.get("interpretation_dioula"),
+                "payload": pdf_entry
+            })
+        else:
+            # Cas d'un résultat global de PDF qu'il faut éclater selon la règle ANAM
+            j_date = extract_date_from_filename(pdf_name) or datetime.now()
+            for idx, map_entry in enumerate(pdf_entry.get("data", [])):
+                if idx == 0:
+                    actual_date_obj = j_date - timedelta(days=1)
+                    map_type = 'observation'
+                elif idx == 1:
+                    actual_date_obj = j_date + timedelta(days=1)
+                    map_type = 'forecast'
+                else:
+                    actual_date_obj = j_date + timedelta(days=idx)
+                    map_type = 'forecast'
+                
+                actual_date_str = actual_date_obj.strftime("%Y-%m-%d")
+                bulletins_to_process.append({
+                    "date": actual_date_str,
+                    "type": map_type,
+                    "maps": [map_entry],
+                    "interp_fr": pdf_entry.get("interpretation_francais"),
+                    "interp_mo": pdf_entry.get("interpretation_moore"),
+                    "interp_di": pdf_entry.get("interpretation_dioula"),
+                    "payload": pdf_entry
+                })
+
+        for b in bulletins_to_process:
+            actual_date_str = b["date"]
+            map_type = b["type"]
+            payload_str = json.dumps(b["payload"])
+            interp_fr = b["interp_fr"]
+            interp_mo = b["interp_mo"]
+            interp_di = b["interp_di"]
+
+            # 1. Upsert Bulletin
+            with conn.cursor() as cur:
+                cur.execute("SELECT id FROM bulletins WHERE date = %s AND type = %s AND file_path = %s", 
+                           (actual_date_str, map_type, pdf_path_str))
+                row = cur.fetchone()
+                if row:
+                    bulletin_id = row[0]
+                    cur.execute('''
+                       UPDATE bulletins SET 
+                           processed_at = CURRENT_TIMESTAMP, 
+                           payload_json = %s,
+                           interpretation_francais = %s,
+                           interpretation_moore = %s,
+                           interpretation_dioula = %s
+                       WHERE id = %s
+                    ''', (payload_str, interp_fr, interp_mo, interp_di, bulletin_id))
+                else:
+                    cur.execute('''
+                        INSERT INTO bulletins (date, type, file_path, title, processed_at, payload_json, interpretation_francais, interpretation_moore, interpretation_dioula)
+                        VALUES (%s, %s, %s, %s, CURRENT_TIMESTAMP, %s, %s, %s, %s)
+                        RETURNING id
+                    ''', (actual_date_str, map_type, pdf_path_str, f"{pdf_name} - {map_type.capitalize()}", payload_str, interp_fr, interp_mo, interp_di))
+                    bulletin_id = cur.fetchone()[0]
+                conn.commit()
+            
+            # 2. Insert Weather Data
+            for map_entry in b["maps"]:
+                temps = map_entry.get("temperatures", [])
+                for t in temps:
+                    st_name = t.get("name")
+                    if not st_name: continue
+                    
+                    st_id = core.db_manager.insert_station(st_name, None, None)
+                    tmin = float(t.get("tmin")) if t.get("tmin") is not None else None
+                    tmax = float(t.get("tmax")) if t.get("tmax") is not None else None
+                    cond = t.get("weather_condition")
+                    
+                    with conn.cursor() as cur:
+                        cur.execute("DELETE FROM weather_data WHERE bulletin_id = %s AND station_id = %s", (bulletin_id, st_id))
+                        cur.execute('''
+                           INSERT INTO weather_data (bulletin_id, station_id, tmin, tmax, weather_condition)
+                           VALUES (%s, %s, %s, %s, %s)
+                        ''', (bulletin_id, st_id, tmin, tmax, cond))
+                    conn.commit()
+                    
+    except Exception as e:
+        conn.rollback()
+        logging.error(f"❌ Erreur auto-save pour {pdf_name}: {e}")
+
 @router.post("/upload-bulletin", response_model=Union[UploadResponse, UploadJobResponse])
 async def upload_bulletin(
     background_tasks: BackgroundTasks,
@@ -376,34 +494,108 @@ async def upload_bulletin(
             },
         )
 
-    def extraction_task():
-        pdf_extractor = PDFExtractor(
-            core.config.pdf_directory,
-            core.config.output_directory
-        )
-        pdf_result = pdf_extractor.process_single_pdf(target_path)
-        if not pdf_result:
-            raise RuntimeError("Traitement PDF impossible (conversion ou detection).")
-        
-        temp_extractor = TemperatureExtractor(roi_config_path=core.config.roi_config_path)
-        temperatures = temp_extractor.extract_temperatures([pdf_result])
-        return _serialize_temperature_payload(temperatures)
 
     def _enqueue_job(job_id: str, filename_value: str, pdf_path_value: str):
         assert core.db_manager is not None
+        ticker_stop = threading.Event()
+
+        def progress_callback(current_results, *args, **kwargs):
+            # Sérialisation et mise à jour DB pour affichage temps réel
+            try:
+                # Récupération flexible du message/progrès (2ème argument positionnel)
+                message = args[0] if args else kwargs.get("message")
+                
+                # 1. Détermination du progrès
+                current_progress = None
+                if isinstance(current_results, (int, float)):
+                    current_progress = int(current_results)
+                    # Si on n'a que le progrès, on s'arrête là (pas de data à sérialiser)
+                    core.db_manager.update_job(job_id, progress=min(99, current_progress))
+                    return
+                
+                if isinstance(message, (int, float)):
+                    current_progress = int(message)
+                
+                # 2. Sérialisation des data (si c'est une liste de résultats)
+                if isinstance(current_results, list):
+                    partial_serialized = _serialize_temperature_payload(current_results)
+                    payload = {
+                        "filename": filename_value,
+                        "pdf_path": pdf_path_value,
+                        "temperatures": partial_serialized,
+                    }
+                    
+                    # 3. Calcul du progrès si non fourni
+                    if current_progress is None:
+                        done_maps = len(current_results[0].get("data", [])) if current_results and "data" in current_results[0] else 0
+                        current_progress = 40 + (done_maps * 22)
+                    
+                    core.db_manager.update_job(job_id, status="running", result=payload, progress=min(99, current_progress))
+            except Exception as e:
+                logging.error(f"Error in single job progress callback: {e}")
 
         def job_runner():
+            def job_ticker():
+                while not ticker_stop.is_set():
+                    for _ in range(20):
+                        if ticker_stop.is_set(): return
+                        time.sleep(1)
+                    try:
+                        job = core.db_manager.get_job(job_id)
+                        if not job or job.get("status") != "running": break
+                        curr_p = job.get("progress", 0)
+                        if 40 <= curr_p < 84:
+                            core.db_manager.update_job(job_id, progress=min(84, curr_p + 1))
+                        elif 90 <= curr_p < 99:
+                            core.db_manager.update_job(job_id, progress=min(99, curr_p + 1))
+                    except: pass
+
+            ticker_thread = threading.Thread(target=job_ticker, daemon=True)
+            ticker_thread.start()
+
             try:
-                core.db_manager.update_job(job_id, status="running")
-                temperatures = extraction_task()
-                result = {
-                    "filename": filename_value,
-                    "pdf_path": pdf_path_value,
-                    "temperatures": temperatures,
-                }
-                core.db_manager.update_job(job_id, status="success", result=result)
+                core.db_manager.update_job(job_id, status="running", progress=10)
+                pdf_extractor = PDFExtractor(core.config.pdf_directory, core.config.output_directory)
+                pdf_result = pdf_extractor.process_single_pdf(target_path)
+                if not pdf_result: raise RuntimeError("Traitement PDF impossible.")
+                
+                core.db_manager.update_job(job_id, progress=40)
+                if os.getenv("AI_METHOD") == "QWEN":
+                    ai_extractor = AIVLMExtractor()
+                    temperatures_raw = ai_extractor.extract_temperatures([pdf_result], progress_callback=progress_callback)
+                else:
+                    temp_extractor = TemperatureExtractor(roi_config_path=core.config.roi_config_path)
+                    temperatures_raw = temp_extractor.extract_temperatures([pdf_result])
+                
+                temperatures = _serialize_temperature_payload(temperatures_raw)
+                core.db_manager.update_job(job_id, progress=85)
+                try:
+                    interpreter = LanguageInterpreter.get_shared(core.db_manager)
+                    interpreted_results = interpreter.generate_interpretations(temperatures)
+                    core.db_manager.update_job(job_id, progress=92)
+                except Exception as interp_exc:
+                    logging.error(f"Interpretation failed: {interp_exc}")
+                    interpreted_results = temperatures
+
+                try:
+                    for pdf_res in interpreted_results:
+                        _save_extracted_data_to_db(pdf_res)
+                    try:
+                        from backend.modules.forecast_evaluator import ForecastEvaluator
+                        evaluator = ForecastEvaluator(core.db_manager)
+                        evaluator.evaluate_forecasts()
+                        evaluator.aggregate_monthly_metrics()
+                        evaluator.calculate_monthly_metrics_direct()
+                        evaluator.calculate_station_monthly_metrics()
+                    except: pass
+                except: pass
+
+                result = {"filename": filename_value, "pdf_path": pdf_path_value, "temperatures": interpreted_results}
+                core.db_manager.update_job(job_id, status="success", result=result, progress=100)
             except Exception as exc:
                 core.db_manager.update_job(job_id, status="error", error_message=str(exc))
+            finally:
+                ticker_stop.set()
 
         background_tasks.add_task(run_in_threadpool, job_runner)
 
@@ -512,6 +704,13 @@ async def upload_bulletins(
             },
         )
 
+    # Create batch job first to avoid race condition with background tasks
+    core.db_manager.create_job(
+        batch_id,
+        "upload_batch",
+        {"job_ids": [], "total": 0}, 
+    )
+
     job_ids: List[str] = []
     for original_name, pdf_path_value in collected_paths:
         job_id = str(uuid.uuid4())
@@ -523,30 +722,106 @@ async def upload_bulletins(
             {"filename": filename_value, "pdf_path": pdf_path_value, "batch_id": batch_id},
         )
         def _make_job_runner(job_id_value: str, filename_value: str, pdf_path_value: str):
+            ticker_stop = threading.Event()
             def _run():
+                def job_ticker():
+                    while not ticker_stop.is_set():
+                        for _ in range(20):
+                            if ticker_stop.is_set(): return
+                            time.sleep(1)
+                        try:
+                            job = core.db_manager.get_job(job_id_value)
+                            if not job or job.get("status") != "running": break
+                            curr_p = job.get("progress", 0)
+                            if 40 <= curr_p < 84:
+                                core.db_manager.update_job(job_id_value, progress=min(84, curr_p + 1))
+                            elif 90 <= curr_p < 99:
+                                core.db_manager.update_job(job_id_value, progress=min(99, curr_p + 1))
+                        except: pass
+                
+                ticker_thread = threading.Thread(target=job_ticker, daemon=True)
+                ticker_thread.start()
+
                 try:
-                    batch_job = core.db_manager.get_job(batch_id)
+                    batch_job = core.db_manager.get_job(batch_id) if batch_id else None
                     if batch_job and batch_job.get("status") == "canceled":
                         core.db_manager.update_job(job_id_value, status="canceled", error_message="Batch canceled.")
                         return
-                    core.db_manager.update_job(job_id_value, status="running")
-                    pdf_extractor = PDFExtractor(
-                        core.config.pdf_directory,
-                        core.config.output_directory
-                    )
+                    core.db_manager.update_job(job_id_value, status="running", progress=10)
+                    pdf_extractor = PDFExtractor(core.config.pdf_directory, core.config.output_directory)
                     pdf_result = pdf_extractor.process_single_pdf(Path(pdf_path_value))
-                    if not pdf_result:
-                        raise RuntimeError("Traitement PDF impossible (conversion ou detection).")
-                    temp_extractor = TemperatureExtractor(roi_config_path=core.config.roi_config_path)
-                    temperatures = temp_extractor.extract_temperatures([pdf_result])
-                    result = {
-                        "filename": filename_value,
-                        "pdf_path": pdf_path_value,
-                        "temperatures": _serialize_temperature_payload(temperatures),
-                    }
-                    core.db_manager.update_job(job_id_value, status="success", result=result)
+                    if not pdf_result: raise RuntimeError("Traitement PDF impossible.")
+                    
+                    core.db_manager.update_job(job_id_value, progress=40)
+                    def _partial_progress_cb(current_results, *args, **kwargs):
+                        try:
+                            # L'extracteur envoie (results, overall_pct) ou (pct, message)
+                            # Récupération du pourcentage depuis le 2ème argument
+                            overall_pct = args[0] if args else kwargs.get("message")
+                            
+                            current_progress = None
+                            
+                            # Si le premier arg est un nombre, c'est le progrès direct
+                            if isinstance(current_results, (int, float)):
+                                current_progress = int(current_results)
+                            # Si le second arg est un nombre (overall_pct), on l'utilise
+                            elif isinstance(overall_pct, (int, float)):
+                                # Mapper 0-100% de l'extracteur vers 40-84% du job global
+                                current_progress = 40 + int(overall_pct * 0.44)
+                            
+                            if isinstance(current_results, list):
+                                partial_serialized = _serialize_temperature_payload(current_results)
+                                partial_result = {"filename": filename_value, "pdf_path": pdf_path_value, "temperatures": partial_serialized}
+                                
+                                if current_progress is None:
+                                    # Fallback: calculer depuis le nombre d'éléments
+                                    done_maps = len(current_results[0].get("data", [])) if current_results and "data" in current_results[0] else 0
+                                    current_progress = 40 + (done_maps * 22)
+                                
+                                core.db_manager.update_job(job_id_value, result=partial_result, progress=min(84, current_progress))
+                            elif current_progress is not None:
+                                core.db_manager.update_job(job_id_value, progress=min(84, current_progress))
+                        except Exception as e:
+                            logging.error(f"Error in partial progress callback: {e}")
+
+
+                    if os.getenv("AI_METHOD") == "QWEN":
+                        ai_extractor = AIVLMExtractor()
+                        temperatures = ai_extractor.extract_temperatures([pdf_result], progress_callback=_partial_progress_cb)
+                    else:
+                        temp_extractor = TemperatureExtractor(roi_config_path=core.config.roi_config_path)
+                        temperatures = temp_extractor.extract_temperatures([pdf_result])
+                    
+                    core.db_manager.update_job(job_id_value, progress=85)
+                    serialized_temps = _serialize_temperature_payload(temperatures)
+
+                    try:
+                        interpreter = LanguageInterpreter.get_shared(core.db_manager)
+                        interpreted_results = interpreter.generate_interpretations(serialized_temps)
+                        core.db_manager.update_job(job_id_value, progress=92)
+                    except Exception as interp_exc:
+                        logging.error(f"Interpretation failed: {interp_exc}")
+                        interpreted_results = serialized_temps
+
+                    try:
+                        for pdf_res in interpreted_results:
+                            _save_extracted_data_to_db(pdf_res)
+                        try:
+                            from backend.modules.forecast_evaluator import ForecastEvaluator
+                            evaluator = ForecastEvaluator(core.db_manager)
+                            evaluator.evaluate_forecasts()
+                            evaluator.aggregate_monthly_metrics()
+                            evaluator.calculate_monthly_metrics_direct()
+                            evaluator.calculate_station_monthly_metrics()
+                        except: pass
+                    except: pass
+
+                    result = {"filename": filename_value, "pdf_path": pdf_path_value, "temperatures": interpreted_results}
+                    core.db_manager.update_job(job_id_value, status="success", result=result, progress=100)
                 except Exception as exc:
                     core.db_manager.update_job(job_id_value, status="error", error_message=str(exc))
+                finally:
+                    ticker_stop.set()
             return _run
 
         background_tasks.add_task(
@@ -562,11 +837,33 @@ async def upload_bulletins(
             }
         )
 
-    core.db_manager.create_job(
+    core.db_manager.update_job(
         batch_id,
-        "upload_batch",
-        {"job_ids": job_ids, "total": len(job_ids)},
+        payload={"job_ids": job_ids, "total": len(job_ids)},
     )
+
+    def _batch_progress_runner():
+        while True:
+            time.sleep(5)
+            try:
+                sub_jobs = core.db_manager.get_jobs(job_ids)
+                if not sub_jobs: break
+                
+                avg_progress = sum(j.get('progress', 0) for j in sub_jobs) // len(sub_jobs)
+                status = "running"
+                
+                completed = [j for j in sub_jobs if j.get('status') in ('success', 'error', 'canceled')]
+                if len(completed) == len(sub_jobs):
+                    # Check if any error
+                    has_error = any(j.get('status') == 'error' for j in sub_jobs)
+                    core.db_manager.update_job(batch_id, status="success" if not has_error else "error", progress=100)
+                    break
+                
+                core.db_manager.update_job(batch_id, status=status, progress=avg_progress)
+            except:
+                pass
+
+    background_tasks.add_task(run_in_threadpool, _batch_progress_runner)
 
     return {
         "batch_id": batch_id,
@@ -596,12 +893,203 @@ async def get_upload_job(job_id: str = ApiPath(..., min_length=1)):
         "filename": payload.get("filename"),
         "pdf_path": payload.get("pdf_path"),
         "result": result,
+        "progress": job.get("progress", 0),
         "error_message": job.get("error_message"),
-        "created_at": job.get("created_at"),
-        "updated_at": job.get("updated_at"),
+        "created_at": job.get("created_at").isoformat() if job.get("created_at") else None,
+        "updated_at": job.get("updated_at").isoformat() if job.get("updated_at") else None,
     }
     return response
 
+
+@router.post("/upload-bulletin/jobs/{job_id}/retry", response_model=UploadJobStatus)
+async def retry_upload_job(
+    background_tasks: BackgroundTasks,
+    job_id: str = ApiPath(..., min_length=1)
+):
+    """Relancer l'extraction pour les éléments échoués (NP) d'un job."""
+    _ensure_db_ready()
+    assert core.db_manager is not None
+    job = core.db_manager.get_job(job_id)
+    
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found")
+        
+    if job.get("status") not in ["success", "partial", "error"]:
+         raise HTTPException(status_code=400, detail="Le job doit être terminé pour être relancé/réparé.")
+
+    # On marque le job comme "running" TOUT DE SUITE pour éviter les race conditions avec le frontend
+    core.db_manager.update_job(job_id, status="running")
+
+    # On lance la réparation en background
+    def repair_runner():
+        try:
+            # Récupération résultat actuel
+            current_result = job.get("result")
+            if not current_result or "temperatures" not in current_result:
+                raise ValueError("Pas de résultats précédents à réparer.")
+
+            temperatures = current_result["temperatures"]
+
+            if os.getenv("AI_METHOD") == "QWEN":
+                ai_extractor = AIVLMExtractor()
+                
+                # Correction des chemins d'images : le JSON stocké n'a que le nom de fichier
+                # Il faut reconstruire le chemin absolu pour que cv2.imread puisse lire l'image.
+                import copy
+                temps_for_repair = copy.deepcopy(temperatures)
+                
+                output_root = core.config.output_directory if core.config else Path("bulletins_meteo")
+                # Les images sont stockées dans temp/pdf_images par le PDFExtractor
+                possible_dirs = [
+                    output_root / "temp" / "pdf_images",
+                    output_root,
+                    output_root / "temp" / "maps"
+                ]
+                
+                for pdf_entry in temps_for_repair:
+                    for map_entry in pdf_entry.get("data", []):
+                        img_name = map_entry.get("image_path")
+                        if img_name:
+                             found = False
+                             # On cherche dans les dossiers possibles
+                             for d in possible_dirs:
+                                 candidate = d / img_name
+                                 if candidate.exists():
+                                     map_entry["image_path"] = str(candidate)
+                                     found = True
+                                     break
+                             
+                             if not found:
+                                 # Cas extrême: chemin déjà absolu ou relatif courant ?
+                                 if Path(img_name).exists():
+                                      map_entry["image_path"] = str(Path(img_name).resolve())
+                                 else:
+                                      # On laisse tel quel, le logger de AIVLMExtractor signalera l'erreur
+                                      pass
+
+                # On tente de réparer (extraire les NPs)
+                repaired_temps = ai_extractor.repair_results(temps_for_repair)
+                
+                # Mise à jour
+                current_result["temperatures"] = _serialize_temperature_payload(repaired_temps)
+                core.db_manager.update_job(job_id, status="success", result=current_result)
+            else:
+                # Pas de réparation supportée pour l'algo classique pour l'instant
+                core.db_manager.update_job(job_id, status="success") # No-op
+
+        except Exception as exc:
+            core.db_manager.update_job(job_id, status="error", error_message=f"Echec réparation: {exc}")
+
+    background_tasks.add_task(run_in_threadpool, repair_runner)
+
+    return {
+        "job_id": job_id,
+        "status": "running"
+    }
+
+
+@router.post("/upload-bulletin/feedback")
+async def submit_feedback(
+    job_id: str = Body(..., embed=True),
+    corrections: List[dict] = Body(..., embed=True) 
+):
+    """Enregistre les corrections utilisateur pour amélioration future ET mise à jour de la BDD."""
+    # 1. Sauvegarde pour R&D (JSON)
+    feedback_dir = core.config.project_root.parent / "datasets" / "feedback"
+    feedback_dir.mkdir(parents=True, exist_ok=True)
+    
+    timestamp = int(time.time())
+    filename = f"feedback_{timestamp}_{job_id}.json"
+    
+    path = feedback_dir / filename
+    try:
+        data = {
+            "job_id": job_id,
+            "timestamp": timestamp,
+            "corrections": corrections
+        }
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        logger.info(f"💾 Feedback utilisateur enregistré : {path}")
+
+        # 2. Sauvegarde Opérationnelle (Postgres)
+        _ensure_db_ready()
+        conn = core.db_manager.get_connection()
+        
+        for pdf_entry in corrections:
+            try:
+                pdf_path_str = pdf_entry.get("pdf_path", "")
+                if not pdf_path_str: continue
+                
+                pdf_name = Path(pdf_path_str).name
+                j_date = extract_date_from_filename(pdf_name) or datetime.now()
+                
+                # --- Update each map with ANAM date rules ---
+                for idx, map_entry in enumerate(pdf_entry.get("data", [])):
+                     if idx == 0:
+                         actual_date_obj = j_date - timedelta(days=1)
+                         map_type = 'observation'
+                     elif idx == 1:
+                         actual_date_obj = j_date + timedelta(days=1)
+                         map_type = 'forecast'
+                     else:
+                         actual_date_obj = j_date + timedelta(days=idx)
+                         map_type = 'forecast'
+                     
+                     actual_date_str = actual_date_obj.strftime("%Y-%m-%d")
+                
+                     # --- Upsert Bulletin per card ---
+                     bulletin_id = None
+                     with conn.cursor() as cur:
+                         cur.execute("SELECT id FROM bulletins WHERE date = %s AND type = %s AND file_path = %s", 
+                                    (actual_date_str, map_type, pdf_path_str))
+                         row = cur.fetchone()
+                         if row:
+                             bulletin_id = row[0]
+                             cur.execute("UPDATE bulletins SET processed_at = CURRENT_TIMESTAMP WHERE id = %s", (bulletin_id,))
+                         else:
+                             cur.execute('''
+                                 INSERT INTO bulletins (date, type, file_path, title, processed_at)
+                                 VALUES (%s, %s, %s, %s, CURRENT_TIMESTAMP)
+                                 RETURNING id
+                             ''', (actual_date_str, map_type, pdf_path_str, f"{pdf_name} - {map_type.capitalize()} (Feedback)"))
+                             bulletin_id = cur.fetchone()[0]
+                     conn.commit()
+                     
+                     # --- Insert Data for this card ---
+                     temps = map_entry.get("temperatures", [])
+                     for t in temps:
+                         st_name = t.get("name")
+                         if not st_name: continue
+                         
+                         st_id = core.db_manager.insert_station(st_name, None, None)
+                         
+                         tmin = t.get("tmin")
+                         if tmin is not None: tmin = float(tmin)
+                         tmax = t.get("tmax")
+                         if tmax is not None: tmax = float(tmax)
+                         cond = t.get("weather_condition")
+                         
+                         # Overwrite Weather Data
+                         with conn.cursor() as cur:
+                             cur.execute("DELETE FROM weather_data WHERE bulletin_id = %s AND station_id = %s", (bulletin_id, st_id))
+                             cur.execute('''
+                                INSERT INTO weather_data (bulletin_id, station_id, tmin, tmax, weather_condition)
+                                VALUES (%s, %s, %s, %s, %s)
+                             ''', (bulletin_id, st_id, tmin, tmax, cond))
+                         conn.commit()
+
+            except Exception as pdf_exc:
+                logger.error(f"Erreur processing PDF feedback {pdf_entry.get('pdf_path')}: {pdf_exc}")
+                conn.rollback()
+                # On continue pour les autres PDFs
+
+        return {"status": "success", "message": "Merci ! Données validées et sauvegardées."}
+
+    except Exception as e:
+        logger.error(f"❌ Erreur générale sauvegarde feedback: {e}")
+        # On retourne une erreur explicite
+        raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/upload-bulletins/batches/{batch_id}", response_model=UploadBatchStatus)
 async def get_upload_batch(batch_id: str = ApiPath(..., min_length=1)):
@@ -640,8 +1128,8 @@ async def get_upload_batch(batch_id: str = ApiPath(..., min_length=1)):
                 "pdf_path": job_payload.get("pdf_path"),
                 "result": job.get("result"),
                 "error_message": job.get("error_message"),
-                "created_at": job.get("created_at"),
-                "updated_at": job.get("updated_at"),
+                "created_at": job.get("created_at").isoformat() if job.get("created_at") else None,
+                "updated_at": job.get("updated_at").isoformat() if job.get("updated_at") else None,
             }
         )
 
@@ -669,6 +1157,36 @@ async def get_upload_batch(batch_id: str = ApiPath(..., min_length=1)):
         "canceled": counts["canceled"],
         "jobs": jobs,
     }
+
+
+@router.get("/upload-bulletins/jobs")
+async def list_upload_jobs(limit: int = 50, job_type: str = None):
+    _ensure_db_ready()
+    assert core.db_manager is not None
+    jobs = core.db_manager.list_jobs(limit=limit, job_type=job_type)
+    # Filter or format if needed
+    formatted = []
+    for j in jobs:
+        formatted.append({
+            "job_id": j["id"],
+            "job_type": j["job_type"],
+            "status": j["status"],
+            "created_at": j["created_at"].isoformat() if j["created_at"] else None,
+            "updated_at": j["updated_at"].isoformat() if j["updated_at"] else None,
+            "error_message": j["error_message"],
+            "progress": j.get("progress", 0),
+            "filename": j.get("payload", {}).get("filename") if j.get("payload") else None,
+            "result": j.get("result")
+        })
+    return formatted
+
+
+@router.delete("/upload-bulletins/jobs/{job_id}")
+async def delete_upload_job(job_id: str):
+    _ensure_db_ready()
+    assert core.db_manager is not None
+    core.db_manager.delete_job(job_id)
+    return {"status": "deleted", "job_id": job_id}
 
 
 @router.post("/upload-bulletins/batches/{batch_id}/stop")
@@ -715,3 +1233,108 @@ async def serve_file(category: str, filename: str):
         raise HTTPException(status_code=404, detail="File not found")
     
     return FileResponse(file_path)
+
+
+@router.post("/maintenance/sync-history")
+async def sync_job_history(background_tasks: BackgroundTasks):
+    """Récupère les résultats des jobs passés pour peupler la base de données."""
+    def _sync_task():
+        _ensure_db_ready()
+        conn = core.db_manager.get_connection()
+        count = 0
+        try:
+            with conn.cursor() as cur:
+                # Récupérer les jobs réussis avec un résultat
+                cur.execute("SELECT result FROM jobs WHERE type = 'upload_bulletin' AND status = 'success'")
+                rows = cur.fetchall()
+                
+                logger.info(f"Synchronisation: {len(rows)} jobs trouvés.")
+                
+                for row in rows:
+                    result = row[0]
+                    if not result: continue
+                    
+                    if isinstance(result, str):
+                        try: result = json.loads(result)
+                        except: continue
+                    
+                    temps = result.get("temperatures", [])
+                    if not temps: continue
+                    
+                    for pdf_res in temps:
+                        try:
+                            _save_extracted_data_to_db(pdf_res)
+                            count += 1
+                        except Exception as e:
+                           logger.error(f"Sync error for entry: {e}")
+            logger.info(f"Historique synchronisé: {count} bulletins traités/mis à jour.")
+        except Exception as e:
+            logger.error(f"Global sync error: {e}")
+    
+    background_tasks.add_task(run_in_threadpool, _sync_task)
+    return {"message": "Synchronisation de l'historique lancée en arrière-plan."}
+
+
+@router.get("/json-metrics/files")
+async def list_json_metrics_files():
+    """Liste tous les fichiers JSON disponibles dans le dossier racine."""
+    if not core.config:
+         raise HTTPException(status_code=500, detail="Config not initialized")
+
+    base_dir = core.config.output_directory
+    if not base_dir.exists():
+        return {"files": []}
+
+    files = []
+    for f in base_dir.glob("*.json"):
+        if f.name in ["scrape_manifest.json", "rois.json"]:
+            continue
+        try:
+            stat = f.stat()
+            # Attempt to parse basic info
+            date_bulletin = None
+            map_type = None
+            try:
+                with open(f, "r", encoding="utf-8") as handle:
+                    # Read only start to guess or whole if small
+                    data = json.load(handle)
+                    date_bulletin = data.get("date_bulletin")
+                    map_type = data.get("map_type")
+            except:
+                pass
+
+            files.append({
+                "name": f.name,
+                "path": f.name,
+                "size": stat.st_size,
+                "last_modified": datetime.fromtimestamp(stat.st_mtime).isoformat(),
+                "date": date_bulletin,
+                "map_type": map_type
+            })
+        except Exception as e:
+            logger.warning(f"Error reading json file {f}: {e}")
+
+    # Sort most recent first
+    files.sort(key=lambda x: x["last_modified"], reverse=True)
+    return {"files": files}
+
+
+@router.get("/json-metrics/file")
+async def get_json_metrics_file(path: str):
+    """Récupère le contenu d'un fichier JSON spécifique."""
+    if not core.config:
+         raise HTTPException(status_code=500, detail="Config not initialized")
+
+    if ".." in path or "/" in path or "\\" in path:
+         raise HTTPException(status_code=400, detail="Invalid filename")
+
+    target = core.config.output_directory / path
+    if not target.exists():
+        raise HTTPException(status_code=404, detail="File not found")
+
+    try:
+        with open(target, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return {"path": path, "data": data}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error reading file: {e}")

@@ -187,6 +187,7 @@ export function DetailsStationsPage() {
       try {
         const data = await fetchBulletinByDate(selectedDate);
         if (!active) return;
+<<<<<<< Updated upstream
         const baseByName = new Map<string, Station>();
         BASE_STATIONS.forEach((s) => baseByName.set(normalizeName(s.name), { ...s }));
         const mergedByName = new Map<string, Station>();
@@ -216,13 +217,44 @@ export function DetailsStationsPage() {
           mergedByName.set(key, merged);
         });
         const mergedStations = Array.from(mergedByName.values());
+=======
+        const byName = new Map<string, Station>();
+        BASE_STATIONS.forEach((s) => byName.set(normalizeName(s.name), { ...s }));
+        data.stations.forEach((s) => {
+          const name = s.name ?? "";
+          const key = normalizeName(name);
+          const base = byName.get(key);
+          byName.set(key, {
+            id: base?.id ?? byName.size + 1,
+            name: name || base?.name || "Station",
+            lat: base?.lat ?? s.latitude ?? MAP_CENTER.lat,
+            lng: base?.lng ?? s.longitude ?? MAP_CENTER.lng,
+            tmax_obs: s.tmax_obs ?? null,
+            tmin_obs: s.tmin_obs ?? null,
+            tmax_prev: s.tmax_prev ?? null,
+            tmin_prev: s.tmin_prev ?? null,
+            weather_obs: s.weather_obs ?? null,
+            weather_prev: s.weather_prev ?? null,
+            quality_score: s.quality_score ?? null,
+            interpretation_francais: s.interpretation_francais ?? null,
+            interpretation_moore: s.interpretation_moore ?? null,
+            interpretation_dioula: s.interpretation_dioula ?? null,
+          });
+        });
+>>>>>>> Stashed changes
         setBulletinInterpretations({
           francais: data.interpretation_francais ?? null,
           moore: data.interpretation_moore ?? null,
           dioula: data.interpretation_dioula ?? null,
         });
         setStations(
+<<<<<<< Updated upstream
           mergedStations.filter((s) => Number.isFinite(s.lat) && Number.isFinite(s.lng)),
+=======
+          Array.from(byName.values()).filter(
+            (s) => Number.isFinite(s.lat) && Number.isFinite(s.lng),
+          ),
+>>>>>>> Stashed changes
         );
       } catch {
         if (active) setError("Impossible de charger les stations.");

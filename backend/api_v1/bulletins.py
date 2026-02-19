@@ -343,19 +343,44 @@ async def get_bulletin_by_date(
     if cached is not None:
         return cached
     
-    def _station_to_payload(station):
+    def _station_to_payload(station, source_type=None):
         observation = station.get("observation", {}) or {}
         prevision = station.get("prevision", {}) or {}
+        
+        # Fallback for flat structure if observation/prevision dicts are empty
+        tmin_flat = station.get("tmin")
+        tmax_flat = station.get("tmax")
+        weather_flat = station.get("weather_condition")
+        
+        tmin_obs = observation.get("tmin")
+        tmax_obs = observation.get("tmax")
+        weather_obs = observation.get("weather_condition")
+        
+        tmin_prev = prevision.get("tmin")
+        tmax_prev = prevision.get("tmax")
+        weather_prev = prevision.get("weather_condition")
+        
+        # Map flat properties based on source type
+        st_lower = str(source_type).lower() if source_type else ""
+        if "observation" in st_lower or "obs" in st_lower:
+             if tmin_obs is None: tmin_obs = tmin_flat
+             if tmax_obs is None: tmax_obs = tmax_flat
+             if weather_obs is None: weather_obs = weather_flat
+        elif "forecast" in st_lower or "prevision" in st_lower or "prev" in st_lower:
+             if tmin_prev is None: tmin_prev = tmin_flat
+             if tmax_prev is None: tmax_prev = tmax_flat
+             if weather_prev is None: weather_prev = weather_flat
+
         return {
             "name": station.get("name"),
             "latitude": station.get("latitude"),
             "longitude": station.get("longitude"),
-            "tmin_obs": observation.get("tmin"),
-            "tmax_obs": observation.get("tmax"),
-            "weather_obs": observation.get("weather_condition"),
-            "tmin_prev": prevision.get("tmin"),
-            "tmax_prev": prevision.get("tmax"),
-            "weather_prev": prevision.get("weather_condition"),
+            "tmin_obs": tmin_obs,
+            "tmax_obs": tmax_obs,
+            "weather_obs": weather_obs,
+            "tmin_prev": tmin_prev,
+            "tmax_prev": tmax_prev,
+            "weather_prev": weather_prev,
             "interpretation_francais": station.get("interpretation_francais"),
             "interpretation_moore": station.get("interpretation_moore"),
             "interpretation_dioula": station.get("interpretation_dioula"),
@@ -374,12 +399,24 @@ async def get_bulletin_by_date(
     bulletin_interpretations = {"fr": None, "moore": None, "dioula": None}
     
     if core.db_manager is not None:
+        # Tenter d'abord de récupérer les interprétations globales depuis la table 'bulletins'
+        summaries = core.db_manager.list_bulletin_summaries(limit=100)
+        for s in summaries:
+            if s.get("date") == date:
+                # On ne prend le summary que si le type correspond (si spécifié)
+                if not bulletin_type or s.get("type") == bulletin_type:
+                    bulletin_interpretations["fr"] = s.get("interpretation_francais")
+                    bulletin_interpretations["moore"] = s.get("interpretation_moore")
+                    bulletin_interpretations["dioula"] = s.get("interpretation_dioula")
+                    break
+
         payloads = core.db_manager.list_bulletin_payloads_by_date(date)
         
         try:
             dt_obj = datetime.strptime(date, "%Y-%m-%d")
             prev_date = (dt_obj - timedelta(days=1)).strftime("%Y-%m-%d")
             prev_payloads = core.db_manager.list_bulletin_payloads_by_date(prev_date)
+            # Filter specifically for forecasts from previous day
             prev_forecasts = [p for p in prev_payloads if p.get("type") == "forecast" or "forecast" in str(p.get("pdf_path")).lower() or "prevision" in str(p.get("pdf_path")).lower()]
             payloads = prev_forecasts + payloads
         except Exception as e:
@@ -393,15 +430,33 @@ async def get_bulletin_by_date(
     if payloads:
         station_map = {}
         for entry in payloads:
-            if not bulletin_interpretations["fr"]:
-                bulletin_interpretations["fr"] = entry.get("interpretation_francais")
-                bulletin_interpretations["moore"] = entry.get("interpretation_moore")
-                bulletin_interpretations["dioula"] = entry.get("interpretation_dioula")
+            # Récupérer les interprétations (on cumule pour s'assurer d'avoir les 3 langues si présentes dans l'un des payloads)
+            for lang_key, field in [("fr", "interpretation_francais"), ("moore", "interpretation_moore"), ("dioula", "interpretation_dioula")]:
+                val = entry.get(field)
+                if val and (bulletin_interpretations[lang_key] is None or len(val) > len(bulletin_interpretations[lang_key])):
+                    bulletin_interpretations[lang_key] = val
             
-            for station in entry.get("stations", []):
-                payload = _station_to_payload(station)
-                key = payload.get("name") or f"station_{len(station_map) + 1}"
-                station_map[key] = _merge_station(station_map.get(key), payload)
+            # New format: hierarchical data with maps
+            if entry.get("data"):
+                for map_data in entry.get("data", []):
+                    # We use the type of the map itself (RÈGLE ANAM: Map 1 is Obs, Map 2 is Prev)
+                    map_type = map_data.get("type")
+                    if not map_type:
+                        map_type = entry.get("type")
+                    
+                    for station in map_data.get("temperatures", []):
+                        payload = _station_to_payload(station, source_type=map_type)
+                        key = payload.get("name") or f"station_{len(station_map) + 1}"
+                        station_map[key] = _merge_station(station_map.get(key), payload)
+            
+            # Old format: flat stations list
+            elif entry.get("stations"):
+                entry_type = entry.get("type")
+                for station in entry.get("stations", []):
+                    payload = _station_to_payload(station, source_type=entry_type)
+                    key = payload.get("name") or f"station_{len(station_map) + 1}"
+                    station_map[key] = _merge_station(station_map.get(key), payload)
+
         stations_payload = list(station_map.values())
     else:
         bulletins = _load_result_file()
@@ -454,37 +509,36 @@ async def regenerate_translation(payload: TranslationRegenerateRequest):
     target_pdf_path = None
     is_generic = payload.station_name.lower() in ["bulletin national", "national", "all", "tout", "toutes"]
     
-    # ✨ PRIORITÉ AUX PRÉVISIONS : Chercher d'abord les bulletins de type "forecast"
-    forecast_payloads = [p for p in station_payloads if p.get("type") == "forecast" or "forecast" in str(p.get("pdf_path", "")).lower() or "prevision" in str(p.get("pdf_path", "")).lower()]
-    observation_payloads = [p for p in station_payloads if p not in forecast_payloads]
-    
-    # Parcourir d'abord les prévisions, puis les observations
-    payloads_to_check = forecast_payloads + observation_payloads
-    
-    for entry in payloads_to_check:
-        if is_generic and entry.get("stations"):
-            target_station = entry["stations"][0]
-            target_pdf_path = entry.get("pdf_path")
-            break
-        for station in entry.get("stations", []):
-            if station.get("name") == payload.station_name:
-                target_station = station
-                target_pdf_path = entry.get("pdf_path")
-                break
+
+    for entry in station_payloads:
+        # Recherche des stations (soit au format plat, soit hiérarchique VLM)
+        stations = entry.get("stations", [])
+        if not stations and entry.get("data"):
+            for map_data in entry.get("data"):
+                if map_data.get("temperatures"):
+                    stations.extend(map_data.get("temperatures"))
+        
+        if not stations and is_generic:
+            # Fallback pour bulletin national si aucune station n'est encore extraite
+            target_station = {"name": "Bulletin National", "type": entry.get("type", "observation")}
+        elif is_generic:
+            target_station = stations[0].copy()
+        else:
+            for station in stations:
+                if station.get("name") == payload.station_name:
+                    target_station = station.copy()
+                    break
+        
+
         if target_station:
+            target_pdf_path = entry.get("pdf_path")
             target_station["pdf_path"] = target_pdf_path
             target_station["date"] = payload.date
             break
             
-    if not target_station:
-        if is_generic and payloads_to_check:
-             for entry in payloads_to_check:
-                 if entry.get("stations"):
-                     target_station = entry["stations"][0].copy()
-                     target_pdf_path = entry.get("pdf_path")
-                     target_station["pdf_path"] = target_pdf_path
-                     target_station["date"] = payload.date
-                     break
+
+    # Suppression de la seconde tentative car le loop ci-dessus est désormais robuste
+
         
         if not target_station:
             raise HTTPException(status_code=404, detail="Station ou bulletin non trouvé pour cette date.")
@@ -546,7 +600,7 @@ async def regenerate_translation(payload: TranslationRegenerateRequest):
         raise HTTPException(status_code=400, detail="Impossible d'extraire le texte français du PDF. Vérifiez que le fichier existe.")
         
     langs_to_regen = []
-    if payload.language in [None, "all"]:
+    if payload.language in [None, "all", "fr", "francais", "interpretation_francais"]:
         langs_to_regen = ["moore", "dioula"]
     elif payload.language in ["moore", "interpretation_moore"]:
         langs_to_regen = ["moore"]
@@ -576,9 +630,14 @@ async def regenerate_translation(payload: TranslationRegenerateRequest):
     }
     bulletin_type_detected = type_map.get(str(raw_type).lower(), "observation")
     
-    logger.info(f"Mise à jour DB pour le bulletin {payload.date} (Type détecté: {raw_type} -> DB: {bulletin_type_detected})")
     rows_updated = core.db_manager.update_bulletin_interpretations(payload.date, bulletin_type_detected, new_translations)
-    logger.info(f"Nombre de lignes mises à jour dans 'bulletins' : {rows_updated}")
+    if rows_updated == 0:
+        # Fallback : essayer l'autre type si le premier a échoué
+        other_type = "forecast" if bulletin_type_detected == "observation" else "observation"
+        rows_updated = core.db_manager.update_bulletin_interpretations(payload.date, other_type, new_translations)
+        logger.info(f"Fallback : {rows_updated} lignes mises à jour avec le type '{other_type}'")
+    else:
+        logger.info(f"Nombre de lignes mises à jour dans 'bulletins' : {rows_updated}")
     
     station_snapshot = target_station.copy()
     station_snapshot["interpretation_francais"] = None
@@ -653,8 +712,8 @@ async def regenerate_translation_async(payload: TranslationRegenerateRequest):
     if target_bulletin:
         # Déterminer les langues à vérifier
         langs_to_check = []
-        if payload.language in [None, "all"]:
-            langs_to_check = ["moore", "dioula"]
+        if payload.language in [None, "all", "fr", "francais", "interpretation_francais"]:
+            langs_to_check = ["fr", "moore", "dioula"]
         elif payload.language in ["moore", "interpretation_moore"]:
             langs_to_check = ["moore"]
         elif payload.language in ["dioula", "interpretation_dioula"]:
@@ -664,7 +723,7 @@ async def regenerate_translation_async(payload: TranslationRegenerateRequest):
         all_exist = True
         existing_translations = {}
         for lang in langs_to_check:
-            field_name = f"interpretation_{lang}"
+            field_name = "interpretation_francais" if lang == "fr" else f"interpretation_{lang}"
             translation = target_bulletin.get(field_name)
             if translation and len(translation.strip()) > 10:  # Au moins 10 caractères
                 existing_translations[lang] = translation
@@ -678,7 +737,7 @@ async def regenerate_translation_async(payload: TranslationRegenerateRequest):
             return {
                 "task_id": f"cached_{payload.date}_{payload.language}_{int(datetime.now().timestamp())}",
                 "status": "completed",
-                "message": "Les traductions existent déjà dans la base de données, aucune régénération nécessaire.",
+                "message": "Les traductions existent déjà dans la base de données.",
                 "translations": existing_translations,
                 "cached": True,
             }
@@ -706,29 +765,31 @@ async def regenerate_translation_async(payload: TranslationRegenerateRequest):
         is_generic = payload.station_name.lower() in ["bulletin national", "national", "all", "tout", "toutes"]
         
         for entry in station_payloads:
-            if is_generic and entry.get("stations"):
-                target_station = entry["stations"][0].copy()
-                target_pdf_path = entry.get("pdf_path")
-                break
-            for station in entry.get("stations", []):
-                if station.get("name") == payload.station_name:
-                    target_station = station.copy()
-                    target_pdf_path = entry.get("pdf_path")
-                    break
+            # Recherche des stations (soit au format plat, soit hiérarchique VLM)
+            stations = entry.get("stations", [])
+            if not stations and entry.get("data"):
+                for map_data in entry.get("data"):
+                    if map_data.get("temperatures"):
+                        stations.extend(map_data.get("temperatures"))
+            
+            if not stations and is_generic:
+                # Fallback pour bulletin national si aucune station n'est encore extraite
+                target_station = {"name": "Bulletin National", "type": entry.get("type", "observation")}
+            elif is_generic:
+                target_station = stations[0].copy()
+            else:
+                for station in stations:
+                    if station.get("name") == payload.station_name:
+                        target_station = station.copy()
+                        break
+            
             if target_station:
+                target_pdf_path = entry.get("pdf_path")
                 target_station["pdf_path"] = target_pdf_path
                 target_station["date"] = payload.date
                 break
         
-        if not target_station:
-            if is_generic and station_payloads:
-                for entry in station_payloads:
-                    if entry.get("stations"):
-                        target_station = entry["stations"][0].copy()
-                        target_pdf_path = entry.get("pdf_path")
-                        target_station["pdf_path"] = target_pdf_path
-                        target_station["date"] = payload.date
-                        break
+        # Suppression de la seconde tentative car le loop ci-dessus est désormais robuste
             
             if not target_station:
                 raise ValueError("Station ou bulletin non trouvé pour cette date.")
@@ -736,39 +797,9 @@ async def regenerate_translation_async(payload: TranslationRegenerateRequest):
         # Interpréteur partagé
         interpreter = LanguageInterpreter.get_shared(core.db_manager)
         
-        # ✨ Intégration de la nouvelle API de traduction en mooré
-        def translate_with_external_api_sync(text: str, target_lang: str) -> str:
-            """Version synchrone de la traduction via API externe"""
-            if target_lang != "moore":
-                return interpreter.translate(text, target_lang, force=True)
-            
-            import requests
-            
-            url = "https://fr-mos-translator-314397473739.europe-west1.run.app/api/translate"
-            payload = {
-                "text": text,
-                "source_lang": "french",
-                "target_lang": "moore"
-            }
-            
-            try:
-                response = requests.post(url, json=payload, timeout=30)
-                if response.status_code == 200:
-                    result = response.json()
-                    return result.get("translation", "")
-                else:
-                    logger.warning(f"API externe a retourné le statut {response.status_code}")
-                    return ""
-            except Exception as e:
-                logger.error(f"Erreur lors de la traduction via API externe : {e}")
-                return ""
-        
-        # Générer le texte français si nécessaire
-        if payload.language in [None, "all", "interpretation_francais", "fr", "francais"]:
-            french_text = interpreter._generate_french_bulletin(target_station)
-            if french_text:
-                target_station["interpretation_francais"] = french_text
-        
+
+        # 1. Tenter d'abord de récupérer le texte français déjà présent en base
+
         french_text = target_station.get("interpretation_francais")
         if not french_text:
             for entry in station_payloads:
@@ -777,17 +808,19 @@ async def regenerate_translation_async(payload: TranslationRegenerateRequest):
                     target_station["interpretation_francais"] = french_text
                     break
         
+        # 2. Si non trouvé, tenter l'extraction (OCR/Qwen) seulement si nécessaire
         if not french_text:
+            # Note: _generate_french_bulletin possède ses propres fallbacks internes
             french_text = interpreter._generate_french_bulletin(target_station)
             if french_text:
                 target_station["interpretation_francais"] = french_text
         
         if not french_text:
-            raise ValueError("Impossible d'extraire le texte français du PDF.")
+            raise ValueError("L'interprétation française est manquante et l'extraction du PDF a échoué.")
         
         # Déterminer les langues à régénérer
         langs_to_regen = []
-        if payload.language in [None, "all"]:
+        if payload.language in [None, "all", "fr", "francais", "interpretation_francais"]:
             langs_to_regen = ["moore", "dioula"]
         elif payload.language in ["moore", "interpretation_moore"]:
             langs_to_regen = ["moore"]
@@ -827,7 +860,13 @@ async def regenerate_translation_async(payload: TranslationRegenerateRequest):
             bulletin_type_detected,
             new_translations
         )
-        logger.info(f"✅ Tâche {task_id}: {rows_updated} ligne(s) mise(s) à jour dans la BD")
+        if rows_updated == 0:
+            # Fallback : essayer l'autre type
+            other_type = "forecast" if bulletin_type_detected == "observation" else "observation"
+            rows_updated = core.db_manager.update_bulletin_interpretations(payload.date, other_type, new_translations)
+            logger.info(f"✅ Tâche {task_id}: {rows_updated} ligne(s) mise(s) à jour avec le type fallback '{other_type}'")
+        else:
+            logger.info(f"✅ Tâche {task_id}: {rows_updated} ligne(s) mise(s) à jour dans la BD")
         
         # Mise à jour du snapshot
         station_snapshot = target_station.copy()

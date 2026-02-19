@@ -396,11 +396,13 @@ class IconClassifier:
 
         return icons
 
-    def classify_icons(self, pdf_results):
+    def classify_icons(self, pdf_results, progress_callback=None):
         """Applique la detection carte par carte sur l'ensemble des PDF traites."""
         all_icons = []
+        total_maps = sum(len(pdf.get("maps", [])) for pdf in pdf_results)
+        processed_maps = 0
 
-        for pdf_result in pdf_results:
+        for i, pdf_result in enumerate(pdf_results, 1):
             pdf_icons_data = {
                 "pdf_path": pdf_result["pdf_path"],
                 "data": [],
@@ -410,6 +412,10 @@ class IconClassifier:
                 map_type = map_data["type"]
                 map_image_path = map_data.get("image_path", pdf_result["image_path"])
 
+                if progress_callback:
+                    pct = (processed_maps / total_maps) * 100
+                    progress_callback(pct, f"Classification {Path(pdf_result['pdf_path']).name} - {map_type}")
+
                 icons = self.classify_icons_in_map(map_image_path)
 
                 pdf_icons_data["data"].append(
@@ -418,12 +424,16 @@ class IconClassifier:
                         "icons": icons,
                     }
                 )
+                processed_maps += 1
 
             all_icons.append(pdf_icons_data)
 
+        if progress_callback:
+            progress_callback(100, "Classification terminée.")
+
         return all_icons
 
-    def classify_icons_from_workflow(self, pdf_results):
+    def classify_icons_from_workflow(self, pdf_results, progress_callback=None):
         """Utilise les detections Roboflow (symbol/ville) si disponibles."""
         all_icons = []
 

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.git/
+.gitignore
+.prettierrc
+.prettierignore
+.eslintrc.cjs
+tsconfig*.json
+vite.config.*
